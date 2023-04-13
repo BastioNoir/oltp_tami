@@ -72,7 +72,7 @@ CREATE TABLE CIRCUITO
     nom_circuito VARCHAR(50) NOT NULL,
     pais VARCHAR(50),
     ciudad VARCHAR(50),
-    n_curvas   TINYINT NOT NULL,
+    n_curvas   VARCHAR(50),
     ultima_actualizacion TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     PRIMARY KEY (nom_circuito)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
