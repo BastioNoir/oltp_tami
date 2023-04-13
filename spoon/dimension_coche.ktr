@@ -499,14 +499,14 @@
     </notepad>
   </notepads>
   <connection>
-    <name>sakila</name>
+    <name>dwh_escu</name>
     <server>localhost</server>
     <type>MYSQL</type>
     <access>Native</access>
-    <database>sakila</database>
+    <database>dwh_escu</database>
     <port>3306</port>
     <username>root</username>
-    <password>Encrypted 2be98afc86aa7f2e4cb79ce10cc9da0ce</password>
+    <password>Encrypted </password>
     <servername/>
     <data_tablespace/>
     <index_tablespace/>
@@ -562,14 +562,14 @@
     </attributes>
   </connection>
   <connection>
-    <name>sakila_dwh</name>
+    <name>tami_oltp</name>
     <server>localhost</server>
     <type>MYSQL</type>
     <access>Native</access>
-    <database>sakila_dwh</database>
+    <database>tami_oltp</database>
     <port>3306</port>
     <username>root</username>
-    <password>Encrypted 2be98afc86aa7f2e4cb79ce10cc9da0ce</password>
+    <password>Encrypted </password>
     <servername/>
     <data_tablespace/>
     <index_tablespace/>
@@ -652,7 +652,7 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <connection>sakila_dwh</connection>
+    <connection>dwh_escu</connection>
     <commit>10000</commit>
     <update_bypassed>Y</update_bypassed>
     <lookup>
@@ -720,12 +720,12 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <connection>sakila_dwh</connection>
+    <connection>dwh_escu</connection>
     <sql>SELECT COALESCE(
-           MAX(last_update)
+           MAX(ultima_actualizacion)
        ,   '1970-01-01 00:00:00'
        ) AS max_dim_pilot_last_update
-FROM   QUECOCHE
+FROM   dim_coche
 </sql>
     <limit>0</limit>
     <lookup/>
@@ -733,7 +733,31 @@ FROM   QUECOCHE
     <variables_active>N</variables_active>
     <lazy_conversion_active>N</lazy_conversion_active>
     <cached_row_meta_active>N</cached_row_meta_active>
-    <row-meta/>
+    <row-meta>
+      <value-meta>
+        <type>String</type>
+        <storagetype>normal</storagetype>
+        <name>max_dim_pilot_last_update</name>
+        <length>19</length>
+        <precision>-1</precision>
+        <origin>max_dim_pilot_last_update</origin>
+        <comments>max_dim_pilot_last_update</comments>
+        <conversion_Mask/>
+        <decimal_symbol>,</decimal_symbol>
+        <grouping_symbol>.</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>en_US</date_format_locale>
+        <date_format_timezone>Europe/Madrid</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+    </row-meta>
     <attributes/>
     <cluster_schema/>
     <remotesteps>
@@ -759,7 +783,7 @@ FROM   QUECOCHE
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <connection>sakila</connection>
+    <connection>tami_oltp</connection>
     <sql>SELECT
   ID_COCHE
 , ANCHO
@@ -775,7 +799,146 @@ WHERE ULTIMA_ACTUALIZACION > ?</sql>
     <variables_active>N</variables_active>
     <lazy_conversion_active>N</lazy_conversion_active>
     <cached_row_meta_active>N</cached_row_meta_active>
-    <row-meta/>
+    <row-meta>
+      <value-meta>
+        <type>Integer</type>
+        <storagetype>normal</storagetype>
+        <name>ID_COCHE</name>
+        <length>4</length>
+        <precision>0</precision>
+        <origin>pilot</origin>
+        <comments>ID_COCHE</comments>
+        <conversion_Mask>####0;-####0</conversion_Mask>
+        <decimal_symbol>,</decimal_symbol>
+        <grouping_symbol>.</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>en_US</date_format_locale>
+        <date_format_timezone>Europe/Madrid</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+      <value-meta>
+        <type>Number</type>
+        <storagetype>normal</storagetype>
+        <name>ANCHO</name>
+        <length>4</length>
+        <precision>2</precision>
+        <origin>pilot</origin>
+        <comments>ANCHO</comments>
+        <conversion_Mask>####0.0#########;-####0.0#########</conversion_Mask>
+        <decimal_symbol>,</decimal_symbol>
+        <grouping_symbol>.</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>en_US</date_format_locale>
+        <date_format_timezone>Europe/Madrid</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+      <value-meta>
+        <type>Number</type>
+        <storagetype>normal</storagetype>
+        <name>LARGO</name>
+        <length>4</length>
+        <precision>2</precision>
+        <origin>pilot</origin>
+        <comments>LARGO</comments>
+        <conversion_Mask>####0.0#########;-####0.0#########</conversion_Mask>
+        <decimal_symbol>,</decimal_symbol>
+        <grouping_symbol>.</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>en_US</date_format_locale>
+        <date_format_timezone>Europe/Madrid</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+      <value-meta>
+        <type>Number</type>
+        <storagetype>normal</storagetype>
+        <name>POTENCIA_MOTOR</name>
+        <length>5</length>
+        <precision>2</precision>
+        <origin>pilot</origin>
+        <comments>POTENCIA_MOTOR</comments>
+        <conversion_Mask>####0.0#########;-####0.0#########</conversion_Mask>
+        <decimal_symbol>,</decimal_symbol>
+        <grouping_symbol>.</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>en_US</date_format_locale>
+        <date_format_timezone>Europe/Madrid</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+      <value-meta>
+        <type>Number</type>
+        <storagetype>normal</storagetype>
+        <name>VEL_MAX</name>
+        <length>5</length>
+        <precision>2</precision>
+        <origin>pilot</origin>
+        <comments>VEL_MAX</comments>
+        <conversion_Mask>####0.0#########;-####0.0#########</conversion_Mask>
+        <decimal_symbol>,</decimal_symbol>
+        <grouping_symbol>.</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>en_US</date_format_locale>
+        <date_format_timezone>Europe/Madrid</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+      <value-meta>
+        <type>Timestamp</type>
+        <storagetype>normal</storagetype>
+        <name>ULTIMA_ACTUALIZACION</name>
+        <length>0</length>
+        <precision>-1</precision>
+        <origin>pilot</origin>
+        <comments>ULTIMA_ACTUALIZACION</comments>
+        <conversion_Mask/>
+        <decimal_symbol>,</decimal_symbol>
+        <grouping_symbol>.</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>en_US</date_format_locale>
+        <date_format_timezone>Europe/Madrid</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+    </row-meta>
     <attributes/>
     <cluster_schema/>
     <remotesteps>
@@ -801,17 +964,39 @@ WHERE ULTIMA_ACTUALIZACION > ?</sql>
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <connection>sakila</connection>
-    <sql>SELECT 
-  count(COD_PRUEBA) 
-FROM PRUEBA</sql>
+    <connection>tami_oltp</connection>
+    <sql>SELECT COALESCE(count(COD_PRUEBA), '0') AS num_pruebas FROM   PRUEBA</sql>
     <limit>0</limit>
     <lookup>pilot</lookup>
     <execute_each_row>N</execute_each_row>
     <variables_active>N</variables_active>
-    <lazy_conversion_active>N</lazy_conversion_active>
+    <lazy_conversion_active>Y</lazy_conversion_active>
     <cached_row_meta_active>N</cached_row_meta_active>
-    <row-meta/>
+    <row-meta>
+      <value-meta>
+        <type>Binary</type>
+        <storagetype>normal</storagetype>
+        <name>num_pruebas</name>
+        <length>-1</length>
+        <precision>-1</precision>
+        <origin>pilot 2</origin>
+        <comments>num_pruebas</comments>
+        <conversion_Mask/>
+        <decimal_symbol>,</decimal_symbol>
+        <grouping_symbol>.</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>en_US</date_format_locale>
+        <date_format_timezone>Europe/Madrid</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+    </row-meta>
     <attributes/>
     <cluster_schema/>
     <remotesteps>
