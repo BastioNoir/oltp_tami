@@ -500,11 +500,11 @@
     </notepad>
   </notepads>
   <connection>
-    <name>sakila</name>
+    <name>dwh_escu</name>
     <server>localhost</server>
     <type>MYSQL</type>
     <access>Native</access>
-    <database>sakila</database>
+    <database>dwh_escu</database>
     <port>3306</port>
     <username>root</username>
     <password>Encrypted </password>
@@ -547,65 +547,6 @@
       <attribute>
         <code>STREAM_RESULTS</code>
         <attribute>Y</attribute>
-      </attribute>
-      <attribute>
-        <code>SUPPORTS_BOOLEAN_DATA_TYPE</code>
-        <attribute>Y</attribute>
-      </attribute>
-      <attribute>
-        <code>SUPPORTS_TIMESTAMP_DATA_TYPE</code>
-        <attribute>Y</attribute>
-      </attribute>
-      <attribute>
-        <code>USE_POOLING</code>
-        <attribute>N</attribute>
-      </attribute>
-    </attributes>
-  </connection>
-  <connection>
-    <name>sakila_dwh</name>
-    <server>localhost</server>
-    <type>MARIADB</type>
-    <access>Native</access>
-    <database>sakila_dwh</database>
-    <port>3306</port>
-    <username>root</username>
-    <password>Encrypted </password>
-    <servername/>
-    <data_tablespace/>
-    <index_tablespace/>
-    <attributes>
-      <attribute>
-        <code>EXTRA_OPTION_MARIADB.defaultFetchSize</code>
-        <attribute>500</attribute>
-      </attribute>
-      <attribute>
-        <code>EXTRA_OPTION_MARIADB.useCursorFetch</code>
-        <attribute>true</attribute>
-      </attribute>
-      <attribute>
-        <code>FORCE_IDENTIFIERS_TO_LOWERCASE</code>
-        <attribute>N</attribute>
-      </attribute>
-      <attribute>
-        <code>FORCE_IDENTIFIERS_TO_UPPERCASE</code>
-        <attribute>N</attribute>
-      </attribute>
-      <attribute>
-        <code>IS_CLUSTERED</code>
-        <attribute>N</attribute>
-      </attribute>
-      <attribute>
-        <code>PORT_NUMBER</code>
-        <attribute>3306</attribute>
-      </attribute>
-      <attribute>
-        <code>PRESERVE_RESERVED_WORD_CASE</code>
-        <attribute>Y</attribute>
-      </attribute>
-      <attribute>
-        <code>QUOTE_ALL_FIELDS</code>
-        <attribute>N</attribute>
       </attribute>
       <attribute>
         <code>SUPPORTS_BOOLEAN_DATA_TYPE</code>
@@ -670,7 +611,7 @@
       <schema_name/>
     </partitioning>
     <compatible>Y</compatible>
-    <optimizationLevel/>
+    <optimizationLevel>9</optimizationLevel>
     <jsScripts>
       <jsScript>
         <jsScript_type>0</jsScript_type>
@@ -1082,7 +1023,7 @@ var date_key = year4 + month_number + (day_in_month&lt;10?"0":"") + day_in_month
     </partitioning>
     <valuename>DaySequence</valuename>
     <use_database>N</use_database>
-    <connection>sakila_dwh</connection>
+    <connection/>
     <schema/>
     <seqname>SEQ_</seqname>
     <use_counter>Y</use_counter>
@@ -1238,9 +1179,9 @@ var date_key = year4 + month_number + (day_in_month&lt;10?"0":"") + day_in_month
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <connection>sakila</connection>
+    <connection>dwh_escu</connection>
     <schema/>
-    <table>cuandocorre</table>
+    <table>dim_tiempo</table>
     <commit>10000</commit>
     <truncate>N</truncate>
     <ignore_errors>N</ignore_errors>
@@ -1257,108 +1198,32 @@ var date_key = year4 + month_number + (day_in_month&lt;10?"0":"") + day_in_month
     <return_field/>
     <fields>
       <field>
-        <column_name>date_short</column_name>
-        <stream_name>date_short</stream_name>
+        <column_name>cc_id</column_name>
+        <stream_name>cc_id</stream_name>
       </field>
       <field>
-        <column_name>date_medium</column_name>
-        <stream_name>date_medium</stream_name>
+        <column_name>anho</column_name>
+        <stream_name>anho</stream_name>
       </field>
       <field>
-        <column_name>day_abbreviation</column_name>
-        <stream_name>day_abbreviation</stream_name>
+        <column_name>trimestre</column_name>
+        <stream_name>trimestre</stream_name>
       </field>
       <field>
-        <column_name>month_abbreviation</column_name>
-        <stream_name>month_abbreviation</stream_name>
+        <column_name>mes</column_name>
+        <stream_name>mes</stream_name>
       </field>
       <field>
-        <column_name>month_name</column_name>
-        <stream_name>month_name</stream_name>
+        <column_name>semana</column_name>
+        <stream_name>semana</stream_name>
       </field>
       <field>
-        <column_name>quarter_name</column_name>
-        <stream_name>quarter_name</stream_name>
+        <column_name>dia</column_name>
+        <stream_name>dia</stream_name>
       </field>
       <field>
-        <column_name>year_quarter</column_name>
-        <stream_name>year_quarter</stream_name>
-      </field>
-      <field>
-        <column_name>year_month_abbreviation</column_name>
-        <stream_name>year_month_abbreviation</stream_name>
-      </field>
-      <field>
-        <column_name>year4</column_name>
-        <stream_name>year4</stream_name>
-      </field>
-      <field>
-        <column_name>week_in_year</column_name>
-        <stream_name>week_in_year</stream_name>
-      </field>
-      <field>
-        <column_name>week_in_month</column_name>
-        <stream_name>week_in_month</stream_name>
-      </field>
-      <field>
-        <column_name>month_number</column_name>
-        <stream_name>month_number</stream_name>
-      </field>
-      <field>
-        <column_name>quarter_number</column_name>
-        <stream_name>quarter_number</stream_name>
-      </field>
-      <field>
-        <column_name>year_month_number</column_name>
-        <stream_name>year_month_number</stream_name>
-      </field>
-      <field>
-        <column_name>date_key</column_name>
-        <stream_name>date_key</stream_name>
-      </field>
-      <field>
-        <column_name>date_long</column_name>
-        <stream_name>date_long</stream_name>
-      </field>
-      <field>
-        <column_name>date_full</column_name>
-        <stream_name>date_full</stream_name>
-      </field>
-      <field>
-        <column_name>day_name</column_name>
-        <stream_name>day_name</stream_name>
-      </field>
-      <field>
-        <column_name>year2</column_name>
-        <stream_name>year2</stream_name>
-      </field>
-      <field>
-        <column_name>day_in_year</column_name>
-        <stream_name>day_in_year</stream_name>
-      </field>
-      <field>
-        <column_name>is_last_day_in_month</column_name>
-        <stream_name>is_last_day_in_month</stream_name>
-      </field>
-      <field>
-        <column_name>is_first_day_in_month</column_name>
-        <stream_name>is_first_day_in_month</stream_name>
-      </field>
-      <field>
-        <column_name>is_last_day_in_week</column_name>
-        <stream_name>is_last_day_in_week</stream_name>
-      </field>
-      <field>
-        <column_name>is_first_day_in_week</column_name>
-        <stream_name>is_first_day_in_week</stream_name>
-      </field>
-      <field>
-        <column_name>day_in_month</column_name>
-        <stream_name>day_in_month</stream_name>
-      </field>
-      <field>
-        <column_name>date_value</column_name>
-        <stream_name>date</stream_name>
+        <column_name>ultima_actualizacion</column_name>
+        <stream_name>last_update</stream_name>
       </field>
     </fields>
     <attributes/>
@@ -1400,7 +1265,7 @@ var date_key = year4 + month_number + (day_in_month&lt;10?"0":"") + day_in_month
         <rename>trimestre</rename>
       </field>
       <field>
-        <name>month_name</name>
+        <name>month_number</name>
         <rename>mes</rename>
       </field>
       <field>

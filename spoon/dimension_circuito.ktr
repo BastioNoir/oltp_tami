@@ -430,7 +430,7 @@
     <created_date>2023/03/30 11:25:01.708</created_date>
     <modified_user>-</modified_user>
     <modified_date>2023/03/30 11:25:01.708</modified_date>
-    <key_for_session_key/>
+    <key_for_session_key>H4sIAAAAAAAA/wMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
   <notepads>
@@ -677,30 +677,85 @@
     </hop>
   </order>
   <step>
-    <name>max_dim_circuit_last_update</name>
-    <type>TableInput</type>
+    <name>Calculate Dimension Attributes</name>
+    <type>ScriptValueMod</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
-    <copies>1</copies>
+    <copies>4</copies>
     <partitioning>
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <connection>sakila_dwh</connection>
-    <sql>SELECT COALESCE(
-           MAX(last_update)
-       ,   '1970-01-01 00:00:00'
-       ) AS max_dim_circuit_last_update
-FROM   dondecorre
-</sql>
-    <limit>0</limit>
-    <lookup/>
-    <execute_each_row>N</execute_each_row>
-    <variables_active>N</variables_active>
-    <lazy_conversion_active>N</lazy_conversion_active>
-    <cached_row_meta_active>N</cached_row_meta_active>
-    <row-meta/>
+    <compatible>Y</compatible>
+    <optimizationLevel>9</optimizationLevel>
+    <jsScripts>
+      <jsScript>
+        <jsScript_type>0</jsScript_type>
+        <jsScript_name>Script 1</jsScript_name>
+        <jsScript_script>const cityName = 'Madrid';
+const stateCode = '';
+const countryCode = 'es';
+const limit = 5;
+const apiKey = 'tu_clave_de_API';
+
+// Primero, hacemos la solicitud a la API de geolocalización
+const geoUrl = 'http://api.openweathermap.org/geo/1.0/direct?q=${cityName},${stateCode},${countryCode}&amp;limit=${limit}&amp;appid=${apiKey}';
+
+fetch(geoUrl)
+  .then(response => response.json())
+  .then(data => {
+    // Obtenemos las coordenadas de la primera ubicación en la lista de resultados
+    const location = data[0];
+    const lat = location.lat;
+    const lon = location.lon;
+
+    // Luego, hacemos la solicitud a la API de pronóstico del tiempo
+    const weatherUrl = 'https://api.openweathermap.org/data/3.0/onecall?lat=${lat}&amp;lon=${lon}&amp;exclude=minutely,hourly&amp;appid=${apiKey}';
+
+    fetch(weatherUrl)
+      .then(response => response.json())
+      .then(data => {
+        // Aquí puedes trabajar con los datos del pronóstico del tiempo
+        console.log(data);
+      })
+      .catch(error => {
+        // Manejo de errores
+        console.error(error);
+      });
+  })
+  .catch(error => {
+    // Manejo de errores
+    console.error(error);
+  });</jsScript_script>
+      </jsScript>
+    </jsScripts>
+    <fields>
+      <field>
+        <name>NOM_CIRCUITO</name>
+        <rename>NOM_CIRCUITO</rename>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>
+      <field>
+        <name>CIUDAD</name>
+        <rename>CIUDAD</rename>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>
+      <field>
+        <name>PAIS</name>
+        <rename>PAIS</rename>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>
+    </fields>
     <attributes/>
     <cluster_schema/>
     <remotesteps>
@@ -710,8 +765,8 @@ FROM   dondecorre
       </output>
     </remotesteps>
     <GUI>
-      <xloc>96</xloc>
-      <yloc>16</yloc>
+      <xloc>304</xloc>
+      <yloc>240</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -745,7 +800,7 @@ FROM   dondecorre
       </value>
       <value>
         <name>meteorologia</name>
-        <rename/>
+        <rename>meteorologia</rename>
         <update>Y</update>
       </value>
       <value>
@@ -780,6 +835,43 @@ FROM   dondecorre
     <GUI>
       <xloc>96</xloc>
       <yloc>240</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Select values</name>
+    <type>SelectValues</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <field>
+        <name>CIUDAD</name>
+      </field>
+      <field>
+        <name>PAIS</name>
+      </field>
+      <field>
+        <name>NOM_CIRCUITO</name>
+      </field>
+      <select_unspecified>N</select_unspecified>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>304</xloc>
+      <yloc>112</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -825,78 +917,8 @@ WHERE ULTIMA_ACTUALIZACION > ?</sql>
     </GUI>
   </step>
   <step>
-    <name>Calculate Dimension Attributes</name>
-    <type>ScriptValueMod</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>4</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <compatible>Y</compatible>
-    <optimizationLevel>9</optimizationLevel>
-    <jsScripts>
-      <jsScript>
-        <jsScript_type>0</jsScript_type>
-        <jsScript_name>Script 1</jsScript_name>
-        <jsScript_script>//Create a Locale according to the specified language code
-var locale = new java.util.Locale(
-    language_code.getString()
-,   country_code.getString()
-);
-
-var pais_codigo = fetch("https://restcountries.eu/rest/v2/name/kenya").then(resp=>{
-      return resp.json();
-}).then(json=>{
-      console.log(json[0].alpha2Code);
-})</jsScript_script>
-      </jsScript>
-    </jsScripts>
-    <fields>
-      <field>
-        <name>NOM_CIRCUITO</name>
-        <rename>NOM_CIRCUITO</rename>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <replace>N</replace>
-      </field>
-      <field>
-        <name>CIUDAD</name>
-        <rename>CIUDAD</rename>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <replace>N</replace>
-      </field>
-      <field>
-        <name>PAIS</name>
-        <rename>PAIS</rename>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <replace>N</replace>
-      </field>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>304</xloc>
-      <yloc>240</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Select values</name>
-    <type>SelectValues</type>
+    <name>max_dim_circuit_last_update</name>
+    <type>TableInput</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
@@ -905,21 +927,20 @@ var pais_codigo = fetch("https://restcountries.eu/rest/v2/name/kenya").then(resp
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <fields>
-      <field>
-        <name>CIUDAD</name>
-        <rename/>
-      </field>
-      <field>
-        <name>PAIS</name>
-        <rename/>
-      </field>
-      <field>
-        <name>NOM_CIRCUITO</name>
-        <rename/>
-      </field>
-      <select_unspecified>N</select_unspecified>
-    </fields>
+    <connection>sakila_dwh</connection>
+    <sql>SELECT COALESCE(
+           MAX(last_update)
+       ,   '1970-01-01 00:00:00'
+       ) AS max_dim_circuit_last_update
+FROM   dondecorre
+</sql>
+    <limit>0</limit>
+    <lookup/>
+    <execute_each_row>N</execute_each_row>
+    <variables_active>N</variables_active>
+    <lazy_conversion_active>N</lazy_conversion_active>
+    <cached_row_meta_active>N</cached_row_meta_active>
+    <row-meta/>
     <attributes/>
     <cluster_schema/>
     <remotesteps>
@@ -929,8 +950,8 @@ var pais_codigo = fetch("https://restcountries.eu/rest/v2/name/kenya").then(resp
       </output>
     </remotesteps>
     <GUI>
-      <xloc>304</xloc>
-      <yloc>112</yloc>
+      <xloc>96</xloc>
+      <yloc>16</yloc>
       <draw>Y</draw>
     </GUI>
   </step>

@@ -500,11 +500,11 @@
     </notepad>
   </notepads>
   <connection>
-    <name>sakila</name>
+    <name>dwh_escu</name>
     <server>localhost</server>
-    <type>MARIADB</type>
+    <type>MYSQL</type>
     <access>Native</access>
-    <database>sakila</database>
+    <database>dwh_escu</database>
     <port>3306</port>
     <username>root</username>
     <password>Encrypted </password>
@@ -512,6 +512,14 @@
     <data_tablespace/>
     <index_tablespace/>
     <attributes>
+      <attribute>
+        <code>EXTRA_OPTION_MYSQL.defaultFetchSize</code>
+        <attribute>500</attribute>
+      </attribute>
+      <attribute>
+        <code>EXTRA_OPTION_MYSQL.useCursorFetch</code>
+        <attribute>true</attribute>
+      </attribute>
       <attribute>
         <code>FORCE_IDENTIFIERS_TO_LOWERCASE</code>
         <attribute>N</attribute>
@@ -535,6 +543,10 @@
       <attribute>
         <code>QUOTE_ALL_FIELDS</code>
         <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>STREAM_RESULTS</code>
+        <attribute>Y</attribute>
       </attribute>
       <attribute>
         <code>SUPPORTS_BOOLEAN_DATA_TYPE</code>
@@ -551,11 +563,11 @@
     </attributes>
   </connection>
   <connection>
-    <name>sakila_dwh</name>
+    <name>tami_oltp</name>
     <server>localhost</server>
-    <type>MARIADB</type>
+    <type>MYSQL</type>
     <access>Native</access>
-    <database>sakila_dwh</database>
+    <database>tami_oltp</database>
     <port>3306</port>
     <username>root</username>
     <password>Encrypted </password>
@@ -563,6 +575,14 @@
     <data_tablespace/>
     <index_tablespace/>
     <attributes>
+      <attribute>
+        <code>EXTRA_OPTION_MYSQL.defaultFetchSize</code>
+        <attribute>500</attribute>
+      </attribute>
+      <attribute>
+        <code>EXTRA_OPTION_MYSQL.useCursorFetch</code>
+        <attribute>true</attribute>
+      </attribute>
       <attribute>
         <code>FORCE_IDENTIFIERS_TO_LOWERCASE</code>
         <attribute>N</attribute>
@@ -586,6 +606,10 @@
       <attribute>
         <code>QUOTE_ALL_FIELDS</code>
         <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>STREAM_RESULTS</code>
+        <attribute>Y</attribute>
       </attribute>
       <attribute>
         <code>SUPPORTS_BOOLEAN_DATA_TYPE</code>
@@ -624,7 +648,7 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <connection>sakila_dwh</connection>
+    <connection>dwh_escu</connection>
     <commit>10000</commit>
     <update_bypassed>N</update_bypassed>
     <lookup>
@@ -687,6 +711,69 @@
     </GUI>
   </step>
   <step>
+    <name>max_dim_pilot_last_update</name>
+    <type>TableInput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>dwh_escu</connection>
+    <sql>SELECT COALESCE(
+           MAX(ultima_actualizacion)
+       ,   '1970-01-01 00:00:00'
+       ) AS max_dim_pilot_last_update
+FROM   dim_piloto
+</sql>
+    <limit>0</limit>
+    <lookup/>
+    <execute_each_row>N</execute_each_row>
+    <variables_active>N</variables_active>
+    <lazy_conversion_active>N</lazy_conversion_active>
+    <cached_row_meta_active>N</cached_row_meta_active>
+    <row-meta>
+      <value-meta>
+        <type>String</type>
+        <storagetype>normal</storagetype>
+        <name>max_dim_pilot_last_update</name>
+        <length>19</length>
+        <precision>-1</precision>
+        <origin>max_dim_pilot_last_update</origin>
+        <comments>max_dim_pilot_last_update</comments>
+        <conversion_Mask/>
+        <decimal_symbol>,</decimal_symbol>
+        <grouping_symbol>.</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>en_US</date_format_locale>
+        <date_format_timezone>Europe/Madrid</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+    </row-meta>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>77</xloc>
+      <yloc>26</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
     <name>pilot</name>
     <type>TableInput</type>
     <description/>
@@ -697,7 +784,7 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <connection>sakila</connection>
+    <connection>tami_oltp</connection>
     <sql>SELECT
   DNI_PILOTO
 , EDAD
@@ -726,45 +813,6 @@ WHERE last_update > ?</sql>
     <GUI>
       <xloc>77</xloc>
       <yloc>124</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>max_dim_pilot_last_update</name>
-    <type>TableInput</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <connection>sakila_dwh</connection>
-    <sql>SELECT COALESCE(
-           MAX(last_update)
-       ,   '1970-01-01 00:00:00'
-       ) AS max_dim_pilot_last_update
-FROM   quiencorre
-</sql>
-    <limit>0</limit>
-    <lookup/>
-    <execute_each_row>N</execute_each_row>
-    <variables_active>N</variables_active>
-    <lazy_conversion_active>N</lazy_conversion_active>
-    <cached_row_meta_active>N</cached_row_meta_active>
-    <row-meta/>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>77</xloc>
-      <yloc>26</yloc>
       <draw>Y</draw>
     </GUI>
   </step>

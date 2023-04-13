@@ -167,11 +167,27 @@ CREATE TABLE dim_circuito (
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
+-- Table structure for table `dim_piloto`
+--
+
+CREATE TABLE dim_piloto (
+  qc_id SMALLINT UNSIGNED NOT NULL AUTO_INCREMENT,
+  DNI_PILOTO CHAR(9) NOT NULL,
+  edad DECIMAL(6,3) UNSIGNED NOT NULL,
+  sexo VARCHAR(1),
+  peso DECIMAL(6,3),
+  altura DECIMAL(6,3),
+  anhos_experiencia DECIMAL(6,3),
+  ultima_actualizacion TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY  (qc_id)
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
 -- Table structure for table `dim_tiempo`
 --
 
 CREATE TABLE dim_tiempo (
-  cc_id SMALLINT UNSIGNED NOT NULL AUTO_INCREMENT,
+  cc_id INT UNSIGNED NOT NULL AUTO_INCREMENT,
   anho YEAR NOT NULL,
   trimestre SMALLINT UNSIGNED NOT NULL,
   mes SMALLINT UNSIGNED NOT NULL,
@@ -189,7 +205,7 @@ CREATE TABLE fact_rendimiento (
   rendimiento_id SMALLINT UNSIGNED NOT NULL AUTO_INCREMENT,
   qc_id SMALLINT UNSIGNED NOT NULL,
   qcoche_id SMALLINT UNSIGNED NOT NULL,
-  cc_id SMALLINT UNSIGNED NOT NULL,
+  cc_id INT UNSIGNED NOT NULL,
   dc_id SMALLINT UNSIGNED NOT NULL,
   dinero_patrocinio DECIMAL(10,2),
   percent_pruebas_exitosas DECIMAL(3,0),
@@ -201,8 +217,8 @@ CREATE TABLE fact_rendimiento (
   KEY idx_dc_id (dc_id),
   CONSTRAINT fk_dim_piloto FOREIGN KEY (qc_id) REFERENCES dim_piloto (qc_id) ON DELETE RESTRICT ON UPDATE CASCADE,
   CONSTRAINT fk_dim_coche FOREIGN KEY (qcoche_id) REFERENCES dim_coche (qcoche_id) ON DELETE RESTRICT ON UPDATE CASCADE,
-  CONSTRAINT fk_dim_circuito FOREIGN KEY (cc_id) REFERENCES dim_circuito (cc_id) ON DELETE RESTRICT ON UPDATE CASCADE,
-  CONSTRAINT fk_dim_tiempo FOREIGN KEY (dc_id) REFERENCES dim_tiempo (dc_id) ON DELETE RESTRICT ON UPDATE CASCADE
+  CONSTRAINT fk_dim_circuito FOREIGN KEY (dc_id) REFERENCES dim_circuito (dc_id) ON DELETE RESTRICT ON UPDATE CASCADE,
+  CONSTRAINT fk_dim_tiempo FOREIGN KEY (cc_id) REFERENCES dim_tiempo (cc_id) ON DELETE RESTRICT ON UPDATE CASCADE
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 SET SQL_MODE=@OLD_SQL_MODE;
