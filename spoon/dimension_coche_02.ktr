@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <transformation>
   <info>
-    <name>dimension_coche</name>
+    <name>dimension_coche_02</name>
     <description/>
     <extended_description/>
     <trans_version/>
@@ -427,76 +427,13 @@
     <clusterschemas>
     </clusterschemas>
     <created_user>-</created_user>
-    <created_date>2023/04/10 13:36:46.260</created_date>
+    <created_date>2023/04/15 19:49:53.551</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2023/04/10 13:36:46.260</modified_date>
-    <key_for_session_key>H4sIAAAAAAAA/wMAAAAAAAAAAAA=</key_for_session_key>
+    <modified_date>2023/04/15 19:49:53.551</modified_date>
+    <key_for_session_key/>
     <is_key_private>N</is_key_private>
   </info>
   <notepads>
-    <notepad>
-      <note>get date/time of last update from target</note>
-      <xloc>1072</xloc>
-      <yloc>16</yloc>
-      <width>279</width>
-      <heigth>30</heigth>
-      <fontname>Segoe UI</fontname>
-      <fontsize>9</fontsize>
-      <fontbold>N</fontbold>
-      <fontitalic>N</fontitalic>
-      <fontcolorred>0</fontcolorred>
-      <fontcolorgreen>0</fontcolorgreen>
-      <fontcolorblue>0</fontcolorblue>
-      <backgroundcolorred>255</backgroundcolorred>
-      <backgroundcolorgreen>205</backgroundcolorgreen>
-      <backgroundcolorblue>112</backgroundcolorblue>
-      <bordercolorred>100</bordercolorred>
-      <bordercolorgreen>100</bordercolorgreen>
-      <bordercolorblue>100</bordercolorblue>
-      <drawshadow>N</drawshadow>
-    </notepad>
-    <notepad>
-      <note>Pull new/updated pilot from source</note>
-      <xloc>1008</xloc>
-      <yloc>144</yloc>
-      <width>245</width>
-      <heigth>30</heigth>
-      <fontname>Segoe UI</fontname>
-      <fontsize>9</fontsize>
-      <fontbold>N</fontbold>
-      <fontitalic>N</fontitalic>
-      <fontcolorred>0</fontcolorred>
-      <fontcolorgreen>0</fontcolorgreen>
-      <fontcolorblue>0</fontcolorblue>
-      <backgroundcolorred>255</backgroundcolorred>
-      <backgroundcolorgreen>205</backgroundcolorgreen>
-      <backgroundcolorblue>112</backgroundcolorblue>
-      <bordercolorred>100</bordercolorred>
-      <bordercolorgreen>100</bordercolorgreen>
-      <bordercolorblue>100</bordercolorblue>
-      <drawshadow>N</drawshadow>
-    </notepad>
-    <notepad>
-      <note>load the pilot dimension</note>
-      <xloc>1088</xloc>
-      <yloc>400</yloc>
-      <width>174</width>
-      <heigth>30</heigth>
-      <fontname>Segoe UI</fontname>
-      <fontsize>9</fontsize>
-      <fontbold>N</fontbold>
-      <fontitalic>N</fontitalic>
-      <fontcolorred>0</fontcolorred>
-      <fontcolorgreen>0</fontcolorgreen>
-      <fontcolorblue>0</fontcolorblue>
-      <backgroundcolorred>255</backgroundcolorred>
-      <backgroundcolorgreen>205</backgroundcolorgreen>
-      <backgroundcolorblue>112</backgroundcolorblue>
-      <bordercolorred>100</bordercolorred>
-      <bordercolorgreen>100</bordercolorgreen>
-      <bordercolorblue>100</bordercolorblue>
-      <drawshadow>N</drawshadow>
-    </notepad>
   </notepads>
   <connection>
     <name>dwh_escu</name>
@@ -626,101 +563,98 @@
   </connection>
   <order>
     <hop>
-      <from>max_dim_car_last_update</from>
-      <to>dim_coche</to>
+      <from>Last dim update</from>
+      <to>Load cars</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>pilot 2</from>
-      <to>Insert / Update</to>
+      <from>Load cars id</from>
+      <to>Count trials</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>dim_coche</from>
+      <from>Count trials</from>
+      <to>Unique rows</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Unique rows</from>
+      <to>Merge join</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Load cars</from>
+      <to>Merge join</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Load patrons id</from>
+      <to>Count patrons</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Add contract money and contract duration</from>
+      <to>Unique rows 3</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Count patrons</from>
+      <to>Unique rows 2</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Unique rows 3</from>
+      <to>Modified JavaScript value</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Unique rows 2</from>
+      <to>Join rows (cartesian product)</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Modified JavaScript value</from>
+      <to>Join rows (cartesian product)</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Join rows (cartesian product)</from>
       <to>Filter rows</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
       <from>Filter rows</from>
-      <to>pilot 2</to>
+      <to>Unique rows 2 2</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Filter rows</from>
-      <to>Text file output</to>
+      <from>Join rows (cartesian product) 2</from>
+      <to>Filter rows 2</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Filter rows 2</from>
+      <to>Unique rows 2 2 2</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Merge join</from>
+      <to>Join rows (cartesian product) 2</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Unique rows 2 2</from>
+      <to>Join rows (cartesian product) 2</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Unique rows 2 2 2</from>
+      <to>Insert / Update</to>
       <enabled>Y</enabled>
     </hop>
   </order>
   <step>
-    <name>Insert / Update</name>
-    <type>InsertUpdate</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <connection>dwh_escu</connection>
-    <commit>10000</commit>
-    <update_bypassed>Y</update_bypassed>
-    <lookup>
-      <schema/>
-      <table>QUECOCHE</table>
-      <key>
-        <name>DNI_PILOTO</name>
-        <field>qcoche_id</field>
-        <condition>=</condition>
-        <name2/>
-      </key>
-      <value>
-        <name>qcoche_id</name>
-        <rename> ID_COCHE</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>n_total_pruebas</name>
-        <rename>COD_PRUEBA</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>ancho</name>
-        <rename>ANCHO</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>largo</name>
-        <rename>LARGO</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>potencia</name>
-        <rename>POTENCIA_MOTOR</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>vel_max</name>
-        <rename>VEL_MAX</rename>
-        <update>Y</update>
-      </value>
-    </lookup>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>768</xloc>
-      <yloc>192</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>max_dim_car_last_update</name>
+    <name>Last dim update</name>
     <type>TableInput</type>
     <description/>
     <distribute>Y</distribute>
@@ -731,11 +665,9 @@
       <schema_name/>
     </partitioning>
     <connection>dwh_escu</connection>
-    <sql>SELECT COALESCE(
-           MAX(ultima_actualizacion)
-       ,   '1970-01-01 00:00:00'
-       ) AS max_dim_car_last_update
-FROM   dim_coche
+    <sql>SELECT
+  COALESCE(MAX(ultima_actualizacion), '1970-01-01 00:00:00') AS max_last_update
+FROM dwh_escu.dim_coche
 </sql>
     <limit>0</limit>
     <lookup/>
@@ -747,11 +679,11 @@ FROM   dim_coche
       <value-meta>
         <type>String</type>
         <storagetype>normal</storagetype>
-        <name>max_dim_car_last_update</name>
+        <name>max_last_update</name>
         <length>19</length>
         <precision>-1</precision>
-        <origin>max_dim_coche_max_dim_car_last_updateultima_actualizacion</origin>
-        <comments>max_dim_car_last_update</comments>
+        <origin>Table input</origin>
+        <comments>max_last_update</comments>
         <conversion_Mask/>
         <decimal_symbol>,</decimal_symbol>
         <grouping_symbol>.</grouping_symbol>
@@ -777,13 +709,13 @@ FROM   dim_coche
       </output>
     </remotesteps>
     <GUI>
-      <xloc>112</xloc>
-      <yloc>192</yloc>
+      <xloc>144</xloc>
+      <yloc>336</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>dim_coche</name>
+    <name>Load cars</name>
     <type>TableInput</type>
     <description/>
     <distribute>Y</distribute>
@@ -801,14 +733,14 @@ FROM   dim_coche
 , LARGO
 , ANCHO
 , POTENCIA_MOTOR
-, COALESCE(ULTIMA_ACTUALIZACION, '2023/04/13 12:15:34') AS ULTIMA_ACTUALIZACION
+, COALESCE(ULTIMA_ACTUALIZACION, '1970-01-01 00:00:00') AS ULTIMA_ACTUALIZACION
 FROM tami_oltp.coche
-
+WHERE ULTIMA_ACTUALIZACION &lt; ?
 </sql>
     <limit>0</limit>
-    <lookup>max_dim_car_last_update</lookup>
-    <execute_each_row>Y</execute_each_row>
-    <variables_active>N</variables_active>
+    <lookup>Last dim update</lookup>
+    <execute_each_row>N</execute_each_row>
+    <variables_active>Y</variables_active>
     <lazy_conversion_active>N</lazy_conversion_active>
     <cached_row_meta_active>N</cached_row_meta_active>
     <row-meta>
@@ -818,7 +750,7 @@ FROM tami_oltp.coche
         <name>ID_COCHE</name>
         <length>4</length>
         <precision>0</precision>
-        <origin>dim_coche</origin>
+        <origin>Load data</origin>
         <comments>ID_COCHE</comments>
         <conversion_Mask>####0;-####0</conversion_Mask>
         <decimal_symbol>,</decimal_symbol>
@@ -841,7 +773,7 @@ FROM tami_oltp.coche
         <name>TIPO_RUEDA</name>
         <length>6</length>
         <precision>-1</precision>
-        <origin>dim_coche</origin>
+        <origin>Load data</origin>
         <comments>TIPO_RUEDA</comments>
         <conversion_Mask/>
         <decimal_symbol>,</decimal_symbol>
@@ -864,7 +796,7 @@ FROM tami_oltp.coche
         <name>VEL_MAX</name>
         <length>5</length>
         <precision>2</precision>
-        <origin>dim_coche</origin>
+        <origin>Load data</origin>
         <comments>VEL_MAX</comments>
         <conversion_Mask>####0.0#########;-####0.0#########</conversion_Mask>
         <decimal_symbol>,</decimal_symbol>
@@ -887,7 +819,7 @@ FROM tami_oltp.coche
         <name>LARGO</name>
         <length>4</length>
         <precision>2</precision>
-        <origin>dim_coche</origin>
+        <origin>Load data</origin>
         <comments>LARGO</comments>
         <conversion_Mask>####0.0#########;-####0.0#########</conversion_Mask>
         <decimal_symbol>,</decimal_symbol>
@@ -910,7 +842,7 @@ FROM tami_oltp.coche
         <name>ANCHO</name>
         <length>4</length>
         <precision>2</precision>
-        <origin>dim_coche</origin>
+        <origin>Load data</origin>
         <comments>ANCHO</comments>
         <conversion_Mask>####0.0#########;-####0.0#########</conversion_Mask>
         <decimal_symbol>,</decimal_symbol>
@@ -933,7 +865,7 @@ FROM tami_oltp.coche
         <name>POTENCIA_MOTOR</name>
         <length>5</length>
         <precision>2</precision>
-        <origin>dim_coche</origin>
+        <origin>Load data</origin>
         <comments>POTENCIA_MOTOR</comments>
         <conversion_Mask>####0.0#########;-####0.0#########</conversion_Mask>
         <decimal_symbol>,</decimal_symbol>
@@ -956,7 +888,7 @@ FROM tami_oltp.coche
         <name>ULTIMA_ACTUALIZACION</name>
         <length>19</length>
         <precision>-1</precision>
-        <origin>dim_coche</origin>
+        <origin>Load data</origin>
         <comments>ULTIMA_ACTUALIZACION</comments>
         <conversion_Mask/>
         <decimal_symbol>,</decimal_symbol>
@@ -983,13 +915,108 @@ FROM tami_oltp.coche
       </output>
     </remotesteps>
     <GUI>
-      <xloc>272</xloc>
-      <yloc>192</yloc>
+      <xloc>304</xloc>
+      <yloc>336</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>pilot 2</name>
+    <name>Load cars id</name>
+    <type>TableInput</type>
+    <description/>
+    <distribute>N</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>tami_oltp</connection>
+    <sql>SELECT
+  ID_COCHE
+FROM tami_oltp.prueba</sql>
+    <limit>0</limit>
+    <lookup/>
+    <execute_each_row>N</execute_each_row>
+    <variables_active>N</variables_active>
+    <lazy_conversion_active>N</lazy_conversion_active>
+    <cached_row_meta_active>N</cached_row_meta_active>
+    <row-meta>
+      <value-meta>
+        <type>Integer</type>
+        <storagetype>normal</storagetype>
+        <name>ID_COCHE</name>
+        <length>4</length>
+        <precision>0</precision>
+        <origin>Load trials</origin>
+        <comments>ID_COCHE</comments>
+        <conversion_Mask>####0;-####0</conversion_Mask>
+        <decimal_symbol>,</decimal_symbol>
+        <grouping_symbol>.</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>en_US</date_format_locale>
+        <date_format_timezone>Europe/Madrid</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+    </row-meta>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>144</xloc>
+      <yloc>448</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Unique rows</name>
+    <type>Unique</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <count_rows>N</count_rows>
+    <count_field/>
+    <reject_duplicate_row>N</reject_duplicate_row>
+    <error_description/>
+    <fields>
+      <field>
+        <name>ID_COCHE</name>
+        <case_insensitive>N</case_insensitive>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>464</xloc>
+      <yloc>448</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Count trials</name>
     <type>TableInput</type>
     <description/>
     <distribute>Y</distribute>
@@ -1001,17 +1028,15 @@ FROM tami_oltp.coche
     </partitioning>
     <connection>tami_oltp</connection>
     <sql>SELECT
-  COD_PRUEBA
-, ID_COCHE
-, COALESCE(count(COD_PRUEBA), '0') AS num_pruebas
+  ID_COCHE
+, count(COD_PRUEBA) AS NUM_PRUEBAS
 FROM tami_oltp.prueba
-WHERE ID_COCHE = ?
-</sql>
+WHERE ID_COCHE = ?</sql>
     <limit>0</limit>
-    <lookup>dim_coche</lookup>
-    <execute_each_row>N</execute_each_row>
+    <lookup>Load cars id</lookup>
+    <execute_each_row>Y</execute_each_row>
     <variables_active>N</variables_active>
-    <lazy_conversion_active>Y</lazy_conversion_active>
+    <lazy_conversion_active>N</lazy_conversion_active>
     <cached_row_meta_active>N</cached_row_meta_active>
     <row-meta>
       <value-meta>
@@ -1020,219 +1045,8 @@ WHERE ID_COCHE = ?
         <name>ID_COCHE</name>
         <length>4</length>
         <precision>0</precision>
-        <origin>dim_coche</origin>
+        <origin>Load trials 2</origin>
         <comments>ID_COCHE</comments>
-        <conversion_Mask>####0;-####0</conversion_Mask>
-        <decimal_symbol>,</decimal_symbol>
-        <grouping_symbol>.</grouping_symbol>
-        <currency_symbol/>
-        <trim_type>none</trim_type>
-        <case_insensitive>N</case_insensitive>
-        <collator_disabled>Y</collator_disabled>
-        <collator_strength>0</collator_strength>
-        <sort_descending>N</sort_descending>
-        <output_padding>N</output_padding>
-        <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>en_US</date_format_locale>
-        <date_format_timezone>Europe/Madrid</date_format_timezone>
-        <lenient_string_to_number>N</lenient_string_to_number>
-      </value-meta>
-      <value-meta>
-        <type>String</type>
-        <storagetype>binary-string</storagetype>
-        <storage-meta>
-          <value-meta>
-            <type>String</type>
-            <storagetype>normal</storagetype>
-            <name>TIPO_RUEDA</name>
-            <length>6</length>
-            <precision>-1</precision>
-            <origin>dim_coche</origin>
-            <comments>TIPO_RUEDA</comments>
-            <conversion_Mask/>
-            <decimal_symbol>,</decimal_symbol>
-            <grouping_symbol>.</grouping_symbol>
-            <currency_symbol/>
-            <trim_type>none</trim_type>
-            <case_insensitive>N</case_insensitive>
-            <collator_disabled>Y</collator_disabled>
-            <collator_strength>0</collator_strength>
-            <sort_descending>N</sort_descending>
-            <output_padding>N</output_padding>
-            <date_format_lenient>N</date_format_lenient>
-            <date_format_locale>en_US</date_format_locale>
-            <date_format_timezone>Europe/Madrid</date_format_timezone>
-            <lenient_string_to_number>N</lenient_string_to_number>
-          </value-meta>
-        </storage-meta>
-        <name>TIPO_RUEDA</name>
-        <length>6</length>
-        <precision>-1</precision>
-        <origin>dim_coche</origin>
-        <comments>TIPO_RUEDA</comments>
-        <conversion_Mask/>
-        <decimal_symbol>,</decimal_symbol>
-        <grouping_symbol>.</grouping_symbol>
-        <currency_symbol/>
-        <trim_type>none</trim_type>
-        <case_insensitive>N</case_insensitive>
-        <collator_disabled>Y</collator_disabled>
-        <collator_strength>0</collator_strength>
-        <sort_descending>N</sort_descending>
-        <output_padding>N</output_padding>
-        <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>en_US</date_format_locale>
-        <date_format_timezone>Europe/Madrid</date_format_timezone>
-        <lenient_string_to_number>N</lenient_string_to_number>
-      </value-meta>
-      <value-meta>
-        <type>Number</type>
-        <storagetype>normal</storagetype>
-        <name>VEL_MAX</name>
-        <length>5</length>
-        <precision>2</precision>
-        <origin>dim_coche</origin>
-        <comments>VEL_MAX</comments>
-        <conversion_Mask>####0.0#########;-####0.0#########</conversion_Mask>
-        <decimal_symbol>,</decimal_symbol>
-        <grouping_symbol>.</grouping_symbol>
-        <currency_symbol/>
-        <trim_type>none</trim_type>
-        <case_insensitive>N</case_insensitive>
-        <collator_disabled>Y</collator_disabled>
-        <collator_strength>0</collator_strength>
-        <sort_descending>N</sort_descending>
-        <output_padding>N</output_padding>
-        <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>en_US</date_format_locale>
-        <date_format_timezone>Europe/Madrid</date_format_timezone>
-        <lenient_string_to_number>N</lenient_string_to_number>
-      </value-meta>
-      <value-meta>
-        <type>Number</type>
-        <storagetype>normal</storagetype>
-        <name>LARGO</name>
-        <length>4</length>
-        <precision>2</precision>
-        <origin>dim_coche</origin>
-        <comments>LARGO</comments>
-        <conversion_Mask>####0.0#########;-####0.0#########</conversion_Mask>
-        <decimal_symbol>,</decimal_symbol>
-        <grouping_symbol>.</grouping_symbol>
-        <currency_symbol/>
-        <trim_type>none</trim_type>
-        <case_insensitive>N</case_insensitive>
-        <collator_disabled>Y</collator_disabled>
-        <collator_strength>0</collator_strength>
-        <sort_descending>N</sort_descending>
-        <output_padding>N</output_padding>
-        <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>en_US</date_format_locale>
-        <date_format_timezone>Europe/Madrid</date_format_timezone>
-        <lenient_string_to_number>N</lenient_string_to_number>
-      </value-meta>
-      <value-meta>
-        <type>Number</type>
-        <storagetype>normal</storagetype>
-        <name>ANCHO</name>
-        <length>4</length>
-        <precision>2</precision>
-        <origin>dim_coche</origin>
-        <comments>ANCHO</comments>
-        <conversion_Mask>####0.0#########;-####0.0#########</conversion_Mask>
-        <decimal_symbol>,</decimal_symbol>
-        <grouping_symbol>.</grouping_symbol>
-        <currency_symbol/>
-        <trim_type>none</trim_type>
-        <case_insensitive>N</case_insensitive>
-        <collator_disabled>Y</collator_disabled>
-        <collator_strength>0</collator_strength>
-        <sort_descending>N</sort_descending>
-        <output_padding>N</output_padding>
-        <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>en_US</date_format_locale>
-        <date_format_timezone>Europe/Madrid</date_format_timezone>
-        <lenient_string_to_number>N</lenient_string_to_number>
-      </value-meta>
-      <value-meta>
-        <type>Number</type>
-        <storagetype>normal</storagetype>
-        <name>POTENCIA_MOTOR</name>
-        <length>5</length>
-        <precision>2</precision>
-        <origin>dim_coche</origin>
-        <comments>POTENCIA_MOTOR</comments>
-        <conversion_Mask>####0.0#########;-####0.0#########</conversion_Mask>
-        <decimal_symbol>,</decimal_symbol>
-        <grouping_symbol>.</grouping_symbol>
-        <currency_symbol/>
-        <trim_type>none</trim_type>
-        <case_insensitive>N</case_insensitive>
-        <collator_disabled>Y</collator_disabled>
-        <collator_strength>0</collator_strength>
-        <sort_descending>N</sort_descending>
-        <output_padding>N</output_padding>
-        <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>en_US</date_format_locale>
-        <date_format_timezone>Europe/Madrid</date_format_timezone>
-        <lenient_string_to_number>N</lenient_string_to_number>
-      </value-meta>
-      <value-meta>
-        <type>String</type>
-        <storagetype>binary-string</storagetype>
-        <storage-meta>
-          <value-meta>
-            <type>String</type>
-            <storagetype>normal</storagetype>
-            <name>ULTIMA_ACTUALIZACION</name>
-            <length>19</length>
-            <precision>-1</precision>
-            <origin>dim_coche</origin>
-            <comments>ULTIMA_ACTUALIZACION</comments>
-            <conversion_Mask/>
-            <decimal_symbol>,</decimal_symbol>
-            <grouping_symbol>.</grouping_symbol>
-            <currency_symbol/>
-            <trim_type>none</trim_type>
-            <case_insensitive>N</case_insensitive>
-            <collator_disabled>Y</collator_disabled>
-            <collator_strength>0</collator_strength>
-            <sort_descending>N</sort_descending>
-            <output_padding>N</output_padding>
-            <date_format_lenient>N</date_format_lenient>
-            <date_format_locale>en_US</date_format_locale>
-            <date_format_timezone>Europe/Madrid</date_format_timezone>
-            <lenient_string_to_number>N</lenient_string_to_number>
-          </value-meta>
-        </storage-meta>
-        <name>ULTIMA_ACTUALIZACION</name>
-        <length>19</length>
-        <precision>-1</precision>
-        <origin>dim_coche</origin>
-        <comments>ULTIMA_ACTUALIZACION</comments>
-        <conversion_Mask/>
-        <decimal_symbol>,</decimal_symbol>
-        <grouping_symbol>.</grouping_symbol>
-        <currency_symbol/>
-        <trim_type>none</trim_type>
-        <case_insensitive>N</case_insensitive>
-        <collator_disabled>Y</collator_disabled>
-        <collator_strength>0</collator_strength>
-        <sort_descending>N</sort_descending>
-        <output_padding>N</output_padding>
-        <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>en_US</date_format_locale>
-        <date_format_timezone>Europe/Madrid</date_format_timezone>
-        <lenient_string_to_number>N</lenient_string_to_number>
-      </value-meta>
-      <value-meta>
-        <type>Integer</type>
-        <storagetype>normal</storagetype>
-        <name>COD_PRUEBA</name>
-        <length>4</length>
-        <precision>0</precision>
-        <origin>pilot 2</origin>
-        <comments>COD_PRUEBA</comments>
         <conversion_Mask>####0;-####0</conversion_Mask>
         <decimal_symbol>,</decimal_symbol>
         <grouping_symbol>.</grouping_symbol>
@@ -1251,35 +1065,12 @@ WHERE ID_COCHE = ?
       <value-meta>
         <type>Integer</type>
         <storagetype>normal</storagetype>
-        <name>ID_COCHE_1</name>
-        <length>4</length>
+        <name>NUM_PRUEBAS</name>
+        <length>15</length>
         <precision>0</precision>
-        <origin>pilot 2</origin>
-        <comments>ID_COCHE</comments>
+        <origin>Load trials 2</origin>
+        <comments>NUM_PRUEBAS</comments>
         <conversion_Mask>####0;-####0</conversion_Mask>
-        <decimal_symbol>,</decimal_symbol>
-        <grouping_symbol>.</grouping_symbol>
-        <currency_symbol/>
-        <trim_type>none</trim_type>
-        <case_insensitive>N</case_insensitive>
-        <collator_disabled>Y</collator_disabled>
-        <collator_strength>0</collator_strength>
-        <sort_descending>N</sort_descending>
-        <output_padding>N</output_padding>
-        <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>en_US</date_format_locale>
-        <date_format_timezone>Europe/Madrid</date_format_timezone>
-        <lenient_string_to_number>N</lenient_string_to_number>
-      </value-meta>
-      <value-meta>
-        <type>Binary</type>
-        <storagetype>normal</storagetype>
-        <name>num_pruebas</name>
-        <length>-1</length>
-        <precision>-1</precision>
-        <origin>pilot 2</origin>
-        <comments>num_pruebas</comments>
-        <conversion_Mask/>
         <decimal_symbol>,</decimal_symbol>
         <grouping_symbol>.</grouping_symbol>
         <currency_symbol/>
@@ -1304,8 +1095,560 @@ WHERE ID_COCHE = ?
       </output>
     </remotesteps>
     <GUI>
+      <xloc>304</xloc>
+      <yloc>448</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Merge join</name>
+    <type>MergeJoin</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <join_type>LEFT OUTER</join_type>
+    <step1>Unique rows</step1>
+    <step2>Load cars</step2>
+    <keys_1>
+      <key>ID_COCHE</key>
+    </keys_1>
+    <keys_2>
+      <key>ID_COCHE</key>
+    </keys_2>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>464</xloc>
+      <yloc>336</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Insert / Update</name>
+    <type>InsertUpdate</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>dwh_escu</connection>
+    <commit>10000</commit>
+    <update_bypassed>Y</update_bypassed>
+    <lookup>
+      <schema>dwh_escu</schema>
+      <table>dim_coche</table>
+      <key>
+        <name>ID_COCHE</name>
+        <field>id_coche</field>
+        <condition>=</condition>
+        <name2/>
+      </key>
+      <value>
+        <name>id_coche</name>
+        <rename>ID_COCHE</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>ancho</name>
+        <rename>ANCHO</rename>
+        <update>N</update>
+      </value>
+      <value>
+        <name>largo</name>
+        <rename>LARGO</rename>
+        <update>N</update>
+      </value>
+      <value>
+        <name>potencia</name>
+        <rename>POTENCIA_MOTOR</rename>
+        <update>N</update>
+      </value>
+      <value>
+        <name>vel_max</name>
+        <rename>VEL_MAX</rename>
+        <update>N</update>
+      </value>
+      <value>
+        <name>importe_patrocinios</name>
+        <rename>AS_DINERO_APORTA_TOTAL</rename>
+        <update>N</update>
+      </value>
+      <value>
+        <name>num_patrocinadores</name>
+        <rename>NUM_PATROCINADORES</rename>
+        <update>N</update>
+      </value>
+      <value>
+        <name>n_pruebas_exitosas</name>
+        <rename>NUM_PRUEBAS</rename>
+        <update>N</update>
+      </value>
+      <value>
+        <name>num_version</name>
+        <rename>ID_COCHE</rename>
+        <update>N</update>
+      </value>
+      <value>
+        <name>valido_desde</name>
+        <rename>fecha_inicial</rename>
+        <update>N</update>
+      </value>
+      <value>
+        <name>valido_hasta</name>
+        <rename>fecha_final</rename>
+        <update>N</update>
+      </value>
+    </lookup>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>1216</xloc>
+      <yloc>448</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Count patrons</name>
+    <type>TableInput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>tami_oltp</connection>
+    <sql>SELECT
+  ID_COCHE
+, count(ID_PATROCINADOR) AS NUM_PATROCINADORES
+FROM tami_oltp.patrocina
+WHERE ID_COCHE = ?
+</sql>
+    <limit>0</limit>
+    <lookup>Load patrons id</lookup>
+    <execute_each_row>Y</execute_each_row>
+    <variables_active>Y</variables_active>
+    <lazy_conversion_active>N</lazy_conversion_active>
+    <cached_row_meta_active>N</cached_row_meta_active>
+    <row-meta>
+      <value-meta>
+        <type>Integer</type>
+        <storagetype>normal</storagetype>
+        <name>ID_COCHE</name>
+        <length>4</length>
+        <precision>0</precision>
+        <origin>Count patrons</origin>
+        <comments>ID_COCHE</comments>
+        <conversion_Mask>####0;-####0</conversion_Mask>
+        <decimal_symbol>,</decimal_symbol>
+        <grouping_symbol>.</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>en_US</date_format_locale>
+        <date_format_timezone>Europe/Madrid</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+      <value-meta>
+        <type>Integer</type>
+        <storagetype>normal</storagetype>
+        <name>NUM_PATROCINADORES</name>
+        <length>15</length>
+        <precision>0</precision>
+        <origin>Count patrons</origin>
+        <comments>NUM_PATROCINADORES</comments>
+        <conversion_Mask>####0;-####0</conversion_Mask>
+        <decimal_symbol>,</decimal_symbol>
+        <grouping_symbol>.</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>en_US</date_format_locale>
+        <date_format_timezone>Europe/Madrid</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+    </row-meta>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>304</xloc>
+      <yloc>224</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Load patrons id</name>
+    <type>TableInput</type>
+    <description/>
+    <distribute>N</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>tami_oltp</connection>
+    <sql>SELECT
+  ID_COCHE
+FROM tami_oltp.patrocina
+</sql>
+    <limit>0</limit>
+    <lookup/>
+    <execute_each_row>N</execute_each_row>
+    <variables_active>N</variables_active>
+    <lazy_conversion_active>N</lazy_conversion_active>
+    <cached_row_meta_active>N</cached_row_meta_active>
+    <row-meta>
+      <value-meta>
+        <type>Integer</type>
+        <storagetype>normal</storagetype>
+        <name>ID_PATROCINADOR</name>
+        <length>4</length>
+        <precision>0</precision>
+        <origin>Load patrons id</origin>
+        <comments>ID_PATROCINADOR</comments>
+        <conversion_Mask>####0;-####0</conversion_Mask>
+        <decimal_symbol>,</decimal_symbol>
+        <grouping_symbol>.</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>en_US</date_format_locale>
+        <date_format_timezone>Europe/Madrid</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+    </row-meta>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>144</xloc>
+      <yloc>224</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Add contract money and contract duration</name>
+    <type>TableInput</type>
+    <description/>
+    <distribute>N</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>tami_oltp</connection>
+    <sql>SELECT
+  ID_COCHE
+, SUM(DUR_CONTRATO) OVER (PARTITION BY ID_COCHE) DUR_CONTRATO_TOTAL
+, SUM(DINERO_APORTA) OVER (PARTITION BY ID_COCHE) AS_DINERO_APORTA_TOTAL
+FROM tami_oltp.patrocina
+</sql>
+    <limit>0</limit>
+    <lookup/>
+    <execute_each_row>N</execute_each_row>
+    <variables_active>N</variables_active>
+    <lazy_conversion_active>N</lazy_conversion_active>
+    <cached_row_meta_active>N</cached_row_meta_active>
+    <row-meta>
+      <value-meta>
+        <type>Integer</type>
+        <storagetype>normal</storagetype>
+        <name>ID_COCHE</name>
+        <length>4</length>
+        <precision>0</precision>
+        <origin>Load patrons id 2</origin>
+        <comments>ID_COCHE</comments>
+        <conversion_Mask>####0;-####0</conversion_Mask>
+        <decimal_symbol>,</decimal_symbol>
+        <grouping_symbol>.</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>en_US</date_format_locale>
+        <date_format_timezone>Europe/Madrid</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+      <value-meta>
+        <type>BigNumber</type>
+        <storagetype>normal</storagetype>
+        <name>DUR_CONTRATO_TOTAL</name>
+        <length>23</length>
+        <precision>-1</precision>
+        <origin>Load patrons id 2</origin>
+        <comments>DUR_CONTRATO_TOTAL</comments>
+        <conversion_Mask>######0.0###################;-######0.0###################</conversion_Mask>
+        <decimal_symbol>.</decimal_symbol>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>en_US</date_format_locale>
+        <date_format_timezone>Europe/Madrid</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+      <value-meta>
+        <type>BigNumber</type>
+        <storagetype>normal</storagetype>
+        <name>AS_DINERO_APORTA_TOTAL</name>
+        <length>32</length>
+        <precision>2</precision>
+        <origin>Load patrons id 2</origin>
+        <comments>AS_DINERO_APORTA_TOTAL</comments>
+        <conversion_Mask>######0.0###################;-######0.0###################</conversion_Mask>
+        <decimal_symbol>.</decimal_symbol>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>en_US</date_format_locale>
+        <date_format_timezone>Europe/Madrid</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+    </row-meta>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>144</xloc>
+      <yloc>112</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Unique rows 2</name>
+    <type>Unique</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <count_rows>N</count_rows>
+    <count_field/>
+    <reject_duplicate_row>N</reject_duplicate_row>
+    <error_description/>
+    <fields>
+      <field>
+        <name>ID_COCHE</name>
+        <case_insensitive>N</case_insensitive>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>464</xloc>
+      <yloc>224</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Unique rows 3</name>
+    <type>Unique</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <count_rows>N</count_rows>
+    <count_field/>
+    <reject_duplicate_row>N</reject_duplicate_row>
+    <error_description/>
+    <fields>
+      <field>
+        <name>ID_COCHE</name>
+        <case_insensitive>N</case_insensitive>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>304</xloc>
+      <yloc>112</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Modified JavaScript value</name>
+    <type>ScriptValueMod</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <compatible>N</compatible>
+    <optimizationLevel>9</optimizationLevel>
+    <jsScripts>
+      <jsScript>
+        <jsScript_type>0</jsScript_type>
+        <jsScript_name>Script 1</jsScript_name>
+        <jsScript_script>//Script here
+
+var dur_contrato = DUR_CONTRATO_TOTAL;
+
+var anho = 1970;
+var mes = 01;
+var dia = 01;
+
+var fecha_inicial = anho + '-' + mes + '-' + dia + ' 00:00:00';
+
+var fecha_final = ~~(anho + dur_contrato/12) + '-' + (mes + (dur_contrato - (12 * ~~(dur_contrato/12)))) + '-' + dia + ' 00:00:00';</jsScript_script>
+      </jsScript>
+    </jsScripts>
+    <fields>
+      <field>
+        <name>fecha_inicial</name>
+        <rename>fecha_inicial</rename>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>
+      <field>
+        <name>fecha_final</name>
+        <rename>fecha_final</rename>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>464</xloc>
+      <yloc>112</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Join rows (cartesian product)</name>
+    <type>JoinRows</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <directory>%%java.io.tmpdir%%</directory>
+    <prefix>out</prefix>
+    <cache_size>500</cache_size>
+    <main>Modified JavaScript value</main>
+    <compare>
+      <condition>
+        <negated>N</negated>
+        <leftvalue>ID_COCHE</leftvalue>
+        <function>=</function>
+        <rightvalue>ID_COCHE</rightvalue>
+      </condition>
+    </compare>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
       <xloc>608</xloc>
-      <yloc>192</yloc>
+      <yloc>224</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1320,14 +1663,14 @@ WHERE ID_COCHE = ?
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <send_true_to>pilot 2</send_true_to>
-    <send_false_to>Text file output</send_false_to>
+    <send_true_to>Unique rows 2 2</send_true_to>
+    <send_false_to/>
     <compare>
       <condition>
         <negated>N</negated>
         <leftvalue>ID_COCHE</leftvalue>
-        <function>IS NOT NULL</function>
-        <rightvalue/>
+        <function>=</function>
+        <rightvalue>ID_COCHE_1</rightvalue>
       </condition>
     </compare>
     <attributes/>
@@ -1339,14 +1682,14 @@ WHERE ID_COCHE = ?
       </output>
     </remotesteps>
     <GUI>
-      <xloc>432</xloc>
-      <yloc>192</yloc>
+      <xloc>752</xloc>
+      <yloc>224</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>Text file output</name>
-    <type>TextFileOutput</type>
+    <name>Unique rows 2 2</name>
+    <type>Unique</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
@@ -1355,37 +1698,15 @@ WHERE ID_COCHE = ?
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <separator>;</separator>
-    <enclosure>"</enclosure>
-    <enclosure_forced>N</enclosure_forced>
-    <enclosure_fix_disabled>N</enclosure_fix_disabled>
-    <header>Y</header>
-    <footer>N</footer>
-    <format>DOS</format>
-    <compression>None</compression>
-    <encoding>UTF-8</encoding>
-    <endedLine/>
-    <fileNameInField>N</fileNameInField>
-    <fileNameField/>
-    <create_parent_folder>Y</create_parent_folder>
-    <file>
-      <name>file</name>
-      <servlet_output>N</servlet_output>
-      <do_not_open_new_file_init>N</do_not_open_new_file_init>
-      <extention>txt</extention>
-      <append>N</append>
-      <split>N</split>
-      <haspartno>N</haspartno>
-      <add_date>N</add_date>
-      <add_time>N</add_time>
-      <SpecifyFormat>N</SpecifyFormat>
-      <date_time_format/>
-      <add_to_result_filenames>Y</add_to_result_filenames>
-      <pad>N</pad>
-      <fast_dump>N</fast_dump>
-      <splitevery/>
-    </file>
+    <count_rows>N</count_rows>
+    <count_field/>
+    <reject_duplicate_row>N</reject_duplicate_row>
+    <error_description/>
     <fields>
+      <field>
+        <name>ID_COCHE</name>
+        <case_insensitive>N</case_insensitive>
+      </field>
     </fields>
     <attributes/>
     <cluster_schema/>
@@ -1396,8 +1717,115 @@ WHERE ID_COCHE = ?
       </output>
     </remotesteps>
     <GUI>
-      <xloc>432</xloc>
-      <yloc>304</yloc>
+      <xloc>912</xloc>
+      <yloc>224</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Join rows (cartesian product) 2</name>
+    <type>JoinRows</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <directory>%%java.io.tmpdir%%</directory>
+    <prefix>out</prefix>
+    <cache_size>500</cache_size>
+    <main>Modified JavaScript value</main>
+    <compare>
+      <condition>
+        <negated>N</negated>
+        <leftvalue>ID_COCHE</leftvalue>
+        <function>=</function>
+        <rightvalue>ID_COCHE</rightvalue>
+      </condition>
+    </compare>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>912</xloc>
+      <yloc>336</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Filter rows 2</name>
+    <type>FilterRows</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <send_true_to>Unique rows 2 2 2</send_true_to>
+    <send_false_to/>
+    <compare>
+      <condition>
+        <negated>N</negated>
+        <leftvalue>ID_COCHE</leftvalue>
+        <function>=</function>
+        <rightvalue>ID_COCHE_2</rightvalue>
+      </condition>
+    </compare>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>912</xloc>
+      <yloc>448</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Unique rows 2 2 2</name>
+    <type>Unique</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <count_rows>N</count_rows>
+    <count_field/>
+    <reject_duplicate_row>N</reject_duplicate_row>
+    <error_description/>
+    <fields>
+      <field>
+        <name>ID_COCHE</name>
+        <case_insensitive>N</case_insensitive>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>1072</xloc>
+      <yloc>448</yloc>
       <draw>Y</draw>
     </GUI>
   </step>

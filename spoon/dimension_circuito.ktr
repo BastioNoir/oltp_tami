@@ -658,7 +658,7 @@
     <hop>
       <from>circuit</from>
       <to>Insert / Update</to>
-      <enabled>Y</enabled>
+      <enabled>N</enabled>
     </hop>
     <hop>
       <from>max_dim_circuit_last_update</from>
@@ -668,11 +668,16 @@
     <hop>
       <from>circuit</from>
       <to>Select values</to>
-      <enabled>N</enabled>
+      <enabled>Y</enabled>
     </hop>
     <hop>
       <from>Select values</from>
       <to>Calculate Dimension Attributes</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Calculate Dimension Attributes</from>
+      <to>REST client</to>
       <enabled>Y</enabled>
     </hop>
   </order>
@@ -693,63 +698,21 @@
       <jsScript>
         <jsScript_type>0</jsScript_type>
         <jsScript_name>Script 1</jsScript_name>
-        <jsScript_script>const cityName = CIUDAD.getString();
-const stateCode = '';
-const countryCode = 'es';
-const limit = 5;
-const apiKey = '791da7e9bc2f14af0af08ae26c195565';
+        <jsScript_script>var cityName = CIUDAD.getString();
+var country = PAIS.getString();
+var countryCode = 'es';
+var apiKey = '791da7e9bc2f14af0af08ae26c195565';
+var limit = 1;
 
 // Primero, hacemos la solicitud a la API de geolocalización
-const geoUrl = 'http://api.openweathermap.org/geo/1.0/direct?q=${cityName},${stateCode},${countryCode}&amp;limit=${limit}&amp;appid=${apiKey}';
-
-fetch(geoUrl)
-  .then(response => response.json())
-  .then(data => {
-    // Obtenemos las coordenadas de la primera ubicación en la lista de resultados
-    const location = data[0];
-    const lat = location.lat;
-    const lon = location.lon;
-
-    // Luego, hacemos la solicitud a la API de pronóstico del tiempo
-    const weatherUrl = 'https://api.openweathermap.org/data/3.0/onecall?lat=${lat}&amp;lon=${lon}&amp;exclude=minutely,hourly&amp;appid=${apiKey}';
-
-    fetch(weatherUrl)
-      .then(response => response.json())
-      .then(data => {
-        // Aquí puedes trabajar con los datos del pronóstico del tiempo
-        console.log(data);
-      })
-      .catch(error => {
-        // Manejo de errores
-        console.error(error);
-      });
-  })
-  .catch(error => {
-    // Manejo de errores
-    console.error(error);
-  });</jsScript_script>
+var geoUrl = 'http://api.openweathermap.org/geo/1.0/direct?q=${' + cityName + '},${' + countryCode + '}&amp;limit=${' + limit + '}&amp;appid=${' + apiKey + '}';
+</jsScript_script>
       </jsScript>
     </jsScripts>
     <fields>
       <field>
-        <name>NOM_CIRCUITO</name>
-        <rename>NOM_CIRCUITO</rename>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <replace>N</replace>
-      </field>
-      <field>
-        <name>CIUDAD</name>
-        <rename>CIUDAD</rename>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <replace>N</replace>
-      </field>
-      <field>
-        <name>PAIS</name>
-        <rename>PAIS</rename>
+        <name>geoUrl</name>
+        <rename>geoUrl</rename>
         <type>String</type>
         <length>-1</length>
         <precision>-1</precision>
@@ -887,9 +850,9 @@ fetch(geoUrl)
 , PAIS
 , CIUDAD
 , N_CURVAS
-, ULTIMA_ACTUALIZACION
+, COALESCE(ULTIMA_ACTUALIZACION, '2023/04/13 12:15:34') AS ULTIMA_ACTUALIZACION
 FROM tami_oltp.circuito
-WHERE ULTIMA_ACTUALIZACION > ?
+WHERE ULTIMA_ACTUALIZACION &lt; ?
 </sql>
     <limit>0</limit>
     <lookup>max_dim_circuit_last_update</lookup>
@@ -991,10 +954,10 @@ WHERE ULTIMA_ACTUALIZACION > ?
         <lenient_string_to_number>N</lenient_string_to_number>
       </value-meta>
       <value-meta>
-        <type>Timestamp</type>
+        <type>String</type>
         <storagetype>normal</storagetype>
         <name>ULTIMA_ACTUALIZACION</name>
-        <length>0</length>
+        <length>19</length>
         <precision>-1</precision>
         <origin>circuit</origin>
         <comments>ULTIMA_ACTUALIZACION</comments>
@@ -1088,6 +1051,58 @@ FROM   dim_circuito
     <GUI>
       <xloc>96</xloc>
       <yloc>16</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>REST client</name>
+    <type>Rest</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <applicationType>TEXT PLAIN</applicationType>
+    <method>GET</method>
+    <url/>
+    <urlInField>Y</urlInField>
+    <dynamicMethod>N</dynamicMethod>
+    <methodFieldName/>
+    <urlField>geoUrl</urlField>
+    <bodyField/>
+    <httpLogin/>
+    <httpPassword>Encrypted </httpPassword>
+    <proxyHost/>
+    <proxyPort/>
+    <preemptive>N</preemptive>
+    <trustStoreFile/>
+    <trustStorePassword>Encrypted </trustStorePassword>
+    <headers>
+      </headers>
+    <parameters>
+      </parameters>
+    <matrixParameters>
+      </matrixParameters>
+    <result>
+      <name>coordinates</name>
+      <code>httpStatus</code>
+      <response_time/>
+      <response_header/>
+    </result>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>416</xloc>
+      <yloc>240</yloc>
       <draw>Y</draw>
     </GUI>
   </step>

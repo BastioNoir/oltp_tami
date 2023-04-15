@@ -154,7 +154,7 @@ CREATE TABLE dim_coche (
 
 CREATE TABLE dim_circuito (
   dc_id SMALLINT UNSIGNED NOT NULL AUTO_INCREMENT,
-  nom_circuito SMALLINT UNSIGNED NOT NULL,
+  nom_circuito VARCHAR(50) NOT NULL,
   num_curvas VARCHAR(7),
   precipitacion DECIMAL(5,2),
   temperatura DECIMAL(2,0),
