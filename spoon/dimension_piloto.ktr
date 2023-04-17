@@ -479,8 +479,8 @@
     </notepad>
     <notepad>
       <note>load the pilot dimension</note>
-      <xloc>127</xloc>
-      <yloc>223</yloc>
+      <xloc>128</xloc>
+      <yloc>240</yloc>
       <width>174</width>
       <heigth>30</heigth>
       <fontname>Segoe UI</fontname>
@@ -633,83 +633,10 @@
     </hop>
     <hop>
       <from>pilot</from>
-      <to>Insert / Update</to>
+      <to>Dimension lookup/update</to>
       <enabled>Y</enabled>
     </hop>
   </order>
-  <step>
-    <name>Insert / Update</name>
-    <type>InsertUpdate</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <connection>dwh_escu</connection>
-    <commit>10000</commit>
-    <update_bypassed>N</update_bypassed>
-    <lookup>
-      <schema>dwh_escu</schema>
-      <table>dim_piloto</table>
-      <key>
-        <name>DNI_PILOTO</name>
-        <field>DNI_PILOTO</field>
-        <condition>=</condition>
-        <name2/>
-      </key>
-      <value>
-        <name>DNI_PILOTO</name>
-        <rename>DNI_PILOTO</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>edad</name>
-        <rename>EDAD</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>sexo</name>
-        <rename>SEXO</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>peso</name>
-        <rename>PESO</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>altura</name>
-        <rename>ALTURA</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>anhos_experiencia</name>
-        <rename>ANHOS_EXP</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>ultima_actualizacion</name>
-        <rename>ULTIMA_ACTUALIZACION</rename>
-        <update>Y</update>
-      </value>
-    </lookup>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>77</xloc>
-      <yloc>229</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
   <step>
     <name>max_dim_pilot_last_update</name>
     <type>TableInput</type>
@@ -768,8 +695,8 @@ FROM   dim_piloto
       </output>
     </remotesteps>
     <GUI>
-      <xloc>77</xloc>
-      <yloc>26</yloc>
+      <xloc>80</xloc>
+      <yloc>32</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -973,8 +900,65 @@ WHERE ULTIMA_ACTUALIZACION > ?</sql>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>77</xloc>
-      <yloc>124</yloc>
+      <xloc>80</xloc>
+      <yloc>144</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Dimension lookup/update</name>
+    <type>DimensionLookup</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <schema>dwh_escu</schema>
+    <table>dim_piloto</table>
+    <connection>dwh_escu</connection>
+    <commit>100</commit>
+    <update>Y</update>
+    <fields>
+      <key>
+        <name>DNI_PILOTO</name>
+        <lookup>DNI_PILOTO</lookup>
+      </key>
+      <date>
+        <name>ULTIMA_ACTUALIZACION</name>
+        <from>ANHO_CONTRATACION</from>
+        <to>ANHO_DESPIDO</to>
+      </date>
+      <return>
+        <name>CLAVE_PILOTO</name>
+        <rename/>
+        <creation_method>autoinc</creation_method>
+        <use_autoinc>Y</use_autoinc>
+        <version>VERSION_PILOTO</version>
+      </return>
+    </fields>
+    <sequence/>
+    <min_year>1900</min_year>
+    <max_year>2199</max_year>
+    <cache_size>5000</cache_size>
+    <preload_cache>N</preload_cache>
+    <use_start_date_alternative>N</use_start_date_alternative>
+    <start_date_alternative>none</start_date_alternative>
+    <start_date_field_name/>
+    <useBatch>N</useBatch>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>80</xloc>
+      <yloc>240</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
