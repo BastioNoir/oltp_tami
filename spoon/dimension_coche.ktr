@@ -461,7 +461,7 @@ de la dimensión</note>
       <note>Obtenemos los 
 datos del coche</note>
       <xloc>176</xloc>
-      <yloc>176</yloc>
+      <yloc>160</yloc>
       <width>115</width>
       <heigth>50</heigth>
       <fontname>Segoe UI</fontname>
@@ -483,7 +483,7 @@ datos del coche</note>
       <note>Contamos el nº de pruebas 
 de cada coche</note>
       <xloc>464</xloc>
-      <yloc>320</yloc>
+      <yloc>288</yloc>
       <width>194</width>
       <heigth>50</heigth>
       <fontname>Segoe UI</fontname>
@@ -506,7 +506,7 @@ de cada coche</note>
 además de la suma total de dinero invertido por coche y 
 duración total de todos los contratos</note>
       <xloc>768</xloc>
-      <yloc>176</yloc>
+      <yloc>160</yloc>
       <width>390</width>
       <heigth>70</heigth>
       <fontname>Segoe UI</fontname>
@@ -527,7 +527,7 @@ duración total de todos los contratos</note>
     <notepad>
       <note>Actualizamos la dimensión o insertamos nuevos datos</note>
       <xloc>464</xloc>
-      <yloc>864</yloc>
+      <yloc>736</yloc>
       <width>369</width>
       <heigth>30</heigth>
       <fontname>Segoe UI</fontname>
@@ -884,7 +884,7 @@ WHERE ID_COCHE = ?
     </remotesteps>
     <GUI>
       <xloc>704</xloc>
-      <yloc>176</yloc>
+      <yloc>160</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -969,7 +969,7 @@ WHERE ID_COCHE = ?</sql>
     </remotesteps>
     <GUI>
       <xloc>400</xloc>
-      <yloc>320</yloc>
+      <yloc>288</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1047,7 +1047,7 @@ WHERE ID_COCHE = ?</sql>
     </remotesteps>
     <GUI>
       <xloc>400</xloc>
-      <yloc>864</yloc>
+      <yloc>736</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1314,7 +1314,7 @@ WHERE ULTIMA_ACTUALIZACION > ?
     </remotesteps>
     <GUI>
       <xloc>112</xloc>
-      <yloc>176</yloc>
+      <yloc>160</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1375,7 +1375,7 @@ WHERE ULTIMA_ACTUALIZACION > ?</sql>
     </remotesteps>
     <GUI>
       <xloc>400</xloc>
-      <yloc>176</yloc>
+      <yloc>160</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1409,7 +1409,7 @@ WHERE ULTIMA_ACTUALIZACION > ?</sql>
     </remotesteps>
     <GUI>
       <xloc>112</xloc>
-      <yloc>608</yloc>
+      <yloc>512</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1444,7 +1444,7 @@ WHERE ULTIMA_ACTUALIZACION > ?</sql>
     </remotesteps>
     <GUI>
       <xloc>400</xloc>
-      <yloc>608</yloc>
+      <yloc>512</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1479,7 +1479,7 @@ WHERE ULTIMA_ACTUALIZACION > ?</sql>
     </remotesteps>
     <GUI>
       <xloc>704</xloc>
-      <yloc>736</yloc>
+      <yloc>640</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1514,7 +1514,7 @@ WHERE ULTIMA_ACTUALIZACION > ?</sql>
     </remotesteps>
     <GUI>
       <xloc>112</xloc>
-      <yloc>864</yloc>
+      <yloc>736</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1556,7 +1556,7 @@ WHERE ULTIMA_ACTUALIZACION > ?</sql>
     </remotesteps>
     <GUI>
       <xloc>112</xloc>
-      <yloc>448</yloc>
+      <yloc>384</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1598,7 +1598,7 @@ WHERE ULTIMA_ACTUALIZACION > ?</sql>
     </remotesteps>
     <GUI>
       <xloc>400</xloc>
-      <yloc>448</yloc>
+      <yloc>384</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1633,7 +1633,7 @@ WHERE ULTIMA_ACTUALIZACION > ?</sql>
     </remotesteps>
     <GUI>
       <xloc>704</xloc>
-      <yloc>448</yloc>
+      <yloc>384</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1675,7 +1675,7 @@ WHERE ULTIMA_ACTUALIZACION > ?</sql>
     </remotesteps>
     <GUI>
       <xloc>704</xloc>
-      <yloc>608</yloc>
+      <yloc>512</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1709,7 +1709,7 @@ WHERE ULTIMA_ACTUALIZACION > ?</sql>
     </remotesteps>
     <GUI>
       <xloc>112</xloc>
-      <yloc>736</yloc>
+      <yloc>640</yloc>
       <draw>Y</draw>
     </GUI>
   </step>

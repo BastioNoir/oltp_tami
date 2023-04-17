@@ -141,9 +141,6 @@ CREATE TABLE dim_coche (
   importe_patrocinios    DECIMAL(10,2),
   num_patrocinadores DECIMAL(3,0),
   n_pruebas_exitosas DECIMAL(3,0),
-  num_version SMALLINT,
-  valido_desde DATETIME NOT NULL,
-  valido_hasta DATETIME NOT NULL,
   ultima_actualizacion TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY  (qcoche_id)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -178,6 +175,9 @@ CREATE TABLE dim_piloto (
   peso DECIMAL(6,3),
   altura DECIMAL(6,3),
   anhos_experiencia DECIMAL(6,3),
+  num_version SMALLINT,
+  valido_desde DATETIME NOT NULL,
+  valido_hasta DATETIME NOT NULL,
   ultima_actualizacion TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY  (qc_id)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
