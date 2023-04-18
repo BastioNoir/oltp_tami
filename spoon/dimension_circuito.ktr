@@ -430,16 +430,17 @@
     <created_date>2023/03/30 11:25:01.708</created_date>
     <modified_user>-</modified_user>
     <modified_date>2023/03/30 11:25:01.708</modified_date>
-    <key_for_session_key>H4sIAAAAAAAA/wMAAAAAAAAAAAA=</key_for_session_key>
+    <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
   <notepads>
     <notepad>
-      <note>https://api.openweathermap.org/data/3.0/onecall?lat={lat}&amp;lon={lon}&amp;exclude={part}&amp;appid={API key}</note>
+      <note>Obtenemos la información 
+metereológica de la API utilizada</note>
       <xloc>640</xloc>
-      <yloc>32</yloc>
-      <width>704</width>
-      <heigth>30</heigth>
+      <yloc>128</yloc>
+      <width>231</width>
+      <heigth>50</heigth>
       <fontname>Segoe UI</fontname>
       <fontsize>9</fontsize>
       <fontbold>N</fontbold>
@@ -456,11 +457,12 @@
       <drawshadow>Y</drawshadow>
     </notepad>
     <notepad>
-      <note>http://api.openweathermap.org/geo/1.0/direct?q={city name},{state code},{country code}&amp;limit={limit}&amp;appid={API key}</note>
+      <note>Cargamos el fichero JSON 
+recibido de la API </note>
       <xloc>640</xloc>
-      <yloc>96</yloc>
-      <width>812</width>
-      <heigth>30</heigth>
+      <yloc>240</yloc>
+      <width>187</width>
+      <heigth>50</heigth>
       <fontname>Segoe UI</fontname>
       <fontsize>9</fontsize>
       <fontbold>N</fontbold>
@@ -477,16 +479,12 @@
       <drawshadow>Y</drawshadow>
     </notepad>
     <notepad>
-      <note>1.- Extraer el pais y el y ciudad del circuito
-2.- Transformar el pais en su código de pais
-3.- Llamar a la API de código de país
-4.- Llamar a la API de geolocalización
-5.- Llamar a la API de metereología
-6.- Juntar datos y actualizar</note>
-      <xloc>640</xloc>
-      <yloc>304</yloc>
-      <width>299</width>
-      <heigth>130</heigth>
+      <note>Obtenemos los 
+datos de los circuitos</note>
+      <xloc>176</xloc>
+      <yloc>240</yloc>
+      <width>151</width>
+      <heigth>50</heigth>
       <fontname>Segoe UI</fontname>
       <fontsize>9</fontsize>
       <fontbold>N</fontbold>
@@ -503,15 +501,12 @@
       <drawshadow>Y</drawshadow>
     </notepad>
     <notepad>
-      <note>fetch("https://restcountries.eu/rest/v2/name/kenya").then(resp=>{
-      return resp.json();
-}).then(json=>{
-      console.log(json[0].alpha2Code);
-})</note>
-      <xloc>640</xloc>
-      <yloc>160</yloc>
-      <width>444</width>
-      <heigth>110</heigth>
+      <note>Creamos el campo "lugar_metereología" 
+concatenando los campos "PAIS" y "CIUDAD"</note>
+      <xloc>192</xloc>
+      <yloc>592</yloc>
+      <width>310</width>
+      <heigth>50</heigth>
       <fontname>Segoe UI</fontname>
       <fontsize>9</fontsize>
       <fontbold>N</fontbold>
@@ -656,69 +651,96 @@
   </connection>
   <order>
     <hop>
-      <from>circuit</from>
-      <to>Insert / Update</to>
-      <enabled>N</enabled>
-    </hop>
-    <hop>
       <from>max_dim_circuit_last_update</from>
-      <to>circuit</to>
+      <to>Load circuit</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>circuit</from>
+      <from>Generate url</from>
+      <to>Access Weather API</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Access Weather API</from>
+      <to>Load JSON file</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Load JSON file</from>
       <to>Select values</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
       <from>Select values</from>
-      <to>Calculate Dimension Attributes</to>
+      <to>Unique rows</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Calculate Dimension Attributes</from>
-      <to>REST client</to>
+      <from>Load circuit</from>
+      <to>Sort circuit data</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Unique rows</from>
+      <to>Sort weather data</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Sort circuit data</from>
+      <to>Merge join</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Sort weather data</from>
+      <to>Merge join</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Merge join</from>
+      <to>Concat fields</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Concat fields</from>
+      <to>Insert / Update</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Access Weather API</from>
+      <to>Write to log</to>
       <enabled>Y</enabled>
     </hop>
   </order>
   <step>
-    <name>Calculate Dimension Attributes</name>
-    <type>ScriptValueMod</type>
+    <name>Generate url</name>
+    <type>DataGrid</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
-    <copies>4</copies>
+    <copies>1</copies>
     <partitioning>
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <compatible>Y</compatible>
-    <optimizationLevel>9</optimizationLevel>
-    <jsScripts>
-      <jsScript>
-        <jsScript_type>0</jsScript_type>
-        <jsScript_name>Script 1</jsScript_name>
-        <jsScript_script>var cityName = CIUDAD.getString();
-var country = PAIS.getString();
-var countryCode = 'es';
-var apiKey = '791da7e9bc2f14af0af08ae26c195565';
-var limit = 1;
-
-// Primero, hacemos la solicitud a la API de geolocalización
-var geoUrl = 'http://api.openweathermap.org/geo/1.0/direct?q=${' + cityName + '},${' + countryCode + '}&amp;limit=${' + limit + '}&amp;appid=${' + apiKey + '}';
-</jsScript_script>
-      </jsScript>
-    </jsScripts>
     <fields>
       <field>
-        <name>geoUrl</name>
-        <rename>geoUrl</rename>
+        <name>url</name>
         <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
         <length>-1</length>
         <precision>-1</precision>
-        <replace>N</replace>
+        <set_empty_string>N</set_empty_string>
+        <field_null_if/>
       </field>
     </fields>
+    <data>
+      <line>
+        <item>https://api.mockaroo.com/api/bee5a570?count=1000&amp;key=1406be40</item>
+      </line>
+    </data>
     <attributes/>
     <cluster_schema/>
     <remotesteps>
@@ -728,8 +750,8 @@ var geoUrl = 'http://api.openweathermap.org/geo/1.0/direct?q=${' + cityName + '}
       </output>
     </remotesteps>
     <GUI>
-      <xloc>304</xloc>
-      <yloc>240</yloc>
+      <xloc>544</xloc>
+      <yloc>32</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -762,24 +784,39 @@ var geoUrl = 'http://api.openweathermap.org/geo/1.0/direct?q=${' + cityName + '}
         <update>Y</update>
       </value>
       <value>
+        <name>num_curvas</name>
+        <rename>N_CURVAS</rename>
+        <update>N</update>
+      </value>
+      <value>
+        <name>precipitacion</name>
+        <rename>precipitacion</rename>
+        <update>N</update>
+      </value>
+      <value>
+        <name>temperatura</name>
+        <rename>temperatura</rename>
+        <update>N</update>
+      </value>
+      <value>
+        <name>viento</name>
+        <rename>viento</rename>
+        <update>N</update>
+      </value>
+      <value>
+        <name>lugar_meteorologia</name>
+        <rename>lugar_metereologia</rename>
+        <update>N</update>
+      </value>
+      <value>
         <name>pais</name>
         <rename>PAIS</rename>
-        <update>Y</update>
+        <update>N</update>
       </value>
       <value>
         <name>ciudad</name>
         <rename>CIUDAD</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>num_curvas</name>
-        <rename>N_CURVAS</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>ultima_actualizacion</name>
-        <rename>ULTIMA_ACTUALIZACION</rename>
-        <update>Y</update>
+        <update>N</update>
       </value>
     </lookup>
     <attributes/>
@@ -791,14 +828,14 @@ var geoUrl = 'http://api.openweathermap.org/geo/1.0/direct?q=${' + cityName + '}
       </output>
     </remotesteps>
     <GUI>
-      <xloc>96</xloc>
-      <yloc>240</yloc>
+      <xloc>112</xloc>
+      <yloc>704</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>Select values</name>
-    <type>SelectValues</type>
+    <name>Load JSON file</name>
+    <type>JsonInput</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
@@ -807,18 +844,130 @@ var geoUrl = 'http://api.openweathermap.org/geo/1.0/direct?q=${' + cityName + '}
       <method>none</method>
       <schema_name/>
     </partitioning>
+    <include>N</include>
+    <include_field/>
+    <rownum>N</rownum>
+    <addresultfile>N</addresultfile>
+    <readurl>N</readurl>
+    <removeSourceField>N</removeSourceField>
+    <IsIgnoreEmptyFile>N</IsIgnoreEmptyFile>
+    <doNotFailIfNoFile>N</doNotFailIfNoFile>
+    <ignoreMissingPath>Y</ignoreMissingPath>
+    <defaultPathLeafToNull>Y</defaultPathLeafToNull>
+    <includeNulls>N</includeNulls>
+    <rownum_field/>
+    <file>
+      <name/>
+      <filemask/>
+      <exclude_filemask/>
+      <file_required>N</file_required>
+      <include_subfolders>N</include_subfolders>
+    </file>
     <fields>
       <field>
-        <name>CIUDAD</name>
+        <name>pais</name>
+        <path>$..pais</path>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+        <repeat>N</repeat>
       </field>
       <field>
-        <name>PAIS</name>
+        <name>ciudad</name>
+        <path>$..ciudad</path>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+        <repeat>N</repeat>
       </field>
       <field>
-        <name>NOM_CIRCUITO</name>
+        <name>lugar_metereologia</name>
+        <path>$..lugar_meteorologia</path>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+        <repeat>N</repeat>
       </field>
-      <select_unspecified>N</select_unspecified>
+      <field>
+        <name>precipitacion</name>
+        <path>$..precipitacion</path>
+        <type>Number</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+        <repeat>N</repeat>
+      </field>
+      <field>
+        <name>temperatura</name>
+        <path>$..temperatura</path>
+        <type>Number</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+        <repeat>N</repeat>
+      </field>
+      <field>
+        <name>viento</name>
+        <path>$..viento</path>
+        <type>Number</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+        <repeat>N</repeat>
+      </field>
+      <field>
+        <name>ultima_actualizacion</name>
+        <path>$..ultima_actualizacion</path>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+        <repeat>N</repeat>
+      </field>
     </fields>
+    <limit>0</limit>
+    <IsInFields>Y</IsInFields>
+    <IsAFile>N</IsAFile>
+    <valueField>metereologia_json</valueField>
+    <shortFileFieldName/>
+    <pathFieldName/>
+    <hiddenFieldName/>
+    <lastModificationTimeFieldName/>
+    <uriNameFieldName/>
+    <rootUriNameFieldName/>
+    <extensionFieldName/>
+    <sizeFieldName/>
     <attributes/>
     <cluster_schema/>
     <remotesteps>
@@ -828,13 +977,65 @@ var geoUrl = 'http://api.openweathermap.org/geo/1.0/direct?q=${' + cityName + '}
       </output>
     </remotesteps>
     <GUI>
-      <xloc>304</xloc>
-      <yloc>112</yloc>
+      <xloc>544</xloc>
+      <yloc>240</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>circuit</name>
+    <name>Access Weather API</name>
+    <type>Rest</type>
+    <description/>
+    <distribute>N</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <applicationType>TEXT PLAIN</applicationType>
+    <method>GET</method>
+    <url>https://api.mockaroo.com/api/bee5a570?count=1000&amp;key=1406be40</url>
+    <urlInField>Y</urlInField>
+    <dynamicMethod>N</dynamicMethod>
+    <methodFieldName/>
+    <urlField>url</urlField>
+    <bodyField/>
+    <httpLogin/>
+    <httpPassword>Encrypted </httpPassword>
+    <proxyHost/>
+    <proxyPort/>
+    <preemptive>N</preemptive>
+    <trustStoreFile/>
+    <trustStorePassword>Encrypted </trustStorePassword>
+    <headers>
+      </headers>
+    <parameters>
+      </parameters>
+    <matrixParameters>
+      </matrixParameters>
+    <result>
+      <name>metereologia_json</name>
+      <code/>
+      <response_time/>
+      <response_header/>
+    </result>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>544</xloc>
+      <yloc>128</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Load circuit</name>
     <type>TableInput</type>
     <description/>
     <distribute>N</distribute>
@@ -850,9 +1051,9 @@ var geoUrl = 'http://api.openweathermap.org/geo/1.0/direct?q=${' + cityName + '}
 , PAIS
 , CIUDAD
 , N_CURVAS
-, COALESCE(ULTIMA_ACTUALIZACION, '2023/04/13 12:15:34') AS ULTIMA_ACTUALIZACION
+, COALESCE(ULTIMA_ACTUALIZACION, '2023-04-13 12:15:34') AS ULTIMA_ACTUALIZACION
 FROM tami_oltp.circuito
-WHERE ULTIMA_ACTUALIZACION &lt; ?
+WHERE ULTIMA_ACTUALIZACION > ?
 </sql>
     <limit>0</limit>
     <lookup>max_dim_circuit_last_update</lookup>
@@ -867,7 +1068,7 @@ WHERE ULTIMA_ACTUALIZACION &lt; ?
         <name>NOM_CIRCUITO</name>
         <length>50</length>
         <precision>-1</precision>
-        <origin>circuit</origin>
+        <origin>Load circuit</origin>
         <comments>NOM_CIRCUITO</comments>
         <conversion_Mask/>
         <decimal_symbol>,</decimal_symbol>
@@ -881,7 +1082,7 @@ WHERE ULTIMA_ACTUALIZACION &lt; ?
         <output_padding>N</output_padding>
         <date_format_lenient>N</date_format_lenient>
         <date_format_locale>en_US</date_format_locale>
-        <date_format_timezone>Europe/Madrid</date_format_timezone>
+        <date_format_timezone>Europe/Paris</date_format_timezone>
         <lenient_string_to_number>N</lenient_string_to_number>
       </value-meta>
       <value-meta>
@@ -890,7 +1091,7 @@ WHERE ULTIMA_ACTUALIZACION &lt; ?
         <name>PAIS</name>
         <length>50</length>
         <precision>-1</precision>
-        <origin>circuit</origin>
+        <origin>Load circuit</origin>
         <comments>PAIS</comments>
         <conversion_Mask/>
         <decimal_symbol>,</decimal_symbol>
@@ -904,7 +1105,7 @@ WHERE ULTIMA_ACTUALIZACION &lt; ?
         <output_padding>N</output_padding>
         <date_format_lenient>N</date_format_lenient>
         <date_format_locale>en_US</date_format_locale>
-        <date_format_timezone>Europe/Madrid</date_format_timezone>
+        <date_format_timezone>Europe/Paris</date_format_timezone>
         <lenient_string_to_number>N</lenient_string_to_number>
       </value-meta>
       <value-meta>
@@ -913,7 +1114,7 @@ WHERE ULTIMA_ACTUALIZACION &lt; ?
         <name>CIUDAD</name>
         <length>50</length>
         <precision>-1</precision>
-        <origin>circuit</origin>
+        <origin>Load circuit</origin>
         <comments>CIUDAD</comments>
         <conversion_Mask/>
         <decimal_symbol>,</decimal_symbol>
@@ -927,7 +1128,7 @@ WHERE ULTIMA_ACTUALIZACION &lt; ?
         <output_padding>N</output_padding>
         <date_format_lenient>N</date_format_lenient>
         <date_format_locale>en_US</date_format_locale>
-        <date_format_timezone>Europe/Madrid</date_format_timezone>
+        <date_format_timezone>Europe/Paris</date_format_timezone>
         <lenient_string_to_number>N</lenient_string_to_number>
       </value-meta>
       <value-meta>
@@ -936,7 +1137,7 @@ WHERE ULTIMA_ACTUALIZACION &lt; ?
         <name>N_CURVAS</name>
         <length>3</length>
         <precision>2</precision>
-        <origin>circuit</origin>
+        <origin>Load circuit</origin>
         <comments>N_CURVAS</comments>
         <conversion_Mask>####0.0#########;-####0.0#########</conversion_Mask>
         <decimal_symbol>,</decimal_symbol>
@@ -950,7 +1151,7 @@ WHERE ULTIMA_ACTUALIZACION &lt; ?
         <output_padding>N</output_padding>
         <date_format_lenient>N</date_format_lenient>
         <date_format_locale>en_US</date_format_locale>
-        <date_format_timezone>Europe/Madrid</date_format_timezone>
+        <date_format_timezone>Europe/Paris</date_format_timezone>
         <lenient_string_to_number>N</lenient_string_to_number>
       </value-meta>
       <value-meta>
@@ -959,7 +1160,7 @@ WHERE ULTIMA_ACTUALIZACION &lt; ?
         <name>ULTIMA_ACTUALIZACION</name>
         <length>19</length>
         <precision>-1</precision>
-        <origin>circuit</origin>
+        <origin>Load circuit</origin>
         <comments>ULTIMA_ACTUALIZACION</comments>
         <conversion_Mask/>
         <decimal_symbol>,</decimal_symbol>
@@ -973,7 +1174,7 @@ WHERE ULTIMA_ACTUALIZACION &lt; ?
         <output_padding>N</output_padding>
         <date_format_lenient>N</date_format_lenient>
         <date_format_locale>en_US</date_format_locale>
-        <date_format_timezone>Europe/Madrid</date_format_timezone>
+        <date_format_timezone>Europe/Paris</date_format_timezone>
         <lenient_string_to_number>N</lenient_string_to_number>
       </value-meta>
     </row-meta>
@@ -986,8 +1187,8 @@ WHERE ULTIMA_ACTUALIZACION &lt; ?
       </output>
     </remotesteps>
     <GUI>
-      <xloc>96</xloc>
-      <yloc>112</yloc>
+      <xloc>112</xloc>
+      <yloc>240</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1049,14 +1250,14 @@ FROM   dim_circuito
       </output>
     </remotesteps>
     <GUI>
-      <xloc>96</xloc>
-      <yloc>16</yloc>
+      <xloc>112</xloc>
+      <yloc>128</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>REST client</name>
-    <type>Rest</type>
+    <name>Select values</name>
+    <type>SelectValues</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
@@ -1065,33 +1266,29 @@ FROM   dim_circuito
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <applicationType>TEXT PLAIN</applicationType>
-    <method>GET</method>
-    <url/>
-    <urlInField>Y</urlInField>
-    <dynamicMethod>N</dynamicMethod>
-    <methodFieldName/>
-    <urlField>geoUrl</urlField>
-    <bodyField/>
-    <httpLogin/>
-    <httpPassword>Encrypted </httpPassword>
-    <proxyHost/>
-    <proxyPort/>
-    <preemptive>N</preemptive>
-    <trustStoreFile/>
-    <trustStorePassword>Encrypted </trustStorePassword>
-    <headers>
-      </headers>
-    <parameters>
-      </parameters>
-    <matrixParameters>
-      </matrixParameters>
-    <result>
-      <name>coordinates</name>
-      <code>httpStatus</code>
-      <response_time/>
-      <response_header/>
-    </result>
+    <fields>
+      <field>
+        <name>pais</name>
+        <rename/>
+      </field>
+      <field>
+        <name>ciudad</name>
+        <rename/>
+      </field>
+      <field>
+        <name>precipitacion</name>
+        <rename/>
+      </field>
+      <field>
+        <name>temperatura</name>
+        <rename/>
+      </field>
+      <field>
+        <name>viento</name>
+        <rename/>
+      </field>
+      <select_unspecified>N</select_unspecified>
+    </fields>
     <attributes/>
     <cluster_schema/>
     <remotesteps>
@@ -1101,12 +1298,320 @@ FROM   dim_circuito
       </output>
     </remotesteps>
     <GUI>
-      <xloc>416</xloc>
-      <yloc>240</yloc>
+      <xloc>544</xloc>
+      <yloc>352</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Unique rows</name>
+    <type>Unique</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <count_rows>N</count_rows>
+    <count_field/>
+    <reject_duplicate_row>N</reject_duplicate_row>
+    <error_description/>
+    <fields>
+      <field>
+        <name>pais</name>
+        <case_insensitive>N</case_insensitive>
+      </field>
+      <field>
+        <name>ciudad</name>
+        <case_insensitive>N</case_insensitive>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>544</xloc>
+      <yloc>480</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Sort circuit data</name>
+    <type>SortRows</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <directory>%%java.io.tmpdir%%</directory>
+    <prefix>out</prefix>
+    <sort_size>1000000</sort_size>
+    <free_memory/>
+    <compress>N</compress>
+    <compress_variable/>
+    <unique_rows>N</unique_rows>
+    <fields>
+      <field>
+        <name>PAIS</name>
+        <ascending>Y</ascending>
+        <case_sensitive>N</case_sensitive>
+        <collator_enabled>N</collator_enabled>
+        <collator_strength>0</collator_strength>
+        <presorted>N</presorted>
+      </field>
+      <field>
+        <name>CIUDAD</name>
+        <ascending>Y</ascending>
+        <case_sensitive>N</case_sensitive>
+        <collator_enabled>N</collator_enabled>
+        <collator_strength>0</collator_strength>
+        <presorted>N</presorted>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>112</xloc>
+      <yloc>352</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Sort weather data</name>
+    <type>SortRows</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <directory>%%java.io.tmpdir%%</directory>
+    <prefix>out</prefix>
+    <sort_size>1000000</sort_size>
+    <free_memory/>
+    <compress>N</compress>
+    <compress_variable/>
+    <unique_rows>N</unique_rows>
+    <fields>
+      <field>
+        <name>pais</name>
+        <ascending>Y</ascending>
+        <case_sensitive>N</case_sensitive>
+        <collator_enabled>N</collator_enabled>
+        <collator_strength>0</collator_strength>
+        <presorted>N</presorted>
+      </field>
+      <field>
+        <name>ciudad</name>
+        <ascending>Y</ascending>
+        <case_sensitive>N</case_sensitive>
+        <collator_enabled>N</collator_enabled>
+        <collator_strength>0</collator_strength>
+        <presorted>N</presorted>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>336</xloc>
+      <yloc>480</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Merge join</name>
+    <type>MergeJoin</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <join_type>LEFT OUTER</join_type>
+    <step1>Sort circuit data</step1>
+    <step2>Sort weather data</step2>
+    <keys_1>
+      <key>PAIS</key>
+      <key>CIUDAD</key>
+    </keys_1>
+    <keys_2>
+      <key>pais</key>
+      <key>ciudad</key>
+    </keys_2>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>112</xloc>
+      <yloc>480</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Concat fields</name>
+    <type>ConcatFields</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <separator>;</separator>
+    <enclosure>"</enclosure>
+    <enclosure_forced>N</enclosure_forced>
+    <enclosure_fix_disabled>N</enclosure_fix_disabled>
+    <header>N</header>
+    <footer>N</footer>
+    <format>DOS</format>
+    <compression>None</compression>
+    <encoding/>
+    <endedLine/>
+    <fileNameInField>N</fileNameInField>
+    <fileNameField/>
+    <create_parent_folder>Y</create_parent_folder>
+    <file>
+      <name/>
+      <servlet_output>N</servlet_output>
+      <do_not_open_new_file_init>N</do_not_open_new_file_init>
+      <extention>txt</extention>
+      <append>N</append>
+      <split>N</split>
+      <haspartno>N</haspartno>
+      <add_date>N</add_date>
+      <add_time>N</add_time>
+      <SpecifyFormat>N</SpecifyFormat>
+      <date_time_format/>
+      <add_to_result_filenames>Y</add_to_result_filenames>
+      <pad>N</pad>
+      <fast_dump>N</fast_dump>
+      <splitevery>0</splitevery>
+    </file>
+    <fields>
+      <field>
+        <name>PAIS</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>none</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>CIUDAD</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>none</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+    </fields>
+    <ConcatFields>
+      <targetFieldName>lugar_metereologia</targetFieldName>
+      <targetFieldLength>0</targetFieldLength>
+      <removeSelectedFields>N</removeSelectedFields>
+    </ConcatFields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>112</xloc>
+      <yloc>592</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Write to log</name>
+    <type>WriteToLog</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <loglevel>log_level_basic</loglevel>
+    <displayHeader>Y</displayHeader>
+    <limitRows>N</limitRows>
+    <limitRowsNumber>0</limitRowsNumber>
+    <logmessage>Fallo al acceder a la API metereológica: </logmessage>
+    <fields>
+      <field>
+        <name>url</name>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>336</xloc>
+      <yloc>128</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step_error_handling>
+    <error>
+      <source_step>Access Weather API</source_step>
+      <target_step>Write to log</target_step>
+      <is_enabled>Y</is_enabled>
+      <nr_valuename/>
+      <descriptions_valuename/>
+      <fields_valuename/>
+      <codes_valuename/>
+      <max_errors/>
+      <max_pct_errors/>
+      <min_pct_rows/>
+    </error>
   </step_error_handling>
   <slave-step-copy-partition-distribution>
   </slave-step-copy-partition-distribution>
