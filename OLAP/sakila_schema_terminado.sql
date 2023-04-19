@@ -156,9 +156,10 @@ CREATE TABLE dim_circuito (
   precipitacion DECIMAL(5,2),
   temperatura DECIMAL(2,0),
   viento DECIMAL(3,0),
-  lugar_meteorologia VARCHAR(50),
   pais VARCHAR(50),
   ciudad VARCHAR(50),
+  desgaste_frenos VARCHAR(50),
+  longitud DECIMAL(5,0),
   ultima_actualizacion TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY  (dc_id)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;

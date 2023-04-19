@@ -431,73 +431,10 @@
     <created_date>2020/03/02 14:48:15.125</created_date>
     <modified_user>-</modified_user>
     <modified_date>2008/10/23 07:58:26.439</modified_date>
-    <key_for_session_key>H4sIAAAAAAAA/wMAAAAAAAAAAAA=</key_for_session_key>
+    <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
   <notepads>
-    <notepad>
-      <note>Generate</note>
-      <xloc>16</xloc>
-      <yloc>16</yloc>
-      <width>66</width>
-      <heigth>28</heigth>
-      <fontname>Microsoft Sans Serif</fontname>
-      <fontsize>8</fontsize>
-      <fontbold>N</fontbold>
-      <fontitalic>N</fontitalic>
-      <fontcolorred>0</fontcolorred>
-      <fontcolorgreen>0</fontcolorgreen>
-      <fontcolorblue>0</fontcolorblue>
-      <backgroundcolorred>255</backgroundcolorred>
-      <backgroundcolorgreen>255</backgroundcolorgreen>
-      <backgroundcolorblue>0</backgroundcolorblue>
-      <bordercolorred>100</bordercolorred>
-      <bordercolorgreen>100</bordercolorgreen>
-      <bordercolorblue>100</bordercolorblue>
-      <drawshadow>N</drawshadow>
-    </notepad>
-    <notepad>
-      <note>Transformation</note>
-      <xloc>16</xloc>
-      <yloc>112</yloc>
-      <width>111</width>
-      <heigth>30</heigth>
-      <fontname/>
-      <fontsize>-1</fontsize>
-      <fontbold>N</fontbold>
-      <fontitalic>N</fontitalic>
-      <fontcolorred>0</fontcolorred>
-      <fontcolorgreen>0</fontcolorgreen>
-      <fontcolorblue>0</fontcolorblue>
-      <backgroundcolorred>255</backgroundcolorred>
-      <backgroundcolorgreen>255</backgroundcolorgreen>
-      <backgroundcolorblue>0</backgroundcolorblue>
-      <bordercolorred>100</bordercolorred>
-      <bordercolorgreen>100</bordercolorgreen>
-      <bordercolorblue>100</bordercolorblue>
-      <drawshadow>N</drawshadow>
-    </notepad>
-    <notepad>
-      <note>Load</note>
-      <xloc>16</xloc>
-      <yloc>208</yloc>
-      <width>41</width>
-      <heigth>28</heigth>
-      <fontname>Microsoft Sans Serif</fontname>
-      <fontsize>8</fontsize>
-      <fontbold>N</fontbold>
-      <fontitalic>N</fontitalic>
-      <fontcolorred>0</fontcolorred>
-      <fontcolorgreen>0</fontcolorgreen>
-      <fontcolorblue>0</fontcolorblue>
-      <backgroundcolorred>255</backgroundcolorred>
-      <backgroundcolorgreen>255</backgroundcolorgreen>
-      <backgroundcolorblue>0</backgroundcolorblue>
-      <bordercolorred>100</bordercolorred>
-      <bordercolorgreen>100</bordercolorgreen>
-      <bordercolorblue>100</bordercolorblue>
-      <drawshadow>N</drawshadow>
-    </notepad>
   </notepads>
   <connection>
     <name>dwh_escu</name>
@@ -580,21 +517,6 @@
     </hop>
     <hop>
       <from>Select values</from>
-      <to>Cartesian Product</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Get system info</from>
-      <to>Cartesian Product</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Cartesian Product</from>
-      <to>Text file output</to>
-      <enabled>N</enabled>
-    </hop>
-    <hop>
-      <from>Cartesian Product</from>
       <to>Load dim_date</to>
       <enabled>Y</enabled>
     </hop>
@@ -631,60 +553,27 @@ calendar.add(calendar.DAY_OF_MONTH,DaySequence.getInteger() - 1);
 
 //get the calendar date
 var date = new java.util.Date(calendar.getTimeInMillis());
-//en-us example: 9/3/07
-var date_short  = java.text.DateFormat.getDateInstance(
-                      java.text.DateFormat.SHORT
-                  ,   locale
-                  ).format(date);
-//en-us example: Sep 3, 2007 
-var date_medium = java.text.DateFormat.getDateInstance(
-                      java.text.DateFormat.MEDIUM
-                  ,   locale
-                  ).format(date);
-//en-us example: September 3, 2007
-var date_long   = java.text.DateFormat.getDateInstance(
-                      java.text.DateFormat.LONG
-                  ,   locale
-                  ).format(date);
-//en-us example: Monday, September 3, 2007
-var date_full   = java.text.DateFormat.getDateInstance(
-                      java.text.DateFormat.FULL
-                  ,   locale
-                  ).format(date);
 
 //day in year: 1..366
 var simpleDateFormat   = java.text.SimpleDateFormat("D",locale);
 var day_in_year        = simpleDateFormat.format(date);
+
 //day in month: 1..31
 simpleDateFormat.applyPattern("d");
 var day_in_month       = simpleDateFormat.format(date);
-//en-us example: "Monday"
-simpleDateFormat.applyPattern("EEEE");
-var day_name           = simpleDateFormat.format(date);
-//en-us example: "Mon"
-simpleDateFormat.applyPattern("E");
-var day_abbreviation   = simpleDateFormat.format(date);
-//week in year, 1..53
-simpleDateFormat.applyPattern("ww");
-var week_in_year       = simpleDateFormat.format(date);
+
 //week in month, 1..5
 simpleDateFormat.applyPattern("W");
 var week_in_month      = simpleDateFormat.format(date);
+
 //month number in year, 1..12
 simpleDateFormat.applyPattern("MM");
 var month_number       = simpleDateFormat.format(date);
-//en-us example: "September"
-simpleDateFormat.applyPattern("MMMM");
-var month_name         = simpleDateFormat.format(date);
-//en-us example: "Sep"
-simpleDateFormat.applyPattern("MMM");
-var month_abbreviation = simpleDateFormat.format(date);
+
 //2 digit representation of the year, example: "07" for 2007
 simpleDateFormat.applyPattern("y");
 var year2              = simpleDateFormat.format(date);
-//4 digit representation of the year, example:  2007
-simpleDateFormat.applyPattern("yyyy");
-var year4              = "" + simpleDateFormat.format(date);
+
 //handling Quarters is a DIY
 var quarter_name = "Q";
 var quarter_number;
@@ -696,57 +585,12 @@ switch(parseInt(month_number)){
 }
 quarter_name += quarter_number;
 
-//get the local yes/no values
-var yes = local_yes.getString();
-var no = local_no.getString();
-
-//initialize for week calculations
-var first_day_of_week = calendar.getFirstDayOfWeek();
-var day_of_week = java.util.Calendar.DAY_OF_WEEK;
-
-//find out if this is the first day of the week
-var is_first_day_in_week;
-if(first_day_of_week==calendar.get(day_of_week)){
-    is_first_day_in_week = yes;
-} else {
-    is_first_day_in_week = no;
-}
-
 //calculate the next day
 calendar.add(calendar.DAY_OF_MONTH,1);
 //get the next calendar date
 var next_day = new java.util.Date(calendar.getTimeInMillis());
 
-//find out if this is the first day of the week
-var is_last_day_in_week;
-if(first_day_of_week==calendar.get(day_of_week)){
-    is_last_day_in_week = yes;
-} else {
-    is_last_day_in_week = no;
-}
-
-//find out if this is the first day of the month
-var is_first_day_of_month;
-if(day_in_month == 1){
-    is_first_day_in_month = yes;
-} else {
-    is_first_day_in_month = no;
-}
-
-//find out if this is the last day in the month
-var is_last_day_of_month;
-if(java.text.SimpleDateFormat("d",locale).format(next_day)==1){
-    is_last_day_in_month = yes;
-} else {
-    is_last_day_in_month = no;
-}
-
-//date = year4 + "-" + month_number + "-" + day_in_month
-var year_quarter            = year4 + "-" + quarter_name;
-var year_month_number       = year4 + "-" + month_number;
-var year_month_abbreviation = year4 + "-" + month_abbreviation;
-
-var date_key = year4 + month_number + (day_in_month&lt;10?"0":"") + day_in_month;</jsScript_script>
+</jsScript_script>
       </jsScript>
     </jsScripts>
     <fields>
@@ -968,45 +812,8 @@ var date_key = year4 + month_number + (day_in_month&lt;10?"0":"") + day_in_month
       </output>
     </remotesteps>
     <GUI>
-      <xloc>352</xloc>
-      <yloc>128</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Cartesian Product</name>
-    <type>JoinRows</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <directory>%%java.io.tmpdir%%</directory>
-    <prefix>out</prefix>
-    <cache_size>500</cache_size>
-    <main/>
-    <compare>
-      <condition>
-        <negated>N</negated>
-        <leftvalue/>
-        <function>=</function>
-        <rightvalue/>
-      </condition>
-    </compare>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>624</xloc>
-      <yloc>128</yloc>
+      <xloc>112</xloc>
+      <yloc>256</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1040,7 +847,7 @@ var date_key = year4 + month_number + (day_in_month&lt;10?"0":"") + day_in_month
       </output>
     </remotesteps>
     <GUI>
-      <xloc>192</xloc>
+      <xloc>112</xloc>
       <yloc>128</yloc>
       <draw>Y</draw>
     </GUI>
@@ -1132,38 +939,7 @@ var date_key = year4 + month_number + (day_in_month&lt;10?"0":"") + day_in_month
       </output>
     </remotesteps>
     <GUI>
-      <xloc>192</xloc>
-      <yloc>32</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Get system info</name>
-    <type>SystemInfo</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <fields>
-      <field>
-        <name>last_update</name>
-        <type>system date (fixed)</type>
-      </field>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>624</xloc>
+      <xloc>112</xloc>
       <yloc>32</yloc>
       <draw>Y</draw>
     </GUI>
@@ -1198,10 +974,6 @@ var date_key = year4 + month_number + (day_in_month&lt;10?"0":"") + day_in_month
     <return_field/>
     <fields>
       <field>
-        <column_name>cc_id</column_name>
-        <stream_name>cc_id</stream_name>
-      </field>
-      <field>
         <column_name>anho</column_name>
         <stream_name>anho</stream_name>
       </field>
@@ -1221,10 +993,6 @@ var date_key = year4 + month_number + (day_in_month&lt;10?"0":"") + day_in_month
         <column_name>dia</column_name>
         <stream_name>dia</stream_name>
       </field>
-      <field>
-        <column_name>ultima_actualizacion</column_name>
-        <stream_name>last_update</stream_name>
-      </field>
     </fields>
     <attributes/>
     <cluster_schema/>
@@ -1235,8 +1003,8 @@ var date_key = year4 + month_number + (day_in_month&lt;10?"0":"") + day_in_month
       </output>
     </remotesteps>
     <GUI>
-      <xloc>624</xloc>
-      <yloc>224</yloc>
+      <xloc>112</xloc>
+      <yloc>496</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1252,10 +1020,6 @@ var date_key = year4 + month_number + (day_in_month&lt;10?"0":"") + day_in_month
       <schema_name/>
     </partitioning>
     <fields>
-      <field>
-        <name>date_key</name>
-        <rename>cc_id</rename>
-      </field>
       <field>
         <name>year2</name>
         <rename>anho</rename>
@@ -1287,65 +1051,8 @@ var date_key = year4 + month_number + (day_in_month&lt;10?"0":"") + day_in_month
       </output>
     </remotesteps>
     <GUI>
-      <xloc>480</xloc>
-      <yloc>128</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Text file output</name>
-    <type>TextFileOutput</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <separator>;</separator>
-    <enclosure>"</enclosure>
-    <enclosure_forced>N</enclosure_forced>
-    <enclosure_fix_disabled>N</enclosure_fix_disabled>
-    <header>Y</header>
-    <footer>N</footer>
-    <format>DOS</format>
-    <compression>None</compression>
-    <encoding/>
-    <endedLine/>
-    <fileNameInField>N</fileNameInField>
-    <fileNameField/>
-    <create_parent_folder>Y</create_parent_folder>
-    <file>
-      <name>file</name>
-      <servlet_output>N</servlet_output>
-      <do_not_open_new_file_init>N</do_not_open_new_file_init>
-      <extention>txt</extention>
-      <append>N</append>
-      <split>N</split>
-      <haspartno>N</haspartno>
-      <add_date>N</add_date>
-      <add_time>N</add_time>
-      <SpecifyFormat>N</SpecifyFormat>
-      <date_time_format/>
-      <add_to_result_filenames>Y</add_to_result_filenames>
-      <pad>N</pad>
-      <fast_dump>N</fast_dump>
-      <splitevery/>
-    </file>
-    <fields>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>480</xloc>
-      <yloc>224</yloc>
+      <xloc>112</xloc>
+      <yloc>368</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
