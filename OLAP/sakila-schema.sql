@@ -46,7 +46,7 @@ CREATE TABLE PILOTO (
   peso DECIMAL(6,3),
   altura DECIMAL(6,3),
   anho_experiencia DECIMAL(6,3),
-  last_name VARCHAR(45) NOT NULL,
+  id_coche SMALLINT,
   ultima_actualizacion TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY  (id_piloto)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -62,9 +62,7 @@ CREATE TABLE PATROCINA (
   id_patrocinador  SMALLINT NOT NULL,
   dinero_aporta    DECIMAL(10,2),
   dur_contrato     DOUBLE,                            
-  PRIMARY KEY (id_coche, id_patrocinador),
-  CONSTRAINT fk_patrocina_coche FOREIGN KEY (id_coche) REFERENCES COCHE (id_coche) ON DELETE RESTRICT ON UPDATE CASCADE,
-  CONSTRAINT fk_patrocina_patrocinador FOREIGN KEY (id_patrocinador) REFERENCES PATROCINADOR (id_patrocinador) ON DELETE RESTRICT ON UPDATE CASCADE
+  PRIMARY KEY (id_coche, id_patrocinador)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE CIRCUITO
@@ -78,35 +76,31 @@ CREATE TABLE CIRCUITO
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE CARRERA (
-  id_carrera    SMALLINT NOT NULL,
-  nom_carrera    VARCHAR(50)NOT NULL,
-  nom_circuito    VARCHAR(50)NOT NULL,
+  id_carrera    SMALLINT NOT NULL ,
+  nom_carrera    VARCHAR(50) NOT NULL ,
+  nom_circuito    VARCHAR(50) NOT NULL ,
   ultima_actualizacion TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  PRIMARY KEY (id_carrera),
-  CONSTRAINT fkcarrera_circuito FOREIGN KEY (nom_circuito) REFERENCES CIRCUITO (nom_circuito) ON DELETE RESTRICT ON UPDATE CASCADE
+  PRIMARY KEY (id_carrera)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE PARTICIPA_EN (
   id_coche    SMALLINT NOT NULL,
   id_carrera    SMALLINT NOT NULL,
-  puntos        SMALLINT NOT NULL,
+  puntos        SMALLINT ,
   tiempo_mejor_vuelta DECIMAL(6,3),
-  fecha_inicio_carrera  DATETIME NOT NULL,
-  fecha_fin_carrera  DATETIME NOT NULL,
-  PRIMARY KEY (id_coche, id_carrera, puntos),
-    CONSTRAINT fkparticipa_en_coche FOREIGN KEY (id_coche) REFERENCES COCHE(id_coche) ON DELETE RESTRICT ON UPDATE CASCADE,
-    CONSTRAINT fkparticipa_en_carrera FOREIGN KEY (id_carrera) REFERENCES CARRERA(id_carrera) ON DELETE RESTRICT ON UPDATE CASCADE
+  fecha_inicio_carrera  DATE,
+  fecha_fin_carrera  DATE,
+  PRIMARY KEY (id_coche, id_carrera, puntos)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE PRUEBA
 (
   cod_prueba   SMALLINT NOT NULL,
   lugar        VARCHAR(150),
-  fecha_prueba        DATETIME NOT NULL,
+  fecha_prueba DATE,
   id_coche    SMALLINT NOT NULL,
   ultima_actualizacion TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  PRIMARY KEY (COD_PRUEBA),
-  CONSTRAINT fkprueba_coche FOREIGN KEY (id_coche) REFERENCES COCHE(id_coche) ON DELETE RESTRICT ON UPDATE CASCADE
+  PRIMARY KEY (COD_PRUEBA)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 SET SQL_MODE=@OLD_SQL_MODE;
