@@ -526,8 +526,8 @@ duración total de todos los contratos</note>
     </notepad>
     <notepad>
       <note>Actualizamos la dimensión o insertamos nuevos datos</note>
-      <xloc>464</xloc>
-      <yloc>736</yloc>
+      <xloc>480</xloc>
+      <yloc>864</yloc>
       <width>397</width>
       <heigth>30</heigth>
       <fontname>Times New Roman</fontname>
@@ -610,11 +610,11 @@ duración total de todos los contratos</note>
     </attributes>
   </connection>
   <connection>
-    <name>tami_oltp</name>
+    <name>sakila_escu</name>
     <server>localhost</server>
     <type>MYSQL</type>
     <access>Native</access>
-    <database>tami_oltp</database>
+    <database>sakila_escu</database>
     <port>3306</port>
     <username>root</username>
     <password>Encrypted </password>
@@ -689,11 +689,6 @@ duración total de todos los contratos</note>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Unique rows</from>
-      <to>Insert / Update</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
       <from>Sort cars</from>
       <to>Merge join</to>
       <enabled>Y</enabled>
@@ -734,11 +729,6 @@ duración total de todos los contratos</note>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Merge join 2</from>
-      <to>Unique rows</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
       <from>Unique patrons' cars</from>
       <to>Merge join 2</to>
       <enabled>Y</enabled>
@@ -753,6 +743,21 @@ duración total de todos los contratos</note>
       <to>Unique patrons' cars</to>
       <enabled>Y</enabled>
     </hop>
+    <hop>
+      <from>Merge join 2</from>
+      <to>If field value is null</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>If field value is null</from>
+      <to>Unique rows</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Unique rows</from>
+      <to>Insert / Update</to>
+      <enabled>Y</enabled>
+    </hop>
   </order>
   <step>
     <name>Count patrons</name>
@@ -765,15 +770,14 @@ duración total de todos los contratos</note>
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <connection>tami_oltp</connection>
+    <connection>sakila_escu</connection>
     <sql>SELECT
-  ID_COCHE
-, count(ID_PATROCINADOR) AS NUM_PATROCINADORES
-, SUM(DUR_CONTRATO) OVER (PARTITION BY ID_COCHE) DUR_CONTRATO_TOTAL
-, SUM(DINERO_APORTA) OVER (PARTITION BY ID_COCHE) AS_DINERO_APORTA_TOTAL
-FROM tami_oltp.patrocina
-WHERE ID_COCHE = ?
-</sql>
+  id_coche
+, count(id_patrocinador) AS NUM_PATROCINADORES
+, dur_contrato AS DUR_CONTRATO_TOTAL
+, SUM(dinero_aporta) OVER (PARTITION BY id_coche) AS_DINERO_APORTA_TOTAL
+FROM sakila_escu.patrocina
+WHERE id_coche = ?</sql>
     <limit>0</limit>
     <lookup>Load cars id</lookup>
     <execute_each_row>Y</execute_each_row>
@@ -784,11 +788,11 @@ WHERE ID_COCHE = ?
       <value-meta>
         <type>Integer</type>
         <storagetype>normal</storagetype>
-        <name>ID_COCHE</name>
+        <name>id_coche</name>
         <length>4</length>
         <precision>0</precision>
         <origin>Count patrons</origin>
-        <comments>ID_COCHE</comments>
+        <comments>id_coche</comments>
         <conversion_Mask>####0;-####0</conversion_Mask>
         <decimal_symbol>,</decimal_symbol>
         <grouping_symbol>.</grouping_symbol>
@@ -801,7 +805,7 @@ WHERE ID_COCHE = ?
         <output_padding>N</output_padding>
         <date_format_lenient>N</date_format_lenient>
         <date_format_locale>en_US</date_format_locale>
-        <date_format_timezone>Europe/Madrid</date_format_timezone>
+        <date_format_timezone>Europe/Paris</date_format_timezone>
         <lenient_string_to_number>N</lenient_string_to_number>
       </value-meta>
       <value-meta>
@@ -824,14 +828,14 @@ WHERE ID_COCHE = ?
         <output_padding>N</output_padding>
         <date_format_lenient>N</date_format_lenient>
         <date_format_locale>en_US</date_format_locale>
-        <date_format_timezone>Europe/Madrid</date_format_timezone>
+        <date_format_timezone>Europe/Paris</date_format_timezone>
         <lenient_string_to_number>N</lenient_string_to_number>
       </value-meta>
       <value-meta>
         <type>BigNumber</type>
         <storagetype>normal</storagetype>
         <name>DUR_CONTRATO_TOTAL</name>
-        <length>23</length>
+        <length>22</length>
         <precision>-1</precision>
         <origin>Count patrons</origin>
         <comments>DUR_CONTRATO_TOTAL</comments>
@@ -847,7 +851,7 @@ WHERE ID_COCHE = ?
         <output_padding>N</output_padding>
         <date_format_lenient>N</date_format_lenient>
         <date_format_locale>en_US</date_format_locale>
-        <date_format_timezone>Europe/Madrid</date_format_timezone>
+        <date_format_timezone>Europe/Paris</date_format_timezone>
         <lenient_string_to_number>N</lenient_string_to_number>
       </value-meta>
       <value-meta>
@@ -870,7 +874,7 @@ WHERE ID_COCHE = ?
         <output_padding>N</output_padding>
         <date_format_lenient>N</date_format_lenient>
         <date_format_locale>en_US</date_format_locale>
-        <date_format_timezone>Europe/Madrid</date_format_timezone>
+        <date_format_timezone>Europe/Paris</date_format_timezone>
         <lenient_string_to_number>N</lenient_string_to_number>
       </value-meta>
     </row-meta>
@@ -899,12 +903,13 @@ WHERE ID_COCHE = ?
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <connection>tami_oltp</connection>
+    <connection>sakila_escu</connection>
     <sql>SELECT
-  ID_COCHE
-, count(COD_PRUEBA) AS NUM_PRUEBAS
-FROM tami_oltp.prueba
-WHERE ID_COCHE = ?</sql>
+  id_coche
+, count(cod_prueba) AS NUM_PRUEBAS
+FROM sakila_escu.prueba
+WHERE id_coche = ?
+</sql>
     <limit>0</limit>
     <lookup>Load cars id</lookup>
     <execute_each_row>Y</execute_each_row>
@@ -915,11 +920,11 @@ WHERE ID_COCHE = ?</sql>
       <value-meta>
         <type>Integer</type>
         <storagetype>normal</storagetype>
-        <name>ID_COCHE</name>
+        <name>id_coche</name>
         <length>4</length>
         <precision>0</precision>
-        <origin>Load trials 2</origin>
-        <comments>ID_COCHE</comments>
+        <origin>Count trials</origin>
+        <comments>id_coche</comments>
         <conversion_Mask>####0;-####0</conversion_Mask>
         <decimal_symbol>,</decimal_symbol>
         <grouping_symbol>.</grouping_symbol>
@@ -932,7 +937,7 @@ WHERE ID_COCHE = ?</sql>
         <output_padding>N</output_padding>
         <date_format_lenient>N</date_format_lenient>
         <date_format_locale>en_US</date_format_locale>
-        <date_format_timezone>Europe/Madrid</date_format_timezone>
+        <date_format_timezone>Europe/Paris</date_format_timezone>
         <lenient_string_to_number>N</lenient_string_to_number>
       </value-meta>
       <value-meta>
@@ -941,7 +946,7 @@ WHERE ID_COCHE = ?</sql>
         <name>NUM_PRUEBAS</name>
         <length>15</length>
         <precision>0</precision>
-        <origin>Load trials 2</origin>
+        <origin>Count trials</origin>
         <comments>NUM_PRUEBAS</comments>
         <conversion_Mask>####0;-####0</conversion_Mask>
         <decimal_symbol>,</decimal_symbol>
@@ -955,7 +960,7 @@ WHERE ID_COCHE = ?</sql>
         <output_padding>N</output_padding>
         <date_format_lenient>N</date_format_lenient>
         <date_format_locale>en_US</date_format_locale>
-        <date_format_timezone>Europe/Madrid</date_format_timezone>
+        <date_format_timezone>Europe/Paris</date_format_timezone>
         <lenient_string_to_number>N</lenient_string_to_number>
       </value-meta>
     </row-meta>
@@ -989,7 +994,7 @@ WHERE ID_COCHE = ?</sql>
     <compare>
       <condition>
         <negated>N</negated>
-        <leftvalue>ID_COCHE</leftvalue>
+        <leftvalue>id_coche</leftvalue>
         <function>IS NOT NULL</function>
         <rightvalue/>
       </condition>
@@ -1026,34 +1031,34 @@ WHERE ID_COCHE = ?</sql>
       <schema>dwh_escu</schema>
       <table>dim_coche</table>
       <key>
-        <name>ID_COCHE</name>
+        <name>id_coche</name>
         <field>id_coche</field>
         <condition>=</condition>
         <name2/>
       </key>
       <value>
         <name>id_coche</name>
-        <rename>ID_COCHE</rename>
+        <rename>id_coche</rename>
         <update>Y</update>
       </value>
       <value>
         <name>ancho</name>
-        <rename>ANCHO</rename>
+        <rename>ancho</rename>
         <update>N</update>
       </value>
       <value>
         <name>largo</name>
-        <rename>LARGO</rename>
+        <rename>largo</rename>
         <update>N</update>
       </value>
       <value>
         <name>potencia</name>
-        <rename>POTENCIA_MOTOR</rename>
+        <rename>potencia_motor</rename>
         <update>N</update>
       </value>
       <value>
         <name>vel_max</name>
-        <rename>VEL_MAX</rename>
+        <rename>vel_max</rename>
         <update>N</update>
       </value>
       <value>
@@ -1082,7 +1087,7 @@ WHERE ID_COCHE = ?</sql>
     </remotesteps>
     <GUI>
       <xloc>400</xloc>
-      <yloc>736</yloc>
+      <yloc>864</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1158,16 +1163,15 @@ FROM dwh_escu.dim_coche
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <connection>tami_oltp</connection>
+    <connection>sakila_escu</connection>
     <sql>SELECT
-  ID_COCHE
-, TIPO_RUEDA
-, VEL_MAX
-, LARGO
-, ANCHO
-, POTENCIA_MOTOR
-, COALESCE(ULTIMA_ACTUALIZACION, '1970-01-01 00:00:00') AS ULTIMA_ACTUALIZACION
-FROM tami_oltp.coche
+  id_coche
+, vel_max
+, largo
+, ancho
+, potencia_motor
+, COALESCE(ultima_actualizacion, '1970-01-01 00:00:00') AS ULTIMA_ACTUALIZACION
+FROM sakila_escu.coche
 WHERE ULTIMA_ACTUALIZACION > ?
 </sql>
     <limit>0</limit>
@@ -1180,11 +1184,11 @@ WHERE ULTIMA_ACTUALIZACION > ?
       <value-meta>
         <type>Integer</type>
         <storagetype>normal</storagetype>
-        <name>ID_COCHE</name>
+        <name>id_coche</name>
         <length>4</length>
         <precision>0</precision>
         <origin>Load cars</origin>
-        <comments>ID_COCHE</comments>
+        <comments>id_coche</comments>
         <conversion_Mask>####0;-####0</conversion_Mask>
         <decimal_symbol>,</decimal_symbol>
         <grouping_symbol>.</grouping_symbol>
@@ -1197,40 +1201,17 @@ WHERE ULTIMA_ACTUALIZACION > ?
         <output_padding>N</output_padding>
         <date_format_lenient>N</date_format_lenient>
         <date_format_locale>en_US</date_format_locale>
-        <date_format_timezone>Europe/Madrid</date_format_timezone>
-        <lenient_string_to_number>N</lenient_string_to_number>
-      </value-meta>
-      <value-meta>
-        <type>String</type>
-        <storagetype>normal</storagetype>
-        <name>TIPO_RUEDA</name>
-        <length>6</length>
-        <precision>-1</precision>
-        <origin>Load cars</origin>
-        <comments>TIPO_RUEDA</comments>
-        <conversion_Mask/>
-        <decimal_symbol>,</decimal_symbol>
-        <grouping_symbol>.</grouping_symbol>
-        <currency_symbol/>
-        <trim_type>none</trim_type>
-        <case_insensitive>N</case_insensitive>
-        <collator_disabled>Y</collator_disabled>
-        <collator_strength>0</collator_strength>
-        <sort_descending>N</sort_descending>
-        <output_padding>N</output_padding>
-        <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>en_US</date_format_locale>
-        <date_format_timezone>Europe/Madrid</date_format_timezone>
+        <date_format_timezone>Europe/Paris</date_format_timezone>
         <lenient_string_to_number>N</lenient_string_to_number>
       </value-meta>
       <value-meta>
         <type>Number</type>
         <storagetype>normal</storagetype>
-        <name>VEL_MAX</name>
+        <name>vel_max</name>
         <length>5</length>
         <precision>2</precision>
         <origin>Load cars</origin>
-        <comments>VEL_MAX</comments>
+        <comments>vel_max</comments>
         <conversion_Mask>####0.0#########;-####0.0#########</conversion_Mask>
         <decimal_symbol>,</decimal_symbol>
         <grouping_symbol>.</grouping_symbol>
@@ -1243,17 +1224,17 @@ WHERE ULTIMA_ACTUALIZACION > ?
         <output_padding>N</output_padding>
         <date_format_lenient>N</date_format_lenient>
         <date_format_locale>en_US</date_format_locale>
-        <date_format_timezone>Europe/Madrid</date_format_timezone>
+        <date_format_timezone>Europe/Paris</date_format_timezone>
         <lenient_string_to_number>N</lenient_string_to_number>
       </value-meta>
       <value-meta>
         <type>Number</type>
         <storagetype>normal</storagetype>
-        <name>LARGO</name>
+        <name>largo</name>
         <length>4</length>
         <precision>2</precision>
         <origin>Load cars</origin>
-        <comments>LARGO</comments>
+        <comments>largo</comments>
         <conversion_Mask>####0.0#########;-####0.0#########</conversion_Mask>
         <decimal_symbol>,</decimal_symbol>
         <grouping_symbol>.</grouping_symbol>
@@ -1266,17 +1247,17 @@ WHERE ULTIMA_ACTUALIZACION > ?
         <output_padding>N</output_padding>
         <date_format_lenient>N</date_format_lenient>
         <date_format_locale>en_US</date_format_locale>
-        <date_format_timezone>Europe/Madrid</date_format_timezone>
+        <date_format_timezone>Europe/Paris</date_format_timezone>
         <lenient_string_to_number>N</lenient_string_to_number>
       </value-meta>
       <value-meta>
         <type>Number</type>
         <storagetype>normal</storagetype>
-        <name>ANCHO</name>
+        <name>ancho</name>
         <length>4</length>
         <precision>2</precision>
         <origin>Load cars</origin>
-        <comments>ANCHO</comments>
+        <comments>ancho</comments>
         <conversion_Mask>####0.0#########;-####0.0#########</conversion_Mask>
         <decimal_symbol>,</decimal_symbol>
         <grouping_symbol>.</grouping_symbol>
@@ -1289,17 +1270,17 @@ WHERE ULTIMA_ACTUALIZACION > ?
         <output_padding>N</output_padding>
         <date_format_lenient>N</date_format_lenient>
         <date_format_locale>en_US</date_format_locale>
-        <date_format_timezone>Europe/Madrid</date_format_timezone>
+        <date_format_timezone>Europe/Paris</date_format_timezone>
         <lenient_string_to_number>N</lenient_string_to_number>
       </value-meta>
       <value-meta>
         <type>Number</type>
         <storagetype>normal</storagetype>
-        <name>POTENCIA_MOTOR</name>
+        <name>potencia_motor</name>
         <length>5</length>
         <precision>2</precision>
         <origin>Load cars</origin>
-        <comments>POTENCIA_MOTOR</comments>
+        <comments>potencia_motor</comments>
         <conversion_Mask>####0.0#########;-####0.0#########</conversion_Mask>
         <decimal_symbol>,</decimal_symbol>
         <grouping_symbol>.</grouping_symbol>
@@ -1312,7 +1293,7 @@ WHERE ULTIMA_ACTUALIZACION > ?
         <output_padding>N</output_padding>
         <date_format_lenient>N</date_format_lenient>
         <date_format_locale>en_US</date_format_locale>
-        <date_format_timezone>Europe/Madrid</date_format_timezone>
+        <date_format_timezone>Europe/Paris</date_format_timezone>
         <lenient_string_to_number>N</lenient_string_to_number>
       </value-meta>
       <value-meta>
@@ -1335,7 +1316,7 @@ WHERE ULTIMA_ACTUALIZACION > ?
         <output_padding>N</output_padding>
         <date_format_lenient>N</date_format_lenient>
         <date_format_locale>en_US</date_format_locale>
-        <date_format_timezone>Europe/Madrid</date_format_timezone>
+        <date_format_timezone>Europe/Paris</date_format_timezone>
         <lenient_string_to_number>N</lenient_string_to_number>
       </value-meta>
     </row-meta>
@@ -1364,11 +1345,11 @@ WHERE ULTIMA_ACTUALIZACION > ?
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <connection>tami_oltp</connection>
+    <connection>sakila_escu</connection>
     <sql>SELECT
-  ID_COCHE
-FROM tami_oltp.prueba
-WHERE ULTIMA_ACTUALIZACION > ?</sql>
+  id_coche
+FROM sakila_escu.coche
+WHERE ultima_actualizacion > ?</sql>
     <limit>0</limit>
     <lookup>Last dim update</lookup>
     <execute_each_row>Y</execute_each_row>
@@ -1379,11 +1360,11 @@ WHERE ULTIMA_ACTUALIZACION > ?</sql>
       <value-meta>
         <type>Integer</type>
         <storagetype>normal</storagetype>
-        <name>ID_COCHE</name>
+        <name>id_coche</name>
         <length>4</length>
         <precision>0</precision>
         <origin>Load cars id</origin>
-        <comments>ID_COCHE</comments>
+        <comments>id_coche</comments>
         <conversion_Mask>####0;-####0</conversion_Mask>
         <decimal_symbol>,</decimal_symbol>
         <grouping_symbol>.</grouping_symbol>
@@ -1396,7 +1377,7 @@ WHERE ULTIMA_ACTUALIZACION > ?</sql>
         <output_padding>N</output_padding>
         <date_format_lenient>N</date_format_lenient>
         <date_format_locale>en_US</date_format_locale>
-        <date_format_timezone>Europe/Madrid</date_format_timezone>
+        <date_format_timezone>Europe/Paris</date_format_timezone>
         <lenient_string_to_number>N</lenient_string_to_number>
       </value-meta>
     </row-meta>
@@ -1429,10 +1410,10 @@ WHERE ULTIMA_ACTUALIZACION > ?</sql>
     <step1>Unique trials</step1>
     <step2>Sort cars</step2>
     <keys_1>
-      <key>ID_COCHE</key>
+      <key>id_coche</key>
     </keys_1>
     <keys_2>
-      <key>ID_COCHE</key>
+      <key>id_coche</key>
     </keys_2>
     <attributes/>
     <cluster_schema/>
@@ -1463,10 +1444,10 @@ WHERE ULTIMA_ACTUALIZACION > ?</sql>
     <step1>Merge join</step1>
     <step2>Unique patrons' cars</step2>
     <keys_1>
-      <key>ID_COCHE</key>
+      <key>id_coche</key>
     </keys_1>
     <keys_2>
-      <key>ID_COCHE</key>
+      <key>id_coche</key>
     </keys_2>
     <attributes/>
     <cluster_schema/>
@@ -1544,7 +1525,7 @@ WHERE ULTIMA_ACTUALIZACION > ?</sql>
     <unique_rows>N</unique_rows>
     <fields>
       <field>
-        <name>ID_COCHE</name>
+        <name>id_coche</name>
         <ascending>Y</ascending>
         <case_sensitive>N</case_sensitive>
         <collator_enabled>N</collator_enabled>
@@ -1586,7 +1567,7 @@ WHERE ULTIMA_ACTUALIZACION > ?</sql>
     <unique_rows>N</unique_rows>
     <fields>
       <field>
-        <name>ID_COCHE</name>
+        <name>id_coche</name>
         <ascending>Y</ascending>
         <case_sensitive>N</case_sensitive>
         <collator_enabled>N</collator_enabled>
@@ -1625,7 +1606,7 @@ WHERE ULTIMA_ACTUALIZACION > ?</sql>
     <error_description/>
     <fields>
       <field>
-        <name>ID_COCHE</name>
+        <name>id_coche</name>
         <case_insensitive>N</case_insensitive>
       </field>
     </fields>
@@ -1660,7 +1641,7 @@ WHERE ULTIMA_ACTUALIZACION > ?</sql>
     <error_description/>
     <fields>
       <field>
-        <name>ID_COCHE</name>
+        <name>id_coche</name>
         <case_insensitive>N</case_insensitive>
       </field>
     </fields>
@@ -1673,7 +1654,7 @@ WHERE ULTIMA_ACTUALIZACION > ?</sql>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>112</xloc>
+      <xloc>400</xloc>
       <yloc>736</yloc>
       <draw>Y</draw>
     </GUI>
@@ -1695,7 +1676,7 @@ WHERE ULTIMA_ACTUALIZACION > ?</sql>
     <error_description/>
     <fields>
       <field>
-        <name>ID_COCHE</name>
+        <name>id_coche</name>
         <case_insensitive>N</case_insensitive>
       </field>
     </fields>
@@ -1710,6 +1691,52 @@ WHERE ULTIMA_ACTUALIZACION > ?</sql>
     <GUI>
       <xloc>400</xloc>
       <yloc>512</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>If field value is null</name>
+    <type>IfNull</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <replaceAllByValue/>
+    <replaceAllMask/>
+    <selectFields>N</selectFields>
+    <selectValuesType>Y</selectValuesType>
+    <setEmptyStringAll>N</setEmptyStringAll>
+    <valuetypes>
+      <valuetype>
+        <name>Integer</name>
+        <value>0</value>
+        <mask/>
+        <set_type_empty_string>N</set_type_empty_string>
+      </valuetype>
+    </valuetypes>
+    <fields>
+      <field>
+        <name>id_coche</name>
+        <value/>
+        <mask/>
+        <set_empty_string>Y</set_empty_string>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>112</xloc>
+      <yloc>736</yloc>
       <draw>Y</draw>
     </GUI>
   </step>

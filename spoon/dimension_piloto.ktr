@@ -435,28 +435,6 @@
     <is_key_private>N</is_key_private>
   </info>
   <notepads>
-    <notepad>
-      <note>Arreglar el formato 
-del campo "ULTIMA_ACTUALIZACION"</note>
-      <xloc>208</xloc>
-      <yloc>336</yloc>
-      <width>326</width>
-      <heigth>50</heigth>
-      <fontname>Times New Roman</fontname>
-      <fontsize>11</fontsize>
-      <fontbold>N</fontbold>
-      <fontitalic>N</fontitalic>
-      <fontcolorred>0</fontcolorred>
-      <fontcolorgreen>0</fontcolorgreen>
-      <fontcolorblue>0</fontcolorblue>
-      <backgroundcolorred>255</backgroundcolorred>
-      <backgroundcolorgreen>128</backgroundcolorgreen>
-      <backgroundcolorblue>192</backgroundcolorblue>
-      <bordercolorred>100</bordercolorred>
-      <bordercolorgreen>100</bordercolorgreen>
-      <bordercolorblue>100</bordercolorblue>
-      <drawshadow>Y</drawshadow>
-    </notepad>
   </notepads>
   <connection>
     <name>dwh_escu</name>
@@ -522,11 +500,11 @@ del campo "ULTIMA_ACTUALIZACION"</note>
     </attributes>
   </connection>
   <connection>
-    <name>tami_oltp</name>
+    <name>sakila_escu</name>
     <server>localhost</server>
     <type>MYSQL</type>
     <access>Native</access>
-    <database>tami_oltp</database>
+    <database>sakila_escu</database>
     <port>3306</port>
     <username>root</username>
     <password>Encrypted </password>
@@ -560,7 +538,7 @@ del campo "ULTIMA_ACTUALIZACION"</note>
       </attribute>
       <attribute>
         <code>PRESERVE_RESERVED_WORD_CASE</code>
-        <attribute>N</attribute>
+        <attribute>Y</attribute>
       </attribute>
       <attribute>
         <code>QUOTE_ALL_FIELDS</code>
@@ -572,11 +550,11 @@ del campo "ULTIMA_ACTUALIZACION"</note>
       </attribute>
       <attribute>
         <code>SUPPORTS_BOOLEAN_DATA_TYPE</code>
-        <attribute>N</attribute>
+        <attribute>Y</attribute>
       </attribute>
       <attribute>
         <code>SUPPORTS_TIMESTAMP_DATA_TYPE</code>
-        <attribute>N</attribute>
+        <attribute>Y</attribute>
       </attribute>
       <attribute>
         <code>USE_POOLING</code>
@@ -591,33 +569,18 @@ del campo "ULTIMA_ACTUALIZACION"</note>
       <enabled>Y</enabled>
     </hop>
     <hop>
+      <from>Select values</from>
+      <to>Dimension lookup/update 2</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
       <from>pilot</from>
-      <to>Replace in string</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Replace in string</from>
-      <to>Join rows (cartesian product)</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Generate miliseconds</from>
-      <to>Join rows (cartesian product)</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Join rows (cartesian product)</from>
-      <to>Concat fields</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Concat fields</from>
-      <to>Dimension lookup/update</to>
+      <to>Select values</to>
       <enabled>Y</enabled>
     </hop>
   </order>
   <step>
-    <name>Dimension lookup/update</name>
+    <name>Dimension lookup/update 2</name>
     <type>DimensionLookup</type>
     <description/>
     <distribute>Y</distribute>
@@ -634,49 +597,49 @@ del campo "ULTIMA_ACTUALIZACION"</note>
     <update>Y</update>
     <fields>
       <key>
-        <name>DNI_PILOTO</name>
+        <name>id_piloto</name>
         <lookup>DNI_PILOTO</lookup>
       </key>
       <date>
-        <name>mmmmmm</name>
+        <name>ULTIMA_ACTUALIZACION</name>
         <from>valido_desde</from>
         <to>valido_hasta</to>
       </date>
       <field>
-        <name>EDAD</name>
+        <name>edad</name>
         <lookup>edad</lookup>
         <update>Insert</update>
       </field>
       <field>
-        <name>SEXO</name>
+        <name>sexo</name>
         <lookup>sexo</lookup>
         <update>Insert</update>
       </field>
       <field>
-        <name>PESO</name>
+        <name>peso</name>
         <lookup>peso</lookup>
         <update>Insert</update>
       </field>
       <field>
-        <name>ALTURA</name>
+        <name>altura</name>
         <lookup>altura</lookup>
         <update>Insert</update>
       </field>
       <field>
-        <name>ANHOS_EXP</name>
+        <name>anho_experiencia</name>
         <lookup>anhos_experiencia</lookup>
         <update>Insert</update>
       </field>
       <return>
         <name>qc_id</name>
         <rename/>
-        <creation_method>autoinc</creation_method>
-        <use_autoinc>Y</use_autoinc>
+        <creation_method>tablemax</creation_method>
+        <use_autoinc>N</use_autoinc>
         <version>num_version</version>
       </return>
     </fields>
     <sequence/>
-    <min_year>1900</min_year>
+    <min_year>1970</min_year>
     <max_year>2199</max_year>
     <cache_size>5000</cache_size>
     <preload_cache>N</preload_cache>
@@ -694,7 +657,52 @@ del campo "ULTIMA_ACTUALIZACION"</note>
     </remotesteps>
     <GUI>
       <xloc>112</xloc>
-      <yloc>704</yloc>
+      <yloc>416</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Select values</name>
+    <type>SelectValues</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <select_unspecified>N</select_unspecified>
+      <meta>
+        <name>ULTIMA_ACTUALIZACION</name>
+        <rename>ULTIMA_ACTUALIZACION</rename>
+        <type>Date</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask>yyyy/MM/dd HH:mm:ss</conversion_mask>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>112</xloc>
+      <yloc>288</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -772,17 +780,18 @@ FROM   dim_piloto
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <connection>tami_oltp</connection>
+    <connection>sakila_escu</connection>
     <sql>SELECT
-  DNI_PILOTO
-, EDAD
-, SEXO
-, PESO
-, ALTURA
-, ANHOS_EXP
-, COALESCE(ULTIMA_ACTUALIZACION, '1970-01-01 00:00:00:000') AS ULTIMA_ACTUALIZACION
-FROM piloto
-WHERE ULTIMA_ACTUALIZACION > ?</sql>
+  id_piloto
+, edad
+, sexo
+, peso
+, altura
+, anho_experiencia
+, COALESCE(ultima_actualizacion, '1970-01-01 00:00:00:000') AS ULTIMA_ACTUALIZACION
+FROM sakila_escu.piloto
+WHERE ULTIMA_ACTUALIZACION > ?
+</sql>
     <limit>0</limit>
     <lookup>max_dim_pilot_last_update</lookup>
     <execute_each_row>N</execute_each_row>
@@ -793,11 +802,11 @@ WHERE ULTIMA_ACTUALIZACION > ?</sql>
       <value-meta>
         <type>String</type>
         <storagetype>normal</storagetype>
-        <name>DNI_PILOTO</name>
+        <name>id_piloto</name>
         <length>9</length>
         <precision>-1</precision>
         <origin>pilot</origin>
-        <comments>DNI_PILOTO</comments>
+        <comments>id_piloto</comments>
         <conversion_Mask/>
         <decimal_symbol>,</decimal_symbol>
         <grouping_symbol>.</grouping_symbol>
@@ -816,11 +825,11 @@ WHERE ULTIMA_ACTUALIZACION > ?</sql>
       <value-meta>
         <type>Number</type>
         <storagetype>normal</storagetype>
-        <name>EDAD</name>
+        <name>edad</name>
         <length>6</length>
         <precision>3</precision>
         <origin>pilot</origin>
-        <comments>EDAD</comments>
+        <comments>edad</comments>
         <conversion_Mask>####0.0#########;-####0.0#########</conversion_Mask>
         <decimal_symbol>,</decimal_symbol>
         <grouping_symbol>.</grouping_symbol>
@@ -839,11 +848,11 @@ WHERE ULTIMA_ACTUALIZACION > ?</sql>
       <value-meta>
         <type>String</type>
         <storagetype>normal</storagetype>
-        <name>SEXO</name>
+        <name>sexo</name>
         <length>1</length>
         <precision>-1</precision>
         <origin>pilot</origin>
-        <comments>SEXO</comments>
+        <comments>sexo</comments>
         <conversion_Mask/>
         <decimal_symbol>,</decimal_symbol>
         <grouping_symbol>.</grouping_symbol>
@@ -862,11 +871,11 @@ WHERE ULTIMA_ACTUALIZACION > ?</sql>
       <value-meta>
         <type>Number</type>
         <storagetype>normal</storagetype>
-        <name>PESO</name>
+        <name>peso</name>
         <length>6</length>
         <precision>3</precision>
         <origin>pilot</origin>
-        <comments>PESO</comments>
+        <comments>peso</comments>
         <conversion_Mask>####0.0#########;-####0.0#########</conversion_Mask>
         <decimal_symbol>,</decimal_symbol>
         <grouping_symbol>.</grouping_symbol>
@@ -885,11 +894,11 @@ WHERE ULTIMA_ACTUALIZACION > ?</sql>
       <value-meta>
         <type>Number</type>
         <storagetype>normal</storagetype>
-        <name>ALTURA</name>
+        <name>altura</name>
         <length>6</length>
         <precision>3</precision>
         <origin>pilot</origin>
-        <comments>ALTURA</comments>
+        <comments>altura</comments>
         <conversion_Mask>####0.0#########;-####0.0#########</conversion_Mask>
         <decimal_symbol>,</decimal_symbol>
         <grouping_symbol>.</grouping_symbol>
@@ -908,11 +917,11 @@ WHERE ULTIMA_ACTUALIZACION > ?</sql>
       <value-meta>
         <type>Number</type>
         <storagetype>normal</storagetype>
-        <name>ANHOS_EXP</name>
+        <name>anho_experiencia</name>
         <length>6</length>
         <precision>3</precision>
         <origin>pilot</origin>
-        <comments>ANHOS_EXP</comments>
+        <comments>anho_experiencia</comments>
         <conversion_Mask>####0.0#########;-####0.0#########</conversion_Mask>
         <decimal_symbol>,</decimal_symbol>
         <grouping_symbol>.</grouping_symbol>
@@ -963,212 +972,6 @@ WHERE ULTIMA_ACTUALIZACION > ?</sql>
     <GUI>
       <xloc>112</xloc>
       <yloc>176</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Replace in string</name>
-    <type>ReplaceString</type>
-    <description/>
-    <distribute>N</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <fields>
-      <field>
-        <in_stream_name>ULTIMA_ACTUALIZACION</in_stream_name>
-        <out_stream_name/>
-        <use_regex>yes</use_regex>
-        <replace_string>-</replace_string>
-        <replace_by_string>/</replace_by_string>
-        <set_empty_string>N</set_empty_string>
-        <replace_field_by_string/>
-        <whole_word>no</whole_word>
-        <case_sensitive>no</case_sensitive>
-        <is_unicode>no</is_unicode>
-      </field>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>112</xloc>
-      <yloc>304</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Concat fields</name>
-    <type>ConcatFields</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <separator/>
-    <enclosure/>
-    <enclosure_forced>N</enclosure_forced>
-    <enclosure_fix_disabled>N</enclosure_fix_disabled>
-    <header>N</header>
-    <footer>N</footer>
-    <format>DOS</format>
-    <compression>None</compression>
-    <encoding/>
-    <endedLine/>
-    <fileNameInField>N</fileNameInField>
-    <fileNameField/>
-    <create_parent_folder>Y</create_parent_folder>
-    <file>
-      <name/>
-      <servlet_output>N</servlet_output>
-      <do_not_open_new_file_init>N</do_not_open_new_file_init>
-      <extention>txt</extention>
-      <append>N</append>
-      <split>N</split>
-      <haspartno>N</haspartno>
-      <add_date>N</add_date>
-      <add_time>N</add_time>
-      <SpecifyFormat>N</SpecifyFormat>
-      <date_time_format/>
-      <add_to_result_filenames>Y</add_to_result_filenames>
-      <pad>N</pad>
-      <fast_dump>N</fast_dump>
-      <splitevery>0</splitevery>
-    </file>
-    <fields>
-      <field>
-        <name>ULTIMA_ACTUALIZACION</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif/>
-        <trim_type>none</trim_type>
-        <length>19</length>
-        <precision>-1</precision>
-      </field>
-      <field>
-        <name>format</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif/>
-        <trim_type>none</trim_type>
-        <length>-1</length>
-        <precision>-1</precision>
-      </field>
-    </fields>
-    <ConcatFields>
-      <targetFieldName>mmmmmm</targetFieldName>
-      <targetFieldLength>0</targetFieldLength>
-      <removeSelectedFields>N</removeSelectedFields>
-    </ConcatFields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>112</xloc>
-      <yloc>560</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Generate miliseconds</name>
-    <type>DataGrid</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <fields>
-      <field>
-        <name>format</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
-        <field_null_if/>
-      </field>
-    </fields>
-    <data>
-      <line>
-        <item>.000</item>
-      </line>
-    </data>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>352</xloc>
-      <yloc>432</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Join rows (cartesian product)</name>
-    <type>JoinRows</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <directory>%%java.io.tmpdir%%</directory>
-    <prefix>out</prefix>
-    <cache_size>500</cache_size>
-    <main>Replace in string</main>
-    <compare>
-      <condition>
-        <negated>N</negated>
-        <leftvalue/>
-        <function>=</function>
-        <rightvalue/>
-      </condition>
-    </compare>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>112</xloc>
-      <yloc>432</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
