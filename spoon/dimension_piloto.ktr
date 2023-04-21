@@ -575,6 +575,11 @@
     </hop>
     <hop>
       <from>pilot</from>
+      <to>Replace in string</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Replace in string</from>
       <to>Select values</to>
       <enabled>Y</enabled>
     </hop>
@@ -601,7 +606,7 @@
         <lookup>DNI_PILOTO</lookup>
       </key>
       <date>
-        <name>ULTIMA_ACTUALIZACION</name>
+        <name>ULTIMA_ACTUALIZACION_1</name>
         <from>valido_desde</from>
         <to>valido_hasta</to>
       </date>
@@ -675,8 +680,8 @@
     <fields>
       <select_unspecified>N</select_unspecified>
       <meta>
-        <name>ULTIMA_ACTUALIZACION</name>
-        <rename>ULTIMA_ACTUALIZACION</rename>
+        <name>ULTIMA_ACTUALIZACION_1</name>
+        <rename>ULTIMA_ACTUALIZACION_1</rename>
         <type>Date</type>
         <length>-2</length>
         <precision>-2</precision>
@@ -702,7 +707,7 @@
     </remotesteps>
     <GUI>
       <xloc>112</xloc>
-      <yloc>288</yloc>
+      <yloc>336</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -972,6 +977,45 @@ WHERE ULTIMA_ACTUALIZACION > ?
     <GUI>
       <xloc>112</xloc>
       <yloc>176</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Replace in string</name>
+    <type>ReplaceString</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <field>
+        <in_stream_name>ULTIMA_ACTUALIZACION</in_stream_name>
+        <out_stream_name>ULTIMA_ACTUALIZACION</out_stream_name>
+        <use_regex>no</use_regex>
+        <replace_string>-</replace_string>
+        <replace_by_string>/</replace_by_string>
+        <set_empty_string>N</set_empty_string>
+        <replace_field_by_string/>
+        <whole_word>no</whole_word>
+        <case_sensitive>no</case_sensitive>
+        <is_unicode>no</is_unicode>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>112</xloc>
+      <yloc>256</yloc>
       <draw>Y</draw>
     </GUI>
   </step>

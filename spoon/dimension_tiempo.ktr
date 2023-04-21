@@ -506,7 +506,7 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Generate 10 years</from>
+      <from>Generate 60 years</from>
       <to>Day Sequence</to>
       <enabled>Y</enabled>
     </hop>
@@ -853,7 +853,7 @@ var next_day = new java.util.Date(calendar.getTimeInMillis());
     </GUI>
   </step>
   <step>
-    <name>Generate 10 years</name>
+    <name>Generate 60 years</name>
     <type>RowGenerator</type>
     <description/>
     <distribute>Y</distribute>
@@ -895,7 +895,7 @@ var next_day = new java.util.Date(calendar.getTimeInMillis());
         <currency/>
         <decimal/>
         <group/>
-        <nullif>2000-01-01</nullif>
+        <nullif>1970-01-01</nullif>
         <length>-1</length>
         <precision>-1</precision>
         <set_empty_string>N</set_empty_string>
@@ -925,7 +925,7 @@ var next_day = new java.util.Date(calendar.getTimeInMillis());
         <set_empty_string>N</set_empty_string>
       </field>
     </fields>
-    <limit>3660</limit>
+    <limit>21960</limit>
     <never_ending>N</never_ending>
     <interval_in_ms/>
     <row_time_field/>

@@ -1158,7 +1158,7 @@ de los archivos almacenados.</note>
 , n_curvas
 , COALESCE(ultima_actualizacion, '1970-01-01 00:00:00') AS ULTIMA_ACTUALIZACION
 FROM sakila_escu.circuito
-WHERE ULTIMA_ACTUALIZACION &lt; ?</sql>
+WHERE ULTIMA_ACTUALIZACION > ?</sql>
     <limit>0</limit>
     <lookup>max_dim_circuit_last_update</lookup>
     <execute_each_row>N</execute_each_row>

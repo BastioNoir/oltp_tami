@@ -614,69 +614,6 @@ esta parte la rellena con datos</note>
       </attribute>
     </attributes>
   </connection>
-  <connection>
-    <name>sakila_escu</name>
-    <server>localhost</server>
-    <type>MYSQL</type>
-    <access>Native</access>
-    <database>sakila_escu</database>
-    <port>3306</port>
-    <username>root</username>
-    <password>Encrypted </password>
-    <servername/>
-    <data_tablespace/>
-    <index_tablespace/>
-    <attributes>
-      <attribute>
-        <code>EXTRA_OPTION_MYSQL.defaultFetchSize</code>
-        <attribute>500</attribute>
-      </attribute>
-      <attribute>
-        <code>EXTRA_OPTION_MYSQL.useCursorFetch</code>
-        <attribute>true</attribute>
-      </attribute>
-      <attribute>
-        <code>FORCE_IDENTIFIERS_TO_LOWERCASE</code>
-        <attribute>N</attribute>
-      </attribute>
-      <attribute>
-        <code>FORCE_IDENTIFIERS_TO_UPPERCASE</code>
-        <attribute>N</attribute>
-      </attribute>
-      <attribute>
-        <code>IS_CLUSTERED</code>
-        <attribute>N</attribute>
-      </attribute>
-      <attribute>
-        <code>PORT_NUMBER</code>
-        <attribute>3306</attribute>
-      </attribute>
-      <attribute>
-        <code>PRESERVE_RESERVED_WORD_CASE</code>
-        <attribute>Y</attribute>
-      </attribute>
-      <attribute>
-        <code>QUOTE_ALL_FIELDS</code>
-        <attribute>N</attribute>
-      </attribute>
-      <attribute>
-        <code>STREAM_RESULTS</code>
-        <attribute>Y</attribute>
-      </attribute>
-      <attribute>
-        <code>SUPPORTS_BOOLEAN_DATA_TYPE</code>
-        <attribute>Y</attribute>
-      </attribute>
-      <attribute>
-        <code>SUPPORTS_TIMESTAMP_DATA_TYPE</code>
-        <attribute>Y</attribute>
-      </attribute>
-      <attribute>
-        <code>USE_POOLING</code>
-        <attribute>N</attribute>
-      </attribute>
-    </attributes>
-  </connection>
   <order>
     <hop>
       <from>PILOTO</from>
@@ -727,21 +664,6 @@ esta parte la rellena con datos</note>
       <from>DUR_CONTRATO_TR </from>
       <to>INS_PATROCINA</to>
       <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>DUR_CONTRATO_TR </from>
-      <to>Unique rows</to>
-      <enabled>N</enabled>
-    </hop>
-    <hop>
-      <from>Unique rows</from>
-      <to>Insert / update</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>DUR_CONTRATO_TR </from>
-      <to>INS_PATROCINA 2</to>
-      <enabled>N</enabled>
     </hop>
   </order>
   <step>
@@ -1604,60 +1526,6 @@ if(DUR_CONTRATO > 1){
     </GUI>
   </step>
   <step>
-    <name>INS_PATROCINA 2</name>
-    <type>InsertUpdate</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <connection>sakila_escu</connection>
-    <commit>100</commit>
-    <update_bypassed>N</update_bypassed>
-    <lookup>
-      <schema>tami_oltp</schema>
-      <table>patrocina</table>
-      <key>
-        <name>ID_COCHE</name>
-        <field>ID_COCHE</field>
-        <condition>=</condition>
-        <name2/>
-      </key>
-      <key>
-        <name>ID_PATROCINADOR</name>
-        <field>ID_PATROCINADOR</field>
-        <condition>=</condition>
-        <name2/>
-      </key>
-      <value>
-        <name>dinero_aporta</name>
-        <rename>DINERO_APORTA</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>dur_contrato</name>
-        <rename>DUR_CONTRATO</rename>
-        <update>Y</update>
-      </value>
-    </lookup>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>528</xloc>
-      <yloc>256</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
     <name>INS_PATROCINADOR</name>
     <type>InsertUpdate</type>
     <description/>
@@ -1882,60 +1750,6 @@ if(DUR_CONTRATO > 1){
     <GUI>
       <xloc>320</xloc>
       <yloc>624</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Insert / update</name>
-    <type>InsertUpdate</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <connection>sakila_escu</connection>
-    <commit>100</commit>
-    <update_bypassed>N</update_bypassed>
-    <lookup>
-      <schema/>
-      <table>patrocina</table>
-      <key>
-        <name>ID_COCHE</name>
-        <field>id_coche</field>
-        <condition>=</condition>
-        <name2/>
-      </key>
-      <key>
-        <name>ID_PATROCINADOR</name>
-        <field>id_patrocinador</field>
-        <condition>=</condition>
-        <name2/>
-      </key>
-      <value>
-        <name>dinero_aporta</name>
-        <rename>DINERO_APORTA</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>dur_contrato</name>
-        <rename>NEW_CONTRATO</rename>
-        <update>Y</update>
-      </value>
-    </lookup>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>736</xloc>
-      <yloc>144</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2712,82 +2526,23 @@ FROM PARTICIPA_EN;</sql>
       <draw>Y</draw>
     </GUI>
   </step>
-  <step>
-    <name>Unique rows</name>
-    <type>Unique</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <count_rows>N</count_rows>
-    <count_field/>
-    <reject_duplicate_row>N</reject_duplicate_row>
-    <error_description/>
-    <fields>
-      <field>
-        <name>ID_COCHE</name>
-        <case_insensitive>N</case_insensitive>
-      </field>
-      <field>
-        <name>ID_PATROCINADOR</name>
-        <case_insensitive>N</case_insensitive>
-      </field>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>560</xloc>
-      <yloc>144</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Write to log</name>
-    <type>WriteToLog</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <loglevel>log_level_error</loglevel>
-    <displayHeader>Y</displayHeader>
-    <limitRows>N</limitRows>
-    <limitRowsNumber>0</limitRowsNumber>
-    <logmessage/>
-    <fields>
-      </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>672</xloc>
-      <yloc>384</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
   <step_error_handling>
     <error>
-      <source_step>Insert / update</source_step>
+      <source_step>INS_CIRCUITO</source_step>
       <target_step>Write to log</target_step>
-      <is_enabled>N</is_enabled>
+      <is_enabled>Y</is_enabled>
+      <nr_valuename/>
+      <descriptions_valuename/>
+      <fields_valuename/>
+      <codes_valuename/>
+      <max_errors/>
+      <max_pct_errors/>
+      <min_pct_rows/>
+    </error>
+    <error>
+      <source_step>INS_PATROCINA</source_step>
+      <target_step>Write to log</target_step>
+      <is_enabled>Y</is_enabled>
       <nr_valuename/>
       <descriptions_valuename/>
       <fields_valuename/>
