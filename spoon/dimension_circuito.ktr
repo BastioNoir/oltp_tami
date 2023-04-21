@@ -800,7 +800,7 @@ de los archivos almacenados.</note>
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <filename>D:/Usuarios/alvaro/Desktop/Universidad/TAMI/oltp_tami/spoon/CIRCUITO_CSV.csv</filename>
+    <filename>C:/Users/mgrou/OneDrive/Documentos/Universidad/Cuarto Curso/Segundo Cuatrimestre/TAMI/oltp_tami/spoon/CIRCUITO_CSV.csv</filename>
     <filename_field>circuit_csv</filename_field>
     <rownum_field/>
     <include_filename>N</include_filename>

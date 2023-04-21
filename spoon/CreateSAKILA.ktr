@@ -1176,18 +1176,6 @@ if(DUR_CONTRATO > 1){
         <condition>=</condition>
         <name2/>
       </key>
-      <key>
-        <name>NOM_CARRERA</name>
-        <field>NOM_CARRERA</field>
-        <condition>=</condition>
-        <name2/>
-      </key>
-      <key>
-        <name>NOM_CIRCUITO</name>
-        <field>NOM_CIRCUITO</field>
-        <condition>=</condition>
-        <name2/>
-      </key>
       <value>
         <name>id_carrera</name>
         <rename>ID_CARRERA</rename>
@@ -1299,30 +1287,6 @@ if(DUR_CONTRATO > 1){
         <condition>=</condition>
         <name2/>
       </key>
-      <key>
-        <name>VEL_MAX</name>
-        <field>vel_max</field>
-        <condition>=</condition>
-        <name2/>
-      </key>
-      <key>
-        <name>LARGO</name>
-        <field>largo</field>
-        <condition>=</condition>
-        <name2/>
-      </key>
-      <key>
-        <name>ANCHO</name>
-        <field>ancho</field>
-        <condition>=</condition>
-        <name2/>
-      </key>
-      <key>
-        <name>POTENCIA_MOTOR</name>
-        <field>potencia_motor</field>
-        <condition>=</condition>
-        <name2/>
-      </key>
       <value>
         <name>id_coche</name>
         <rename>ID_COCHE</rename>
@@ -1395,24 +1359,6 @@ if(DUR_CONTRATO > 1){
       <key>
         <name>PUNTOS</name>
         <field>PUNTOS</field>
-        <condition>=</condition>
-        <name2/>
-      </key>
-      <key>
-        <name>TIEMPO_MEJOR_VUELTA</name>
-        <field>TIEMPO_MEJOR_VUELTA</field>
-        <condition>=</condition>
-        <name2/>
-      </key>
-      <key>
-        <name>FECHA_INI_CARRERA</name>
-        <field>fecha_inicio_carrera</field>
-        <condition>=</condition>
-        <name2/>
-      </key>
-      <key>
-        <name>FECHA_FIN_CARRERA</name>
-        <field>FECHA_FIN_CARRERA</field>
         <condition>=</condition>
         <name2/>
       </key>
@@ -1591,42 +1537,6 @@ if(DUR_CONTRATO > 1){
         <condition>=</condition>
         <name2/>
       </key>
-      <key>
-        <name>SEXO</name>
-        <field>SEXO</field>
-        <condition>=</condition>
-        <name2/>
-      </key>
-      <key>
-        <name>EDAD</name>
-        <field>EDAD</field>
-        <condition>=</condition>
-        <name2/>
-      </key>
-      <key>
-        <name>ANHOS_EXP</name>
-        <field>anho_experiencia</field>
-        <condition>=</condition>
-        <name2/>
-      </key>
-      <key>
-        <name>ALTURA</name>
-        <field>ALTURA</field>
-        <condition>=</condition>
-        <name2/>
-      </key>
-      <key>
-        <name>PESO</name>
-        <field>PESO</field>
-        <condition>=</condition>
-        <name2/>
-      </key>
-      <key>
-        <name>ID_COCHE</name>
-        <field>ID_COCHE</field>
-        <condition>=</condition>
-        <name2/>
-      </key>
       <value>
         <name>id_piloto</name>
         <rename>DNI_PILOTO</rename>
@@ -1697,24 +1607,6 @@ if(DUR_CONTRATO > 1){
       <key>
         <name>COD_PRUEBA</name>
         <field>COD_PRUEBA</field>
-        <condition>=</condition>
-        <name2/>
-      </key>
-      <key>
-        <name>LUGAR</name>
-        <field>LUGAR</field>
-        <condition>=</condition>
-        <name2/>
-      </key>
-      <key>
-        <name>FECHA_PRUEBA</name>
-        <field>FECHA_PRUEBA</field>
-        <condition>=</condition>
-        <name2/>
-      </key>
-      <key>
-        <name>ID_COCHE</name>
-        <field>ID_COCHE</field>
         <condition>=</condition>
         <name2/>
       </key>
@@ -2529,7 +2421,7 @@ FROM PARTICIPA_EN;</sql>
   <step_error_handling>
     <error>
       <source_step>INS_CIRCUITO</source_step>
-      <target_step>Write to log</target_step>
+      <target_step/>
       <is_enabled>Y</is_enabled>
       <nr_valuename/>
       <descriptions_valuename/>
@@ -2541,7 +2433,7 @@ FROM PARTICIPA_EN;</sql>
     </error>
     <error>
       <source_step>INS_PATROCINA</source_step>
-      <target_step>Write to log</target_step>
+      <target_step/>
       <is_enabled>Y</is_enabled>
       <nr_valuename/>
       <descriptions_valuename/>

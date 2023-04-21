@@ -1014,6 +1014,52 @@ WHERE id_coche = ?
     </GUI>
   </step>
   <step>
+    <name>If field value is null</name>
+    <type>IfNull</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <replaceAllByValue/>
+    <replaceAllMask/>
+    <selectFields>N</selectFields>
+    <selectValuesType>Y</selectValuesType>
+    <setEmptyStringAll>N</setEmptyStringAll>
+    <valuetypes>
+      <valuetype>
+        <name>Integer</name>
+        <value>0</value>
+        <mask/>
+        <set_type_empty_string>N</set_type_empty_string>
+      </valuetype>
+    </valuetypes>
+    <fields>
+      <field>
+        <name>id_coche</name>
+        <value/>
+        <mask/>
+        <set_empty_string>Y</set_empty_string>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>112</xloc>
+      <yloc>736</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
     <name>Insert / Update</name>
     <type>InsertUpdate</type>
     <description/>
@@ -1200,7 +1246,7 @@ WHERE ULTIMA_ACTUALIZACION > ?
         <sort_descending>N</sort_descending>
         <output_padding>N</output_padding>
         <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>en_US</date_format_locale>
+        <date_format_locale>es_ES</date_format_locale>
         <date_format_timezone>Europe/Paris</date_format_timezone>
         <lenient_string_to_number>N</lenient_string_to_number>
       </value-meta>
@@ -1223,7 +1269,7 @@ WHERE ULTIMA_ACTUALIZACION > ?
         <sort_descending>N</sort_descending>
         <output_padding>N</output_padding>
         <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>en_US</date_format_locale>
+        <date_format_locale>es_ES</date_format_locale>
         <date_format_timezone>Europe/Paris</date_format_timezone>
         <lenient_string_to_number>N</lenient_string_to_number>
       </value-meta>
@@ -1246,7 +1292,7 @@ WHERE ULTIMA_ACTUALIZACION > ?
         <sort_descending>N</sort_descending>
         <output_padding>N</output_padding>
         <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>en_US</date_format_locale>
+        <date_format_locale>es_ES</date_format_locale>
         <date_format_timezone>Europe/Paris</date_format_timezone>
         <lenient_string_to_number>N</lenient_string_to_number>
       </value-meta>
@@ -1269,7 +1315,7 @@ WHERE ULTIMA_ACTUALIZACION > ?
         <sort_descending>N</sort_descending>
         <output_padding>N</output_padding>
         <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>en_US</date_format_locale>
+        <date_format_locale>es_ES</date_format_locale>
         <date_format_timezone>Europe/Paris</date_format_timezone>
         <lenient_string_to_number>N</lenient_string_to_number>
       </value-meta>
@@ -1292,7 +1338,7 @@ WHERE ULTIMA_ACTUALIZACION > ?
         <sort_descending>N</sort_descending>
         <output_padding>N</output_padding>
         <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>en_US</date_format_locale>
+        <date_format_locale>es_ES</date_format_locale>
         <date_format_timezone>Europe/Paris</date_format_timezone>
         <lenient_string_to_number>N</lenient_string_to_number>
       </value-meta>
@@ -1315,7 +1361,7 @@ WHERE ULTIMA_ACTUALIZACION > ?
         <sort_descending>N</sort_descending>
         <output_padding>N</output_padding>
         <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>en_US</date_format_locale>
+        <date_format_locale>es_ES</date_format_locale>
         <date_format_timezone>Europe/Paris</date_format_timezone>
         <lenient_string_to_number>N</lenient_string_to_number>
       </value-meta>
@@ -1376,7 +1422,7 @@ WHERE ultima_actualizacion > ?</sql>
         <sort_descending>N</sort_descending>
         <output_padding>N</output_padding>
         <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>en_US</date_format_locale>
+        <date_format_locale>es_ES</date_format_locale>
         <date_format_timezone>Europe/Paris</date_format_timezone>
         <lenient_string_to_number>N</lenient_string_to_number>
       </value-meta>
@@ -1691,52 +1737,6 @@ WHERE ultima_actualizacion > ?</sql>
     <GUI>
       <xloc>400</xloc>
       <yloc>512</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>If field value is null</name>
-    <type>IfNull</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <replaceAllByValue/>
-    <replaceAllMask/>
-    <selectFields>N</selectFields>
-    <selectValuesType>Y</selectValuesType>
-    <setEmptyStringAll>N</setEmptyStringAll>
-    <valuetypes>
-      <valuetype>
-        <name>Integer</name>
-        <value>0</value>
-        <mask/>
-        <set_type_empty_string>N</set_type_empty_string>
-      </valuetype>
-    </valuetypes>
-    <fields>
-      <field>
-        <name>id_coche</name>
-        <value/>
-        <mask/>
-        <set_empty_string>Y</set_empty_string>
-      </field>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>112</xloc>
-      <yloc>736</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
