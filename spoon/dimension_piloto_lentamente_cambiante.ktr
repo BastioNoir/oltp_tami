@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <transformation>
   <info>
-    <name>dimension_piloto</name>
+    <name>dimension_piloto_lentamente_cambiante</name>
     <description/>
     <extended_description/>
     <trans_version/>
@@ -569,6 +569,11 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
+      <from>Select values</from>
+      <to>Dimension lookup/update 2</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
       <from>pilot</from>
       <to>Replace in string</to>
       <enabled>Y</enabled>
@@ -578,20 +583,10 @@
       <to>Select values</to>
       <enabled>Y</enabled>
     </hop>
-    <hop>
-      <from>Select values</from>
-      <to>Modified JavaScript value</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Modified JavaScript value</from>
-      <to>Insert / update</to>
-      <enabled>Y</enabled>
-    </hop>
   </order>
   <step>
-    <name>Replace in string</name>
-    <type>ReplaceString</type>
+    <name>Dimension lookup/update 2</name>
+    <type>DimensionLookup</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
@@ -600,20 +595,63 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
+    <schema>dwh_escu</schema>
+    <table>dim_piloto</table>
+    <connection>dwh_escu</connection>
+    <commit>100</commit>
+    <update>Y</update>
     <fields>
+      <key>
+        <name>id_piloto</name>
+        <lookup>DNI_PILOTO</lookup>
+      </key>
+      <date>
+        <name>ULTIMA_ACTUALIZACION_1</name>
+        <from>valido_desde</from>
+        <to>valido_hasta</to>
+      </date>
       <field>
-        <in_stream_name>ULTIMA_ACTUALIZACION</in_stream_name>
-        <out_stream_name>ULTIMA_ACTUALIZACION</out_stream_name>
-        <use_regex>no</use_regex>
-        <replace_string>-</replace_string>
-        <replace_by_string>/</replace_by_string>
-        <set_empty_string>N</set_empty_string>
-        <replace_field_by_string/>
-        <whole_word>no</whole_word>
-        <case_sensitive>no</case_sensitive>
-        <is_unicode>no</is_unicode>
+        <name>edad</name>
+        <lookup>edad</lookup>
+        <update>Insert</update>
       </field>
+      <field>
+        <name>sexo</name>
+        <lookup>sexo</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>peso</name>
+        <lookup>peso</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>altura</name>
+        <lookup>altura</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>anho_experiencia</name>
+        <lookup>anhos_experiencia</lookup>
+        <update>Insert</update>
+      </field>
+      <return>
+        <name>qc_id</name>
+        <rename/>
+        <creation_method>tablemax</creation_method>
+        <use_autoinc>N</use_autoinc>
+        <version>num_version</version>
+      </return>
     </fields>
+    <sequence/>
+    <min_year>1970</min_year>
+    <max_year>2199</max_year>
+    <cache_size>5000</cache_size>
+    <preload_cache>N</preload_cache>
+    <use_start_date_alternative>N</use_start_date_alternative>
+    <start_date_alternative>none</start_date_alternative>
+    <start_date_field_name/>
+    <useBatch>N</useBatch>
     <attributes/>
     <cluster_schema/>
     <remotesteps>
@@ -624,7 +662,7 @@
     </remotesteps>
     <GUI>
       <xloc>112</xloc>
-      <yloc>256</yloc>
+      <yloc>416</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -943,8 +981,8 @@ WHERE ULTIMA_ACTUALIZACION > ?
     </GUI>
   </step>
   <step>
-    <name>Insert / update</name>
-    <type>InsertUpdate</type>
+    <name>Replace in string</name>
+    <type>ReplaceString</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
@@ -953,108 +991,18 @@ WHERE ULTIMA_ACTUALIZACION > ?
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <connection>dwh_escu</connection>
-    <commit>100</commit>
-    <update_bypassed>N</update_bypassed>
-    <lookup>
-      <schema>dwh_escu</schema>
-      <table>dim_piloto</table>
-      <key>
-        <name>id_piloto</name>
-        <field>DNI_PILOTO</field>
-        <condition>=</condition>
-        <name2/>
-      </key>
-      <value>
-        <name>DNI_PILOTO</name>
-        <rename>id_piloto</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>edad</name>
-        <rename>edad</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>sexo</name>
-        <rename>sexo</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>peso</name>
-        <rename>peso</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>altura</name>
-        <rename>altura</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>anhos_experiencia</name>
-        <rename>anho_experiencia</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>valido_desde</name>
-        <rename>ULTIMA_ACTUALIZACION_1</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>valido_hasta</name>
-        <rename>ULTIMA_ACTUALIZACION_1</rename>
-        <update>N</update>
-      </value>
-      <value>
-        <name>num_version</name>
-        <rename>version</rename>
-        <update>N</update>
-      </value>
-    </lookup>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>256</xloc>
-      <yloc>416</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Modified JavaScript value</name>
-    <type>ScriptValueMod</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <compatible>N</compatible>
-    <optimizationLevel>9</optimizationLevel>
-    <jsScripts>
-      <jsScript>
-        <jsScript_type>0</jsScript_type>
-        <jsScript_name>Script 1</jsScript_name>
-        <jsScript_script>//Script here
-
-var version = 0;</jsScript_script>
-      </jsScript>
-    </jsScripts>
     <fields>
       <field>
-        <name>version</name>
-        <rename>version</rename>
-        <type>Number</type>
-        <length>16</length>
-        <precision>2</precision>
-        <replace>N</replace>
+        <in_stream_name>ULTIMA_ACTUALIZACION</in_stream_name>
+        <out_stream_name>ULTIMA_ACTUALIZACION</out_stream_name>
+        <use_regex>no</use_regex>
+        <replace_string>-</replace_string>
+        <replace_by_string>/</replace_by_string>
+        <set_empty_string>N</set_empty_string>
+        <replace_field_by_string/>
+        <whole_word>no</whole_word>
+        <case_sensitive>no</case_sensitive>
+        <is_unicode>no</is_unicode>
       </field>
     </fields>
     <attributes/>
@@ -1066,8 +1014,8 @@ var version = 0;</jsScript_script>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>256</xloc>
-      <yloc>320</yloc>
+      <xloc>112</xloc>
+      <yloc>256</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
