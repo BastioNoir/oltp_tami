@@ -12,6 +12,7 @@ Instrucciones:
 
 # Cargar dwh
 - Usar el job job_escu de la carpeta /KETTLE para cargarlo todo o cargar todas las transformaciones una a una, puede hacerse de las 2 maneras.
+- En el job job_escu hay que modificar las rutas de cada transformación, puesto que no conseguimos usar rutas relativas. 
 - Dimensión piloto nos da problemas cuando intentamos usarla como lentamente cambiante, problemas que no hemos podido resolver y cuyo origen desconocemos, 
   por eso existen 2 jobs para la dimensión piloto. Al usar dimension_piloto_wthLENTAMENTECAMBIANTE nos funciona sin problemas.
 
@@ -22,5 +23,5 @@ Instrucciones:
   del principio de la transformación concreta y cambiar la condición del where, en caso de que aparezca <, poner >, y viceversa.
   Esto sucede porque a veces los datos no funcionan bien por el última actualización.
 
-- Si hay un error con una de las fuentes externas, debemos ir al paso y seleccionar el fichero csv presente en /KETTLE/FUENTE_EXTERNA, no conseguimos usar rutas relativas
+- Si hay un error con una de las fuentes externas, debemos ir a la transformación dimension_coche, el paso "CSV file input" y seleccionar el fichero csv presente en /KETTLE/FUENTE_EXTERNA, no conseguimos usar rutas relativas
   y debemos seleccionar el archivo en concreto
