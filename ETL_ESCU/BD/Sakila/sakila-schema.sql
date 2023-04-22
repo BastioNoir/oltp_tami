@@ -61,7 +61,7 @@ CREATE TABLE PATROCINA (
   id_coche    SMALLINT NOT NULL,
   id_patrocinador  SMALLINT NOT NULL,
   dinero_aporta    DECIMAL(10,2),
-  dur_contrato     DOUBLE,                            
+  dur_contrato     VARCHAR(5),                            
   PRIMARY KEY (id_coche, id_patrocinador)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 

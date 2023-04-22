@@ -531,7 +531,7 @@
       <description/>
       <type>FILES_EXIST</type>
       <attributes/>
-      <filename>D:\Usuarios\alvaro\Desktop\Universidad\TAMI\oltp_tami\spoon\CIRCUITO_CSV.csv</filename>
+      <filename>C:\Users\mgrou\OneDrive\Documentos\Universidad\Cuarto Curso\Segundo Cuatrimestre\TAMI\oltp_tami\ETL_ESCU\KETTLE\FUENTE_EXTERNA\CIRCUITO_CSV.csv</filename>
       <fields>
       </fields>
       <parallel>N</parallel>
@@ -548,7 +548,7 @@
       <attributes/>
       <specification_method>filename</specification_method>
       <trans_object_id/>
-      <filename>D:/Usuarios/alvaro/Desktop/Universidad/TAMI/oltp_tami/spoon/dimension_circuito.ktr</filename>
+      <filename>C:/Users/mgrou/OneDrive/Documentos/Universidad/Cuarto Curso/Segundo Cuatrimestre/TAMI/oltp_tami/ETL_ESCU/KETTLE/dimension_circuito.ktr</filename>
       <transname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -587,7 +587,7 @@
       <attributes/>
       <specification_method>filename</specification_method>
       <trans_object_id/>
-      <filename>D:/Usuarios/alvaro/Desktop/Universidad/TAMI/oltp_tami/spoon/dimension_coche.ktr</filename>
+      <filename>C:/Users/mgrou/OneDrive/Documentos/Universidad/Cuarto Curso/Segundo Cuatrimestre/TAMI/oltp_tami/ETL_ESCU/KETTLE/dimension_coche.ktr</filename>
       <transname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -626,7 +626,7 @@
       <attributes/>
       <specification_method>filename</specification_method>
       <trans_object_id/>
-      <filename>D:/Usuarios/alvaro/Desktop/Universidad/TAMI/oltp_tami/spoon/dimension_piloto.ktr</filename>
+      <filename>C:/Users/mgrou/OneDrive/Documentos/Universidad/Cuarto Curso/Segundo Cuatrimestre/TAMI/oltp_tami/ETL_ESCU/KETTLE/dimension_piloto.ktr</filename>
       <transname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -665,7 +665,7 @@
       <attributes/>
       <specification_method>filename</specification_method>
       <trans_object_id/>
-      <filename>D:/Usuarios/alvaro/Desktop/Universidad/TAMI/oltp_tami/spoon/dimension_tiempo.ktr</filename>
+      <filename>C:/Users/mgrou/OneDrive/Documentos/Universidad/Cuarto Curso/Segundo Cuatrimestre/TAMI/oltp_tami/ETL_ESCU/KETTLE/dimension_tiempo.ktr</filename>
       <transname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -731,7 +731,7 @@
       <attributes/>
       <specification_method>filename</specification_method>
       <trans_object_id/>
-      <filename>D:/Usuarios/alvaro/Desktop/Universidad/TAMI/oltp_tami/spoon/load_fact_performance.ktr</filename>
+      <filename>C:/Users/mgrou/OneDrive/Documentos/Universidad/Cuarto Curso/Segundo Cuatrimestre/TAMI/oltp_tami/ETL_ESCU/KETTLE/load_fact_performance.ktr</filename>
       <transname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
