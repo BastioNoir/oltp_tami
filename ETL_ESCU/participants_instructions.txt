@@ -1,0 +1,23 @@
+Álvaro Nóvoa Fernández 45147345R
+Miguel Fernández Taboada 45165305K
+Rubén Gómez Martínez 76736398A
+
+Instrucciones:
+# Creación bases de datos
+- Crear las 3 bases de datos con los ficheros oltp_schema, sakila_schema y sakila_dwh_schema de la carpeta /BD. Las bases de datos deben llamarse tami_oltp, sakila_escu y dwh_escu
+- Rellenar la BD oltp con el script oltp_data de /BD/OLTP. Es importante deshabilitar la revisión de claves foráneas, pues algunas tuplas pueden dar problemas que no hemos podido arreglar.
+
+# Rellenar BD sakila 
+- Usar la transformación CreateSAKILA.ktr para cargar los datos en la BD Sakila
+
+# Cargar dwh
+- Usar el job job_escu de la carpeta /KETTLE para cargarlo todo o cargar todas las transformaciones una a una, puede hacerse de las 2 maneras.
+- Dimensión piloto nos da problemas cuando intentamos usarla como lentamente cambiante, problemas que no hemos podido resolver y cuyo origen desconocemos, 
+  por eso existen 2 jobs para la dimensión piloto. Al usar dimension_piloto_wthLENTAMENTECAMBIANTE nos funciona sin problemas.
+
+# Si no ha habido problemas dwh_escu ya está cargada con todos los datos necesarios
+
+**POSIBLES ERRORES**
+- Es posible que en algún momento alguna dimensión pueda dar un error, en ese caso recomendamos revisar las sentencias SQL de los pasos de carga de datos 
+  del principio de la transformación concreta y cambiar la condición del where, en caso de que aparezca <, poner >, y viceversa.
+  Esto sucede porque a veces los datos no funcionan bien por el última actualización.
