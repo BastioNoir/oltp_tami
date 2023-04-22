@@ -17,7 +17,10 @@ Instrucciones:
 
 # Si no ha habido problemas dwh_escu ya está cargada con todos los datos necesarios
 
-**POSIBLES ERRORES**
+********************************************************************************POSIBLES ERRORES********************************************************************************
 - Es posible que en algún momento alguna dimensión pueda dar un error, en ese caso recomendamos revisar las sentencias SQL de los pasos de carga de datos 
   del principio de la transformación concreta y cambiar la condición del where, en caso de que aparezca <, poner >, y viceversa.
   Esto sucede porque a veces los datos no funcionan bien por el última actualización.
+
+- Si hay un error con una de las fuentes externas, debemos ir al paso y seleccionar el fichero csv presente en /KETTLE/FUENTE_EXTERNA, no conseguimos usar rutas relativas
+  y debemos seleccionar el archivo en concreto
