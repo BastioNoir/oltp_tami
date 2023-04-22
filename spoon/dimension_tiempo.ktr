@@ -435,6 +435,72 @@
     <is_key_private>N</is_key_private>
   </info>
   <notepads>
+    <notepad>
+      <note>Generamos una tabla con suficentes filas 
+para todas las fechas que queremos generar, 
+cada una con los datos necesarios 
+para generar el calendario.</note>
+      <xloc>240</xloc>
+      <yloc>32</yloc>
+      <width>332</width>
+      <heigth>90</heigth>
+      <fontname>Times New Roman</fontname>
+      <fontsize>11</fontsize>
+      <fontbold>N</fontbold>
+      <fontitalic>N</fontitalic>
+      <fontcolorred>0</fontcolorred>
+      <fontcolorgreen>0</fontcolorgreen>
+      <fontcolorblue>0</fontcolorblue>
+      <backgroundcolorred>255</backgroundcolorred>
+      <backgroundcolorgreen>128</backgroundcolorgreen>
+      <backgroundcolorblue>192</backgroundcolorblue>
+      <bordercolorred>100</bordercolorred>
+      <bordercolorgreen>100</bordercolorgreen>
+      <bordercolorblue>100</bordercolorblue>
+      <drawshadow>Y</drawshadow>
+    </notepad>
+    <notepad>
+      <note>Calculamos los datos necesarios.</note>
+      <xloc>240</xloc>
+      <yloc>256</yloc>
+      <width>245</width>
+      <heigth>30</heigth>
+      <fontname>Times New Roman</fontname>
+      <fontsize>11</fontsize>
+      <fontbold>N</fontbold>
+      <fontitalic>N</fontitalic>
+      <fontcolorred>0</fontcolorred>
+      <fontcolorgreen>0</fontcolorgreen>
+      <fontcolorblue>0</fontcolorblue>
+      <backgroundcolorred>255</backgroundcolorred>
+      <backgroundcolorgreen>128</backgroundcolorgreen>
+      <backgroundcolorblue>192</backgroundcolorblue>
+      <bordercolorred>100</bordercolorred>
+      <bordercolorgreen>100</bordercolorgreen>
+      <bordercolorblue>100</bordercolorblue>
+      <drawshadow>Y</drawshadow>
+    </notepad>
+    <notepad>
+      <note>Creamos una columna con un valor incremental.</note>
+      <xloc>240</xloc>
+      <yloc>144</yloc>
+      <width>359</width>
+      <heigth>30</heigth>
+      <fontname>Times New Roman</fontname>
+      <fontsize>11</fontsize>
+      <fontbold>N</fontbold>
+      <fontitalic>N</fontitalic>
+      <fontcolorred>0</fontcolorred>
+      <fontcolorgreen>0</fontcolorgreen>
+      <fontcolorblue>0</fontcolorblue>
+      <backgroundcolorred>255</backgroundcolorred>
+      <backgroundcolorgreen>128</backgroundcolorgreen>
+      <backgroundcolorblue>192</backgroundcolorblue>
+      <bordercolorred>100</bordercolorred>
+      <bordercolorgreen>100</bordercolorgreen>
+      <bordercolorblue>100</bordercolorblue>
+      <drawshadow>Y</drawshadow>
+    </notepad>
   </notepads>
   <connection>
     <name>dwh_escu</name>
@@ -501,28 +567,28 @@
   </connection>
   <order>
     <hop>
-      <from>Day Sequence</from>
-      <to>Calculate Dimension Attributes</to>
+      <from>Day sequence</from>
+      <to>Calculate dimension attributes</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
       <from>Generate 60 years</from>
-      <to>Day Sequence</to>
+      <to>Day sequence</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Calculate Dimension Attributes</from>
+      <from>Calculate dimension attributes</from>
       <to>Select values</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
       <from>Select values</from>
-      <to>Load dim_date</to>
+      <to>Load dim_tiempo</to>
       <enabled>Y</enabled>
     </hop>
   </order>
   <step>
-    <name>Calculate Dimension Attributes</name>
+    <name>Calculate dimension attributes</name>
     <type>ScriptValueMod</type>
     <description/>
     <distribute>Y</distribute>
@@ -595,126 +661,6 @@ var next_day = new java.util.Date(calendar.getTimeInMillis());
     </jsScripts>
     <fields>
       <field>
-        <name>date</name>
-        <rename>date</rename>
-        <type>Date</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <replace>N</replace>
-      </field>
-      <field>
-        <name>date_short</name>
-        <rename>date_short</rename>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <replace>N</replace>
-      </field>
-      <field>
-        <name>date_medium</name>
-        <rename>date_medium</rename>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <replace>N</replace>
-      </field>
-      <field>
-        <name>date_long</name>
-        <rename>date_long</rename>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <replace>N</replace>
-      </field>
-      <field>
-        <name>date_full</name>
-        <rename>date_full</rename>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <replace>N</replace>
-      </field>
-      <field>
-        <name>day_in_year</name>
-        <rename>day_in_year</rename>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <replace>N</replace>
-      </field>
-      <field>
-        <name>day_name</name>
-        <rename>day_name</rename>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <replace>N</replace>
-      </field>
-      <field>
-        <name>day_abbreviation</name>
-        <rename>day_abbreviation</rename>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <replace>N</replace>
-      </field>
-      <field>
-        <name>month_abbreviation</name>
-        <rename>month_abbreviation</rename>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <replace>N</replace>
-      </field>
-      <field>
-        <name>month_name</name>
-        <rename>month_name</rename>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <replace>N</replace>
-      </field>
-      <field>
-        <name>quarter_name</name>
-        <rename>quarter_name</rename>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <replace>N</replace>
-      </field>
-      <field>
-        <name>year_quarter</name>
-        <rename>year_quarter</rename>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <replace>N</replace>
-      </field>
-      <field>
-        <name>year_month_abbreviation</name>
-        <rename>year_month_abbreviation</rename>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <replace>N</replace>
-      </field>
-      <field>
-        <name>is_last_day_in_month</name>
-        <rename>is_last_day_in_month</rename>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <replace>N</replace>
-      </field>
-      <field>
-        <name>is_first_day_in_month</name>
-        <rename>is_first_day_in_month</rename>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <replace>N</replace>
-      </field>
-      <field>
         <name>year2</name>
         <rename>year2</rename>
         <type>String</type>
@@ -723,24 +669,8 @@ var next_day = new java.util.Date(calendar.getTimeInMillis());
         <replace>N</replace>
       </field>
       <field>
-        <name>year4</name>
-        <rename>year4</rename>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <replace>N</replace>
-      </field>
-      <field>
         <name>day_in_month</name>
         <rename>day_in_month</rename>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <replace>N</replace>
-      </field>
-      <field>
-        <name>week_in_year</name>
-        <rename>week_in_year</rename>
         <type>String</type>
         <length>-1</length>
         <precision>-1</precision>
@@ -770,38 +700,6 @@ var next_day = new java.util.Date(calendar.getTimeInMillis());
         <precision>-1</precision>
         <replace>N</replace>
       </field>
-      <field>
-        <name>year_month_number</name>
-        <rename>year_month_number</rename>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <replace>N</replace>
-      </field>
-      <field>
-        <name>is_last_day_in_week</name>
-        <rename>is_last_day_in_week</rename>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <replace>N</replace>
-      </field>
-      <field>
-        <name>is_first_day_in_week</name>
-        <rename>is_first_day_in_week</rename>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <replace>N</replace>
-      </field>
-      <field>
-        <name>date_key</name>
-        <rename>date_key</rename>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <replace>N</replace>
-      </field>
     </fields>
     <attributes/>
     <cluster_schema/>
@@ -818,7 +716,7 @@ var next_day = new java.util.Date(calendar.getTimeInMillis());
     </GUI>
   </step>
   <step>
-    <name>Day Sequence</name>
+    <name>Day sequence</name>
     <type>Sequence</type>
     <description/>
     <distribute>Y</distribute>
@@ -830,7 +728,7 @@ var next_day = new java.util.Date(calendar.getTimeInMillis());
     </partitioning>
     <valuename>DaySequence</valuename>
     <use_database>N</use_database>
-    <connection/>
+    <connection>dwh_escu</connection>
     <schema/>
     <seqname>SEQ_</seqname>
     <use_counter>Y</use_counter>
@@ -848,7 +746,7 @@ var next_day = new java.util.Date(calendar.getTimeInMillis());
     </remotesteps>
     <GUI>
       <xloc>112</xloc>
-      <yloc>128</yloc>
+      <yloc>144</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -945,7 +843,7 @@ var next_day = new java.util.Date(calendar.getTimeInMillis());
     </GUI>
   </step>
   <step>
-    <name>Load dim_date</name>
+    <name>Load dim_tiempo</name>
     <type>TableOutput</type>
     <description/>
     <distribute>Y</distribute>
@@ -1004,7 +902,7 @@ var next_day = new java.util.Date(calendar.getTimeInMillis());
     </remotesteps>
     <GUI>
       <xloc>112</xloc>
-      <yloc>496</yloc>
+      <yloc>480</yloc>
       <draw>Y</draw>
     </GUI>
   </step>

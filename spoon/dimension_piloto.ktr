@@ -435,6 +435,139 @@
     <is_key_private>N</is_key_private>
   </info>
   <notepads>
+    <notepad>
+      <note>Obtenemos los datos de los pilotos.</note>
+      <xloc>928</xloc>
+      <yloc>32</yloc>
+      <width>264</width>
+      <heigth>30</heigth>
+      <fontname>Times New Roman</fontname>
+      <fontsize>11</fontsize>
+      <fontbold>N</fontbold>
+      <fontitalic>N</fontitalic>
+      <fontcolorred>0</fontcolorred>
+      <fontcolorgreen>0</fontcolorgreen>
+      <fontcolorblue>0</fontcolorblue>
+      <backgroundcolorred>255</backgroundcolorred>
+      <backgroundcolorgreen>128</backgroundcolorgreen>
+      <backgroundcolorblue>192</backgroundcolorblue>
+      <bordercolorred>100</bordercolorred>
+      <bordercolorgreen>100</bordercolorgreen>
+      <bordercolorblue>100</bordercolorblue>
+      <drawshadow>Y</drawshadow>
+    </notepad>
+    <notepad>
+      <note>Obtenemos los años, meses y días  
+para poder realizar operaciones con las fechas.</note>
+      <xloc>928</xloc>
+      <yloc>144</yloc>
+      <width>345</width>
+      <heigth>50</heigth>
+      <fontname>Times New Roman</fontname>
+      <fontsize>11</fontsize>
+      <fontbold>N</fontbold>
+      <fontitalic>N</fontitalic>
+      <fontcolorred>0</fontcolorred>
+      <fontcolorgreen>0</fontcolorgreen>
+      <fontcolorblue>0</fontcolorblue>
+      <backgroundcolorred>255</backgroundcolorred>
+      <backgroundcolorgreen>128</backgroundcolorgreen>
+      <backgroundcolorblue>192</backgroundcolorblue>
+      <bordercolorred>100</bordercolorred>
+      <bordercolorgreen>100</bordercolorgreen>
+      <bordercolorblue>100</bordercolorblue>
+      <drawshadow>Y</drawshadow>
+    </notepad>
+    <notepad>
+      <note>Obtenemos la última versión 
+de la dimensión lentamente cambiante.</note>
+      <xloc>176</xloc>
+      <yloc>256</yloc>
+      <width>288</width>
+      <heigth>50</heigth>
+      <fontname>Times New Roman</fontname>
+      <fontsize>11</fontsize>
+      <fontbold>N</fontbold>
+      <fontitalic>N</fontitalic>
+      <fontcolorred>0</fontcolorred>
+      <fontcolorgreen>0</fontcolorgreen>
+      <fontcolorblue>0</fontcolorblue>
+      <backgroundcolorred>255</backgroundcolorred>
+      <backgroundcolorgreen>128</backgroundcolorgreen>
+      <backgroundcolorblue>192</backgroundcolorblue>
+      <bordercolorred>100</bordercolorred>
+      <bordercolorgreen>100</bordercolorgreen>
+      <bordercolorblue>100</bordercolorblue>
+      <drawshadow>Y</drawshadow>
+    </notepad>
+    <notepad>
+      <note>Obtenemos la última versión 
+de los datos almacenados en la dimensión piloto.</note>
+      <xloc>752</xloc>
+      <yloc>400</yloc>
+      <width>359</width>
+      <heigth>50</heigth>
+      <fontname>Times New Roman</fontname>
+      <fontsize>11</fontsize>
+      <fontbold>N</fontbold>
+      <fontitalic>N</fontitalic>
+      <fontcolorred>0</fontcolorred>
+      <fontcolorgreen>0</fontcolorgreen>
+      <fontcolorblue>0</fontcolorblue>
+      <backgroundcolorred>255</backgroundcolorred>
+      <backgroundcolorgreen>128</backgroundcolorgreen>
+      <backgroundcolorblue>192</backgroundcolorblue>
+      <bordercolorred>100</bordercolorred>
+      <bordercolorgreen>100</bordercolorgreen>
+      <bordercolorblue>100</bordercolorblue>
+      <drawshadow>Y</drawshadow>
+    </notepad>
+    <notepad>
+      <note>Modificamos los atributos 
+"valido_desde" y "valido_hasta" 
+para realizar operaciones con ellos.</note>
+      <xloc>1104</xloc>
+      <yloc>528</yloc>
+      <width>261</width>
+      <heigth>70</heigth>
+      <fontname>Times New Roman</fontname>
+      <fontsize>11</fontsize>
+      <fontbold>N</fontbold>
+      <fontitalic>N</fontitalic>
+      <fontcolorred>0</fontcolorred>
+      <fontcolorgreen>0</fontcolorgreen>
+      <fontcolorblue>0</fontcolorblue>
+      <backgroundcolorred>255</backgroundcolorred>
+      <backgroundcolorgreen>128</backgroundcolorgreen>
+      <backgroundcolorblue>192</backgroundcolorblue>
+      <bordercolorred>100</bordercolorred>
+      <bordercolorgreen>100</bordercolorgreen>
+      <bordercolorblue>100</bordercolorblue>
+      <drawshadow>Y</drawshadow>
+    </notepad>
+    <notepad>
+      <note>Comparamos la fecha actual con la del atributo "valido_hasta" 
+para saber si es necesario crear una nueva version 
+o actualizar la actual.</note>
+      <xloc>0</xloc>
+      <yloc>656</yloc>
+      <width>461</width>
+      <heigth>70</heigth>
+      <fontname>Times New Roman</fontname>
+      <fontsize>11</fontsize>
+      <fontbold>N</fontbold>
+      <fontitalic>N</fontitalic>
+      <fontcolorred>0</fontcolorred>
+      <fontcolorgreen>0</fontcolorgreen>
+      <fontcolorblue>0</fontcolorblue>
+      <backgroundcolorred>255</backgroundcolorred>
+      <backgroundcolorgreen>128</backgroundcolorgreen>
+      <backgroundcolorblue>192</backgroundcolorblue>
+      <bordercolorred>100</bordercolorred>
+      <bordercolorgreen>100</bordercolorgreen>
+      <bordercolorblue>100</bordercolorblue>
+      <drawshadow>Y</drawshadow>
+    </notepad>
   </notepads>
   <connection>
     <name>dwh_escu</name>
@@ -574,21 +707,126 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Replace in string</from>
+      <from>last_update to number</from>
       <to>Select values</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Select values</from>
-      <to>Modified JavaScript value</to>
+      <from>Replace in string</from>
+      <to>Replace in string 2</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Modified JavaScript value</from>
+      <from>Replace in string 2</from>
+      <to>Select values 2</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Select values 2</from>
+      <to>last_update to number</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Get last version</from>
+      <to>Join rows (cartesian product)</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Select values</from>
+      <to>Join rows (cartesian product)</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Join rows (cartesian product)</from>
+      <to>dim_piloto lookup</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>dim_piloto lookup</from>
+      <to>Select values 3</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Select values 3</from>
+      <to>Replace in string 3</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Replace in string 3</from>
+      <to>Replace in string 4</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Replace in string 4</from>
+      <to>Select values 4</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Select values 4</from>
+      <to>Calculate new version</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Calculate new version</from>
+      <to>Select values 5</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Select values 5</from>
       <to>Insert / update</to>
       <enabled>Y</enabled>
     </hop>
   </order>
+  <step>
+    <name>last_update to number</name>
+    <type>ScriptValueMod</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <compatible>N</compatible>
+    <optimizationLevel>9</optimizationLevel>
+    <jsScripts>
+      <jsScript>
+        <jsScript_type>0</jsScript_type>
+        <jsScript_name>Script 1</jsScript_name>
+        <jsScript_script>//Script here
+
+//var siguiente_anho = anho + 1;
+
+//var valido_hasta = siguiente_anho + '/' + mes + '/' + dia + ' 00:00:00.000';
+
+var ultima_actualizacion_numero = anho + '' + mes + dia;</jsScript_script>
+      </jsScript>
+    </jsScripts>
+    <fields>
+      <field>
+        <name>ultima_actualizacion_numero</name>
+        <rename>ultima_actualizacion_numero</rename>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>848</xloc>
+      <yloc>256</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
   <step>
     <name>Replace in string</name>
     <type>ReplaceString</type>
@@ -603,10 +841,46 @@
     <fields>
       <field>
         <in_stream_name>ULTIMA_ACTUALIZACION</in_stream_name>
-        <out_stream_name>ULTIMA_ACTUALIZACION</out_stream_name>
+        <out_stream_name>valido_desde_pre</out_stream_name>
         <use_regex>no</use_regex>
         <replace_string>-</replace_string>
         <replace_by_string>/</replace_by_string>
+        <set_empty_string>N</set_empty_string>
+        <replace_field_by_string/>
+        <whole_word>no</whole_word>
+        <case_sensitive>no</case_sensitive>
+        <is_unicode>no</is_unicode>
+      </field>
+      <field>
+        <in_stream_name>ULTIMA_ACTUALIZACION</in_stream_name>
+        <out_stream_name>anho</out_stream_name>
+        <use_regex>yes</use_regex>
+        <replace_string>-..-..\s..:..:..</replace_string>
+        <replace_by_string/>
+        <set_empty_string>N</set_empty_string>
+        <replace_field_by_string/>
+        <whole_word>no</whole_word>
+        <case_sensitive>no</case_sensitive>
+        <is_unicode>no</is_unicode>
+      </field>
+      <field>
+        <in_stream_name>ULTIMA_ACTUALIZACION</in_stream_name>
+        <out_stream_name>mes_pre</out_stream_name>
+        <use_regex>yes</use_regex>
+        <replace_string>[0-9][0-9][0-9][0-9]-</replace_string>
+        <replace_by_string/>
+        <set_empty_string>N</set_empty_string>
+        <replace_field_by_string/>
+        <whole_word>no</whole_word>
+        <case_sensitive>no</case_sensitive>
+        <is_unicode>no</is_unicode>
+      </field>
+      <field>
+        <in_stream_name>ULTIMA_ACTUALIZACION</in_stream_name>
+        <out_stream_name>dia_pre</out_stream_name>
+        <use_regex>yes</use_regex>
+        <replace_string>[0-9][0-9][0-9][0-9]-[0-9][0-9]-</replace_string>
+        <replace_by_string/>
         <set_empty_string>N</set_empty_string>
         <replace_field_by_string/>
         <whole_word>no</whole_word>
@@ -623,8 +897,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>112</xloc>
-      <yloc>256</yloc>
+      <xloc>672</xloc>
+      <yloc>144</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -641,13 +915,25 @@
     </partitioning>
     <fields>
       <select_unspecified>N</select_unspecified>
+      <remove>
+        <name>valido_desde_pre</name>
+      </remove>
+      <remove>
+        <name>mes_pre</name>
+      </remove>
+      <remove>
+        <name>dia_pre</name>
+      </remove>
+      <remove>
+        <name>ULTIMA_ACTUALIZACION</name>
+      </remove>
       <meta>
         <name>ULTIMA_ACTUALIZACION_1</name>
         <rename>ULTIMA_ACTUALIZACION_1</rename>
         <type>Date</type>
         <length>-2</length>
         <precision>-2</precision>
-        <conversion_mask>yyyy/MM/dd HH:mm:ss</conversion_mask>
+        <conversion_mask/>
         <date_format_lenient>false</date_format_lenient>
         <date_format_locale/>
         <date_format_timezone/>
@@ -668,8 +954,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>112</xloc>
-      <yloc>336</yloc>
+      <xloc>1024</xloc>
+      <yloc>256</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -731,7 +1017,7 @@ FROM   dim_piloto
       </output>
     </remotesteps>
     <GUI>
-      <xloc>112</xloc>
+      <xloc>672</xloc>
       <yloc>32</yloc>
       <draw>Y</draw>
     </GUI>
@@ -937,8 +1223,735 @@ WHERE ULTIMA_ACTUALIZACION > ?
       </output>
     </remotesteps>
     <GUI>
-      <xloc>112</xloc>
-      <yloc>176</yloc>
+      <xloc>848</xloc>
+      <yloc>32</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Replace in string 2</name>
+    <type>ReplaceString</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <field>
+        <in_stream_name>valido_desde_pre</in_stream_name>
+        <out_stream_name>ULTIMA_ACTUALIZACION</out_stream_name>
+        <use_regex>yes</use_regex>
+        <replace_string>..:..:..</replace_string>
+        <replace_by_string>00:00:00.000</replace_by_string>
+        <set_empty_string>N</set_empty_string>
+        <replace_field_by_string/>
+        <whole_word>no</whole_word>
+        <case_sensitive>no</case_sensitive>
+        <is_unicode>no</is_unicode>
+      </field>
+      <field>
+        <in_stream_name>mes_pre</in_stream_name>
+        <out_stream_name>mes</out_stream_name>
+        <use_regex>yes</use_regex>
+        <replace_string>-..\s..:..:..</replace_string>
+        <replace_by_string/>
+        <set_empty_string>N</set_empty_string>
+        <replace_field_by_string/>
+        <whole_word>no</whole_word>
+        <case_sensitive>no</case_sensitive>
+        <is_unicode>no</is_unicode>
+      </field>
+      <field>
+        <in_stream_name>dia_pre</in_stream_name>
+        <out_stream_name>dia</out_stream_name>
+        <use_regex>yes</use_regex>
+        <replace_string>\s..:..:..</replace_string>
+        <replace_by_string/>
+        <set_empty_string>N</set_empty_string>
+        <replace_field_by_string/>
+        <whole_word>no</whole_word>
+        <case_sensitive>no</case_sensitive>
+        <is_unicode>no</is_unicode>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>848</xloc>
+      <yloc>144</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Select values 2</name>
+    <type>SelectValues</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <select_unspecified>N</select_unspecified>
+      <meta>
+        <name>anho</name>
+        <rename>anho</rename>
+        <type>Number</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>672</xloc>
+      <yloc>256</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>dim_piloto lookup</name>
+    <type>DBLookup</type>
+    <description/>
+    <distribute>N</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>dwh_escu</connection>
+    <cache>N</cache>
+    <cache_load_all>N</cache_load_all>
+    <cache_size>0</cache_size>
+    <lookup>
+      <schema>dwh_escu</schema>
+      <table>dim_piloto</table>
+      <orderby/>
+      <fail_on_multiple>N</fail_on_multiple>
+      <eat_row_on_failure>N</eat_row_on_failure>
+      <key>
+        <name>id_piloto</name>
+        <field>DNI_PILOTO</field>
+        <condition>=</condition>
+        <name2/>
+      </key>
+      <key>
+        <name>last_version</name>
+        <field>num_version</field>
+        <condition>=</condition>
+        <name2/>
+      </key>
+      <value>
+        <name>num_version</name>
+        <rename>num_version</rename>
+        <default/>
+        <type>Integer</type>
+      </value>
+      <value>
+        <name>valido_hasta</name>
+        <rename>valido_hasta</rename>
+        <default/>
+        <type>Date</type>
+      </value>
+      <value>
+        <name>valido_desde</name>
+        <rename>valido_desde</rename>
+        <default/>
+        <type>Date</type>
+      </value>
+    </lookup>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>672</xloc>
+      <yloc>400</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Get last version</name>
+    <type>TableInput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>dwh_escu</connection>
+    <sql>SELECT COALESCE(
+           MAX(num_version)
+       ,   1
+       ) AS last_version
+FROM   dwh_escu.dim_piloto</sql>
+    <limit>0</limit>
+    <lookup/>
+    <execute_each_row>N</execute_each_row>
+    <variables_active>N</variables_active>
+    <lazy_conversion_active>N</lazy_conversion_active>
+    <cached_row_meta_active>N</cached_row_meta_active>
+    <row-meta>
+      <value-meta>
+        <type>Integer</type>
+        <storagetype>normal</storagetype>
+        <name>last_version</name>
+        <length>9</length>
+        <precision>0</precision>
+        <origin>Table input</origin>
+        <comments>last_version</comments>
+        <conversion_Mask>####0;-####0</conversion_Mask>
+        <decimal_symbol>,</decimal_symbol>
+        <grouping_symbol>.</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>en_US</date_format_locale>
+        <date_format_timezone>Europe/Paris</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+    </row-meta>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>512</xloc>
+      <yloc>256</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Join rows (cartesian product)</name>
+    <type>JoinRows</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <directory>%%java.io.tmpdir%%</directory>
+    <prefix>out</prefix>
+    <cache_size>500</cache_size>
+    <main>Select values</main>
+    <compare>
+      <condition>
+        <negated>N</negated>
+        <leftvalue/>
+        <function>=</function>
+        <rightvalue/>
+      </condition>
+    </compare>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>512</xloc>
+      <yloc>400</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Replace in string 3</name>
+    <type>ReplaceString</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <field>
+        <in_stream_name>valido_hasta</in_stream_name>
+        <out_stream_name>valido_hasta_numero_pre</out_stream_name>
+        <use_regex>no</use_regex>
+        <replace_string>/</replace_string>
+        <replace_by_string/>
+        <set_empty_string>N</set_empty_string>
+        <replace_field_by_string/>
+        <whole_word>no</whole_word>
+        <case_sensitive>no</case_sensitive>
+        <is_unicode>no</is_unicode>
+      </field>
+      <field>
+        <in_stream_name>valido_hasta</in_stream_name>
+        <out_stream_name>valido_hasta_anho</out_stream_name>
+        <use_regex>yes</use_regex>
+        <replace_string>\/..\/..\s..:..:..\....</replace_string>
+        <replace_by_string/>
+        <set_empty_string>N</set_empty_string>
+        <replace_field_by_string/>
+        <whole_word>no</whole_word>
+        <case_sensitive>no</case_sensitive>
+        <is_unicode>no</is_unicode>
+      </field>
+      <field>
+        <in_stream_name>valido_hasta</in_stream_name>
+        <out_stream_name>valido_hasta_mes_pre</out_stream_name>
+        <use_regex>yes</use_regex>
+        <replace_string>[0-9][0-9][0-9][0-9]\/</replace_string>
+        <replace_by_string/>
+        <set_empty_string>N</set_empty_string>
+        <replace_field_by_string/>
+        <whole_word>no</whole_word>
+        <case_sensitive>no</case_sensitive>
+        <is_unicode>no</is_unicode>
+      </field>
+      <field>
+        <in_stream_name>valido_hasta</in_stream_name>
+        <out_stream_name>valido_hasta_dia_pre</out_stream_name>
+        <use_regex>yes</use_regex>
+        <replace_string>[0-9][0-9][0-9][0-9]\/[0-9][0-9]\/</replace_string>
+        <replace_by_string/>
+        <set_empty_string>N</set_empty_string>
+        <replace_field_by_string/>
+        <whole_word>no</whole_word>
+        <case_sensitive>no</case_sensitive>
+        <is_unicode>no</is_unicode>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>672</xloc>
+      <yloc>528</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Select values 3</name>
+    <type>SelectValues</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <select_unspecified>N</select_unspecified>
+      <meta>
+        <name>valido_hasta</name>
+        <rename>valido_hasta</rename>
+        <type>String</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>512</xloc>
+      <yloc>528</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Replace in string 4</name>
+    <type>ReplaceString</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <field>
+        <in_stream_name>valido_hasta_numero_pre</in_stream_name>
+        <out_stream_name>valido_hasta_numero</out_stream_name>
+        <use_regex>yes</use_regex>
+        <replace_string>\s..:..:..\....</replace_string>
+        <replace_by_string/>
+        <set_empty_string>N</set_empty_string>
+        <replace_field_by_string/>
+        <whole_word>no</whole_word>
+        <case_sensitive>no</case_sensitive>
+        <is_unicode>no</is_unicode>
+      </field>
+      <field>
+        <in_stream_name>valido_hasta_mes_pre</in_stream_name>
+        <out_stream_name>valido_hasta_mes</out_stream_name>
+        <use_regex>yes</use_regex>
+        <replace_string>\/..\s..:..:..\....</replace_string>
+        <replace_by_string/>
+        <set_empty_string>N</set_empty_string>
+        <replace_field_by_string/>
+        <whole_word>no</whole_word>
+        <case_sensitive>no</case_sensitive>
+        <is_unicode>no</is_unicode>
+      </field>
+      <field>
+        <in_stream_name>valido_hasta_dia_pre</in_stream_name>
+        <out_stream_name>valido_hasta_dia</out_stream_name>
+        <use_regex>yes</use_regex>
+        <replace_string>\s..:..:..\....</replace_string>
+        <replace_by_string/>
+        <set_empty_string>N</set_empty_string>
+        <replace_field_by_string/>
+        <whole_word>no</whole_word>
+        <case_sensitive>no</case_sensitive>
+        <is_unicode>no</is_unicode>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>848</xloc>
+      <yloc>528</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Select values 4</name>
+    <type>SelectValues</type>
+    <description/>
+    <distribute>N</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <select_unspecified>N</select_unspecified>
+      <meta>
+        <name>valido_hasta_numero</name>
+        <rename>valido_hasta_numero</rename>
+        <type>Number</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+      <meta>
+        <name>ultima_actualizacion_numero</name>
+        <rename>ultima_actualizacion_numero</rename>
+        <type>Number</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+      <meta>
+        <name>valido_hasta_anho</name>
+        <rename>valido_hasta_anho</rename>
+        <type>Number</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>1024</xloc>
+      <yloc>528</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Calculate new version</name>
+    <type>ScriptValueMod</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <compatible>N</compatible>
+    <optimizationLevel>9</optimizationLevel>
+    <jsScripts>
+      <jsScript>
+        <jsScript_type>0</jsScript_type>
+        <jsScript_name>Script 1</jsScript_name>
+        <jsScript_script>//Script here
+
+var valido_hasta_numero = valido_hasta_numero;
+var ult_act_numero = ultima_actualizacion_numero;
+
+var anho01 = valido_hasta_anho;
+var mes01 = valido_hasta_mes;
+var dia01 = valido_hasta_dia;
+
+var version = last_version;
+
+if(anho01 == null){
+	version = 0;
+	anho01 = anho;
+	mes01 = mes;
+	dia01 = dia;
+}
+
+if(ult_act_numero > valido_hasta_numero){
+	anho01 = anho01 + 1;
+	version = version + 1;
+}
+
+var valido_desde_nuevo = (anho01 - 1) + '/' + mes01 + '/' + dia01 + ' 00:00:00.000';
+var valido_hasta_nuevo = anho01+ '/' + mes01 + '/' + dia01 + ' 00:00:00.000';
+</jsScript_script>
+      </jsScript>
+    </jsScripts>
+    <fields>
+      <field>
+        <name>valido_desde_nuevo</name>
+        <rename>valido_desde_nuevo</rename>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>
+      <field>
+        <name>valido_hasta_nuevo</name>
+        <rename>valido_hasta_nuevo</rename>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>
+      <field>
+        <name>version</name>
+        <rename>version</rename>
+        <type>Number</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>512</xloc>
+      <yloc>656</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Select values 5</name>
+    <type>SelectValues</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <select_unspecified>N</select_unspecified>
+      <remove>
+        <name>ultima_actualizacion_numero</name>
+      </remove>
+      <remove>
+        <name>last_version</name>
+      </remove>
+      <remove>
+        <name>num_version</name>
+      </remove>
+      <remove>
+        <name>valido_hasta</name>
+      </remove>
+      <remove>
+        <name>valido_desde</name>
+      </remove>
+      <remove>
+        <name>valido_hasta_numero_pre</name>
+      </remove>
+      <remove>
+        <name>valido_hasta_anho</name>
+      </remove>
+      <remove>
+        <name>valido_hasta_mes_pre</name>
+      </remove>
+      <remove>
+        <name>valido_hasta_dia_pre</name>
+      </remove>
+      <remove>
+        <name>valido_hasta_numero</name>
+      </remove>
+      <remove>
+        <name>valido_hasta_mes</name>
+      </remove>
+      <remove>
+        <name>valido_hasta_dia</name>
+      </remove>
+      <remove>
+        <name>mes</name>
+      </remove>
+      <remove>
+        <name>anho</name>
+      </remove>
+      <remove>
+        <name>dia</name>
+      </remove>
+      <meta>
+        <name>valido_desde_nuevo</name>
+        <rename>valido_desde_nuevo</rename>
+        <type>Date</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+      <meta>
+        <name>valido_hasta_nuevo</name>
+        <rename>valido_hasta_nuevo</rename>
+        <type>Date</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>672</xloc>
+      <yloc>656</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -962,6 +1975,12 @@ WHERE ULTIMA_ACTUALIZACION > ?
       <key>
         <name>id_piloto</name>
         <field>DNI_PILOTO</field>
+        <condition>=</condition>
+        <name2/>
+      </key>
+      <key>
+        <name>version</name>
+        <field>num_version</field>
         <condition>=</condition>
         <name2/>
       </key>
@@ -997,18 +2016,18 @@ WHERE ULTIMA_ACTUALIZACION > ?
       </value>
       <value>
         <name>valido_desde</name>
-        <rename>ULTIMA_ACTUALIZACION_1</rename>
+        <rename>valido_desde_nuevo</rename>
         <update>Y</update>
       </value>
       <value>
         <name>valido_hasta</name>
-        <rename>ULTIMA_ACTUALIZACION_1</rename>
-        <update>N</update>
+        <rename>valido_hasta_nuevo</rename>
+        <update>Y</update>
       </value>
       <value>
         <name>num_version</name>
         <rename>version</rename>
-        <update>N</update>
+        <update>Y</update>
       </value>
     </lookup>
     <attributes/>
@@ -1020,54 +2039,8 @@ WHERE ULTIMA_ACTUALIZACION > ?
       </output>
     </remotesteps>
     <GUI>
-      <xloc>256</xloc>
-      <yloc>416</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Modified JavaScript value</name>
-    <type>ScriptValueMod</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <compatible>N</compatible>
-    <optimizationLevel>9</optimizationLevel>
-    <jsScripts>
-      <jsScript>
-        <jsScript_type>0</jsScript_type>
-        <jsScript_name>Script 1</jsScript_name>
-        <jsScript_script>//Script here
-
-var version = 0;</jsScript_script>
-      </jsScript>
-    </jsScripts>
-    <fields>
-      <field>
-        <name>version</name>
-        <rename>version</rename>
-        <type>Number</type>
-        <length>16</length>
-        <precision>2</precision>
-        <replace>N</replace>
-      </field>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>256</xloc>
-      <yloc>320</yloc>
+      <xloc>672</xloc>
+      <yloc>784</yloc>
       <draw>Y</draw>
     </GUI>
   </step>

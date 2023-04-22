@@ -1259,7 +1259,7 @@ if(DUR_CONTRATO > 1){
       </output>
     </remotesteps>
     <GUI>
-      <xloc>496</xloc>
+      <xloc>528</xloc>
       <yloc>416</yloc>
       <draw>Y</draw>
     </GUI>
@@ -1466,7 +1466,7 @@ if(DUR_CONTRATO > 1){
       </output>
     </remotesteps>
     <GUI>
-      <xloc>496</xloc>
+      <xloc>528</xloc>
       <yloc>336</yloc>
       <draw>Y</draw>
     </GUI>

@@ -734,19 +734,9 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>If field value is null 3</from>
-      <to>Dimension lookup/update</to>
-      <enabled>N</enabled>
-    </hop>
-    <hop>
       <from>Select values 4</from>
       <to>Sort rows 3</to>
       <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Dimension lookup/update</from>
-      <to>Merge join 4</to>
-      <enabled>N</enabled>
     </hop>
     <hop>
       <from>Sort rows 3</from>
@@ -1344,70 +1334,8 @@ WHERE prueba.id_coche = ? AND prueba.id_coche = participa_en.id_coche AND fecha_
       </output>
     </remotesteps>
     <GUI>
-      <xloc>464</xloc>
-      <yloc>1152</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Dimension lookup/update</name>
-    <type>DimensionLookup</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <schema>dwh_escu</schema>
-    <table>dim_piloto</table>
-    <connection>dwh_escu</connection>
-    <commit>100</commit>
-    <update>N</update>
-    <fields>
-      <key>
-        <name>id_piloto</name>
-        <lookup>DNI_PILOTO</lookup>
-      </key>
-      <date>
-        <name>fecha_inicio_carrera</name>
-        <from>valido_desde</from>
-        <to>valido_hasta</to>
-      </date>
-      <field>
-        <name>DNI_PILOTO</name>
-        <lookup>DNI_PILOTO</lookup>
-        <update>None</update>
-      </field>
-      <return>
-        <name>qc_id</name>
-        <rename/>
-        <creation_method>autoinc</creation_method>
-        <use_autoinc>Y</use_autoinc>
-        <version>num_version</version>
-      </return>
-    </fields>
-    <sequence/>
-    <min_year>1900</min_year>
-    <max_year>2199</max_year>
-    <cache_size>5000</cache_size>
-    <preload_cache>N</preload_cache>
-    <use_start_date_alternative>N</use_start_date_alternative>
-    <start_date_alternative>none</start_date_alternative>
-    <start_date_field_name/>
-    <useBatch>N</useBatch>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>464</xloc>
-      <yloc>1216</yloc>
+      <xloc>528</xloc>
+      <yloc>1184</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1486,7 +1414,7 @@ WHERE prueba.id_coche = ? AND prueba.id_coche = participa_en.id_coche AND fecha_
     </remotesteps>
     <GUI>
       <xloc>240</xloc>
-      <yloc>1344</yloc>
+      <yloc>1312</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1521,7 +1449,7 @@ WHERE prueba.id_coche = ? AND prueba.id_coche = participa_en.id_coche AND fecha_
     </remotesteps>
     <GUI>
       <xloc>368</xloc>
-      <yloc>1344</yloc>
+      <yloc>1312</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1556,7 +1484,7 @@ WHERE prueba.id_coche = ? AND prueba.id_coche = participa_en.id_coche AND fecha_
     </remotesteps>
     <GUI>
       <xloc>544</xloc>
-      <yloc>1344</yloc>
+      <yloc>1312</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1591,7 +1519,7 @@ WHERE prueba.id_coche = ? AND prueba.id_coche = participa_en.id_coche AND fecha_
     </remotesteps>
     <GUI>
       <xloc>704</xloc>
-      <yloc>1344</yloc>
+      <yloc>1312</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2185,7 +2113,7 @@ WHERE id_carrera = ? AND tiempo_mejor_vuelta = ?
     </remotesteps>
     <GUI>
       <xloc>704</xloc>
-      <yloc>1456</yloc>
+      <yloc>1424</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2732,6 +2660,48 @@ FROM sakila_escu.coche</sql>
     </GUI>
   </step>
   <step>
+    <name>Sort rows 3 2</name>
+    <type>SortRows</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <directory>%%java.io.tmpdir%%</directory>
+    <prefix>out</prefix>
+    <sort_size>1000000</sort_size>
+    <free_memory/>
+    <compress>N</compress>
+    <compress_variable/>
+    <unique_rows>N</unique_rows>
+    <fields>
+      <field>
+        <name>fecha_inicio_carrera</name>
+        <ascending>Y</ascending>
+        <case_sensitive>N</case_sensitive>
+        <collator_enabled>N</collator_enabled>
+        <collator_strength>0</collator_strength>
+        <presorted>N</presorted>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>368</xloc>
+      <yloc>1184</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
     <name>Sort rows 4</name>
     <type>SortRows</type>
     <description/>
@@ -3225,48 +3195,6 @@ FROM dwh_escu.dim_tiempo
     <GUI>
       <xloc>256</xloc>
       <yloc>528</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Sort rows 3 2</name>
-    <type>SortRows</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <directory>%%java.io.tmpdir%%</directory>
-    <prefix>out</prefix>
-    <sort_size>1000000</sort_size>
-    <free_memory/>
-    <compress>N</compress>
-    <compress_variable/>
-    <unique_rows>N</unique_rows>
-    <fields>
-      <field>
-        <name>fecha_inicio_carrera</name>
-        <ascending>Y</ascending>
-        <case_sensitive>N</case_sensitive>
-        <collator_enabled>N</collator_enabled>
-        <collator_strength>0</collator_strength>
-        <presorted>N</presorted>
-      </field>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>352</xloc>
-      <yloc>1152</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
