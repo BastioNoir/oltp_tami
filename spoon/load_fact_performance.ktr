@@ -435,6 +435,154 @@
     <is_key_private>N</is_key_private>
   </info>
   <notepads>
+    <notepad>
+      <note>Esta rama calcula en número de mejores vueltas 
+de cada coche.
+
+Para ello cuenta las mejores puntuaciones de cada carrera y 
+el coche que tuvo la mejor puntuación.
+
+Después, usando esa información, 
+calcula cuántos coches han tenido mejores puntuaciones en total. </note>
+      <xloc>1808</xloc>
+      <yloc>32</yloc>
+      <width>482</width>
+      <heigth>170</heigth>
+      <fontname>Times New Roman</fontname>
+      <fontsize>11</fontsize>
+      <fontbold>N</fontbold>
+      <fontitalic>N</fontitalic>
+      <fontcolorred>0</fontcolorred>
+      <fontcolorgreen>0</fontcolorgreen>
+      <fontcolorblue>0</fontcolorblue>
+      <backgroundcolorred>255</backgroundcolorred>
+      <backgroundcolorgreen>128</backgroundcolorgreen>
+      <backgroundcolorblue>192</backgroundcolorblue>
+      <bordercolorred>100</bordercolorred>
+      <bordercolorgreen>100</bordercolorgreen>
+      <bordercolorblue>100</bordercolorblue>
+      <drawshadow>Y</drawshadow>
+    </notepad>
+    <notepad>
+      <note>Aquí calculamos el porcentaje de pruebas exitosas 
+de cada coche antes de una carrera.
+
+Primero obteniendo el número de pruebas antes de una carrera.
+
+Seguido de el número total de pruebas de cada coche.
+
+El porcentaje se obtiene dividiendo total de pruebas entre 
+las pruebas antes de una carrera, 
+y el resultado multiplicándolo por 100.</note>
+      <xloc>1024</xloc>
+      <yloc>400</yloc>
+      <width>467</width>
+      <heigth>210</heigth>
+      <fontname>Times New Roman</fontname>
+      <fontsize>11</fontsize>
+      <fontbold>N</fontbold>
+      <fontitalic>N</fontitalic>
+      <fontcolorred>0</fontcolorred>
+      <fontcolorgreen>0</fontcolorgreen>
+      <fontcolorblue>0</fontcolorblue>
+      <backgroundcolorred>255</backgroundcolorred>
+      <backgroundcolorgreen>128</backgroundcolorgreen>
+      <backgroundcolorblue>192</backgroundcolorblue>
+      <bordercolorred>100</bordercolorred>
+      <bordercolorgreen>100</bordercolorgreen>
+      <bordercolorblue>100</bordercolorblue>
+      <drawshadow>Y</drawshadow>
+    </notepad>
+    <notepad>
+      <note>Obtenemos la cantidad total de dinero 
+aportada a cada coche por los patrocinadores.</note>
+      <xloc>96</xloc>
+      <yloc>160</yloc>
+      <width>339</width>
+      <heigth>50</heigth>
+      <fontname>Times New Roman</fontname>
+      <fontsize>11</fontsize>
+      <fontbold>N</fontbold>
+      <fontitalic>N</fontitalic>
+      <fontcolorred>0</fontcolorred>
+      <fontcolorgreen>0</fontcolorgreen>
+      <fontcolorblue>0</fontcolorblue>
+      <backgroundcolorred>255</backgroundcolorred>
+      <backgroundcolorgreen>128</backgroundcolorgreen>
+      <backgroundcolorblue>192</backgroundcolorblue>
+      <bordercolorred>100</bordercolorred>
+      <bordercolorgreen>100</bordercolorgreen>
+      <bordercolorblue>100</bordercolorblue>
+      <drawshadow>Y</drawshadow>
+    </notepad>
+    <notepad>
+      <note>Aquí obtenemos las claves foráneas 
+de las dimensiones de la "Data WareHouse".</note>
+      <xloc>1792</xloc>
+      <yloc>912</yloc>
+      <width>330</width>
+      <heigth>50</heigth>
+      <fontname>Times New Roman</fontname>
+      <fontsize>11</fontsize>
+      <fontbold>N</fontbold>
+      <fontitalic>N</fontitalic>
+      <fontcolorred>0</fontcolorred>
+      <fontcolorgreen>0</fontcolorgreen>
+      <fontcolorblue>0</fontcolorblue>
+      <backgroundcolorred>255</backgroundcolorred>
+      <backgroundcolorgreen>128</backgroundcolorgreen>
+      <backgroundcolorblue>192</backgroundcolorblue>
+      <bordercolorred>100</bordercolorred>
+      <bordercolorgreen>100</bordercolorgreen>
+      <bordercolorblue>100</bordercolorblue>
+      <drawshadow>Y</drawshadow>
+    </notepad>
+    <notepad>
+      <note>Aquí obtenemos las fechas generadas 
+para su contraste con 
+las fechas de inicio de cada carrera.</note>
+      <xloc>16</xloc>
+      <yloc>528</yloc>
+      <width>284</width>
+      <heigth>70</heigth>
+      <fontname>Times New Roman</fontname>
+      <fontsize>11</fontsize>
+      <fontbold>N</fontbold>
+      <fontitalic>N</fontitalic>
+      <fontcolorred>0</fontcolorred>
+      <fontcolorgreen>0</fontcolorgreen>
+      <fontcolorblue>0</fontcolorblue>
+      <backgroundcolorred>255</backgroundcolorred>
+      <backgroundcolorgreen>128</backgroundcolorgreen>
+      <backgroundcolorblue>192</backgroundcolorblue>
+      <bordercolorred>100</bordercolorred>
+      <bordercolorgreen>100</bordercolorgreen>
+      <bordercolorblue>100</bordercolorblue>
+      <drawshadow>Y</drawshadow>
+    </notepad>
+    <notepad>
+      <note>Eliminamos valores erroneos 
+de las claves foráneas 
+antes de actualizar la tabla de hechos.</note>
+      <xloc>336</xloc>
+      <yloc>1168</yloc>
+      <width>280</width>
+      <heigth>70</heigth>
+      <fontname>Times New Roman</fontname>
+      <fontsize>11</fontsize>
+      <fontbold>N</fontbold>
+      <fontitalic>N</fontitalic>
+      <fontcolorred>0</fontcolorred>
+      <fontcolorgreen>0</fontcolorgreen>
+      <fontcolorblue>0</fontcolorblue>
+      <backgroundcolorred>255</backgroundcolorred>
+      <backgroundcolorgreen>128</backgroundcolorgreen>
+      <backgroundcolorblue>192</backgroundcolorblue>
+      <bordercolorred>100</bordercolorred>
+      <bordercolorgreen>100</bordercolorgreen>
+      <bordercolorblue>100</bordercolorblue>
+      <drawshadow>Y</drawshadow>
+    </notepad>
   </notepads>
   <connection>
     <name>dwh_escu</name>
@@ -840,8 +988,8 @@ fecha = fecha + "00:00:00";</jsScript_script>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>240</xloc>
-      <yloc>1040</yloc>
+      <xloc>352</xloc>
+      <yloc>912</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -881,7 +1029,7 @@ fecha = fecha + "00:00:00";</jsScript_script>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>672</xloc>
+      <xloc>656</xloc>
       <yloc>656</yloc>
       <draw>Y</draw>
     </GUI>
@@ -968,8 +1116,8 @@ WHERE prueba.id_coche = ? AND prueba.id_coche = participa_en.id_coche AND fecha_
       </output>
     </remotesteps>
     <GUI>
-      <xloc>256</xloc>
-      <yloc>288</yloc>
+      <xloc>1552</xloc>
+      <yloc>416</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1034,7 +1182,7 @@ WHERE prueba.id_coche = ? AND prueba.id_coche = participa_en.id_coche AND fecha_
       </output>
     </remotesteps>
     <GUI>
-      <xloc>96</xloc>
+      <xloc>512</xloc>
       <yloc>288</yloc>
       <draw>Y</draw>
     </GUI>
@@ -1088,7 +1236,7 @@ WHERE prueba.id_coche = ? AND prueba.id_coche = participa_en.id_coche AND fecha_
       </output>
     </remotesteps>
     <GUI>
-      <xloc>368</xloc>
+      <xloc>784</xloc>
       <yloc>912</yloc>
       <draw>Y</draw>
     </GUI>
@@ -1136,7 +1284,7 @@ WHERE prueba.id_coche = ? AND prueba.id_coche = participa_en.id_coche AND fecha_
       </output>
     </remotesteps>
     <GUI>
-      <xloc>672</xloc>
+      <xloc>944</xloc>
       <yloc>912</yloc>
       <draw>Y</draw>
     </GUI>
@@ -1184,7 +1332,7 @@ WHERE prueba.id_coche = ? AND prueba.id_coche = participa_en.id_coche AND fecha_
       </output>
     </remotesteps>
     <GUI>
-      <xloc>832</xloc>
+      <xloc>1088</xloc>
       <yloc>912</yloc>
       <draw>Y</draw>
     </GUI>
@@ -1238,8 +1386,8 @@ WHERE prueba.id_coche = ? AND prueba.id_coche = participa_en.id_coche AND fecha_
       </output>
     </remotesteps>
     <GUI>
-      <xloc>832</xloc>
-      <yloc>1040</yloc>
+      <xloc>1232</xloc>
+      <yloc>912</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1286,8 +1434,8 @@ WHERE prueba.id_coche = ? AND prueba.id_coche = participa_en.id_coche AND fecha_
       </output>
     </remotesteps>
     <GUI>
-      <xloc>832</xloc>
-      <yloc>1184</yloc>
+      <xloc>1376</xloc>
+      <yloc>912</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1334,8 +1482,8 @@ WHERE prueba.id_coche = ? AND prueba.id_coche = participa_en.id_coche AND fecha_
       </output>
     </remotesteps>
     <GUI>
-      <xloc>528</xloc>
-      <yloc>1184</yloc>
+      <xloc>1696</xloc>
+      <yloc>912</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1378,8 +1526,8 @@ WHERE prueba.id_coche = ? AND prueba.id_coche = participa_en.id_coche AND fecha_
       </output>
     </remotesteps>
     <GUI>
-      <xloc>672</xloc>
-      <yloc>528</yloc>
+      <xloc>784</xloc>
+      <yloc>656</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1413,8 +1561,8 @@ WHERE prueba.id_coche = ? AND prueba.id_coche = participa_en.id_coche AND fecha_
       </output>
     </remotesteps>
     <GUI>
-      <xloc>240</xloc>
-      <yloc>1312</yloc>
+      <xloc>656</xloc>
+      <yloc>1168</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1448,8 +1596,8 @@ WHERE prueba.id_coche = ? AND prueba.id_coche = participa_en.id_coche AND fecha_
       </output>
     </remotesteps>
     <GUI>
-      <xloc>368</xloc>
-      <yloc>1312</yloc>
+      <xloc>784</xloc>
+      <yloc>1168</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1483,8 +1631,8 @@ WHERE prueba.id_coche = ? AND prueba.id_coche = participa_en.id_coche AND fecha_
       </output>
     </remotesteps>
     <GUI>
-      <xloc>544</xloc>
-      <yloc>1312</yloc>
+      <xloc>960</xloc>
+      <yloc>1168</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1518,8 +1666,8 @@ WHERE prueba.id_coche = ? AND prueba.id_coche = participa_en.id_coche AND fecha_
       </output>
     </remotesteps>
     <GUI>
-      <xloc>704</xloc>
-      <yloc>1312</yloc>
+      <xloc>1120</xloc>
+      <yloc>1168</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1674,7 +1822,7 @@ FROM sakila_escu.coche</sql>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>96</xloc>
+      <xloc>512</xloc>
       <yloc>160</yloc>
       <draw>Y</draw>
     </GUI>
@@ -1735,7 +1883,7 @@ FROM sakila_escu.participa_en
       </output>
     </remotesteps>
     <GUI>
-      <xloc>832</xloc>
+      <xloc>1696</xloc>
       <yloc>32</yloc>
       <draw>Y</draw>
     </GUI>
@@ -1821,7 +1969,7 @@ WHERE id_carrera = ?
       </output>
     </remotesteps>
     <GUI>
-      <xloc>832</xloc>
+      <xloc>1696</xloc>
       <yloc>160</yloc>
       <draw>Y</draw>
     </GUI>
@@ -1931,7 +2079,7 @@ WHERE id_carrera = ? AND tiempo_mejor_vuelta = ?
       </output>
     </remotesteps>
     <GUI>
-      <xloc>832</xloc>
+      <xloc>1696</xloc>
       <yloc>288</yloc>
       <draw>Y</draw>
     </GUI>
@@ -1965,8 +2113,8 @@ WHERE id_carrera = ? AND tiempo_mejor_vuelta = ?
       </output>
     </remotesteps>
     <GUI>
-      <xloc>368</xloc>
-      <yloc>528</yloc>
+      <xloc>1376</xloc>
+      <yloc>656</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1999,7 +2147,7 @@ WHERE id_carrera = ? AND tiempo_mejor_vuelta = ?
       </output>
     </remotesteps>
     <GUI>
-      <xloc>240</xloc>
+      <xloc>656</xloc>
       <yloc>912</yloc>
       <draw>Y</draw>
     </GUI>
@@ -2039,8 +2187,8 @@ WHERE id_carrera = ? AND tiempo_mejor_vuelta = ?
       </output>
     </remotesteps>
     <GUI>
-      <xloc>672</xloc>
-      <yloc>1184</yloc>
+      <xloc>1536</xloc>
+      <yloc>912</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2112,8 +2260,8 @@ WHERE id_carrera = ? AND tiempo_mejor_vuelta = ?
       </output>
     </remotesteps>
     <GUI>
-      <xloc>704</xloc>
-      <yloc>1424</yloc>
+      <xloc>1120</xloc>
+      <yloc>1280</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2172,8 +2320,8 @@ FROM sakila_escu.coche</sql>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>256</xloc>
-      <yloc>160</yloc>
+      <xloc>1552</xloc>
+      <yloc>288</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2206,8 +2354,8 @@ FROM sakila_escu.coche</sql>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>528</xloc>
-      <yloc>528</yloc>
+      <xloc>944</xloc>
+      <yloc>656</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2240,7 +2388,7 @@ FROM sakila_escu.coche</sql>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>96</xloc>
+      <xloc>512</xloc>
       <yloc>656</yloc>
       <draw>Y</draw>
     </GUI>
@@ -2274,7 +2422,7 @@ FROM sakila_escu.coche</sql>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>96</xloc>
+      <xloc>512</xloc>
       <yloc>784</yloc>
       <draw>Y</draw>
     </GUI>
@@ -2308,8 +2456,8 @@ FROM sakila_escu.coche</sql>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>240</xloc>
-      <yloc>1184</yloc>
+      <xloc>656</xloc>
+      <yloc>1040</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2347,8 +2495,8 @@ FROM sakila_escu.coche</sql>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>368</xloc>
-      <yloc>1040</yloc>
+      <xloc>352</xloc>
+      <yloc>784</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2389,7 +2537,7 @@ FROM sakila_escu.coche</sql>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>96</xloc>
+      <xloc>512</xloc>
       <yloc>912</yloc>
       <draw>Y</draw>
     </GUI>
@@ -2420,7 +2568,7 @@ FROM sakila_escu.coche</sql>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>832</xloc>
+      <xloc>1696</xloc>
       <yloc>640</yloc>
       <draw>Y</draw>
     </GUI>
@@ -2465,8 +2613,8 @@ FROM sakila_escu.coche</sql>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>528</xloc>
-      <yloc>1040</yloc>
+      <xloc>352</xloc>
+      <yloc>656</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2528,7 +2676,7 @@ FROM sakila_escu.coche</sql>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>96</xloc>
+      <xloc>352</xloc>
       <yloc>1040</yloc>
       <draw>Y</draw>
     </GUI>
@@ -2570,7 +2718,7 @@ FROM sakila_escu.coche</sql>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>96</xloc>
+      <xloc>512</xloc>
       <yloc>400</yloc>
       <draw>Y</draw>
     </GUI>
@@ -2612,8 +2760,8 @@ FROM sakila_escu.coche</sql>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>528</xloc>
-      <yloc>384</yloc>
+      <xloc>944</xloc>
+      <yloc>512</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2654,8 +2802,8 @@ FROM sakila_escu.coche</sql>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>96</xloc>
-      <yloc>1184</yloc>
+      <xloc>512</xloc>
+      <yloc>1040</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2696,8 +2844,8 @@ FROM sakila_escu.coche</sql>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>368</xloc>
-      <yloc>1184</yloc>
+      <xloc>1696</xloc>
+      <yloc>1040</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2738,7 +2886,7 @@ FROM sakila_escu.coche</sql>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>832</xloc>
+      <xloc>1696</xloc>
       <yloc>384</yloc>
       <draw>Y</draw>
     </GUI>
@@ -2780,7 +2928,7 @@ FROM sakila_escu.coche</sql>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>832</xloc>
+      <xloc>1696</xloc>
       <yloc>784</yloc>
       <draw>Y</draw>
     </GUI>
@@ -2822,8 +2970,8 @@ FROM sakila_escu.coche</sql>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>256</xloc>
-      <yloc>400</yloc>
+      <xloc>1552</xloc>
+      <yloc>528</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2907,8 +3055,8 @@ FROM dwh_escu.dim_coche
       </output>
     </remotesteps>
     <GUI>
-      <xloc>528</xloc>
-      <yloc>288</yloc>
+      <xloc>944</xloc>
+      <yloc>416</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -3088,8 +3236,8 @@ FROM dwh_escu.dim_tiempo
       </output>
     </remotesteps>
     <GUI>
-      <xloc>672</xloc>
-      <yloc>1040</yloc>
+      <xloc>352</xloc>
+      <yloc>528</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -3123,7 +3271,7 @@ FROM dwh_escu.dim_tiempo
       </output>
     </remotesteps>
     <GUI>
-      <xloc>672</xloc>
+      <xloc>1536</xloc>
       <yloc>784</yloc>
       <draw>Y</draw>
     </GUI>
@@ -3158,7 +3306,7 @@ FROM dwh_escu.dim_tiempo
       </output>
     </remotesteps>
     <GUI>
-      <xloc>832</xloc>
+      <xloc>1696</xloc>
       <yloc>528</yloc>
       <draw>Y</draw>
     </GUI>
@@ -3193,8 +3341,8 @@ FROM dwh_escu.dim_tiempo
       </output>
     </remotesteps>
     <GUI>
-      <xloc>256</xloc>
-      <yloc>528</yloc>
+      <xloc>1552</xloc>
+      <yloc>656</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
